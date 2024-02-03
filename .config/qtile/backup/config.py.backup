@@ -1,0 +1,290 @@
+import os
+import subprocess
+from libqtile import bar, layout, qtile, widget, hook
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile.lazy import lazy
+from libqtile.utils import guess_terminal
+from qtile_extras import widget
+from qtile_extras.widget.decorations import PowerLineDecoration
+from colors import catppuccin
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.run([home])
+
+## My variables:
+mod             = "mod1" #Default mod key ALT
+sup             = "mod4" #Default mod key SUPER or WINDOWS
+myTerminal      = "alacritty" #Default terminal
+myBrowser       = "firefox" #Default browser
+myFont          = "Iosevka Nerd Font Bold" # Default Font
+myTitleFont     = "Iosevka Nerd Font Bold" # Title Font
+myFileManager   = "pcmanfm" # Default File Manager
+myEditor        = "code" # Default Editor
+myMusicPlayer   = "alacritty -e mocp" # Default Music Player
+programLauncher = ["dmenu_run", "-fn", myFont, "-nb", catppuccin['bg'], "-nf", catppuccin['blue'], "-sb", catppuccin['green'], "-sf", catppuccin['bg']] # Run DMenu
+volumeUp        = "pamixer -i 5" # Volume Up
+volumeDown      = "pamixer -d 5" # Volume Down
+volumeMute      = "pamixer --mute" # Mute
+volumeUnmute    = "pamixer --unmute" # Unmute
+rofiLauncher    = "rofi -show drun -show-icons" # Rofi Launcher
+powerMenu       = "rofi -show session-menu -modi session-menu:~/.config/qtile/scripts/rofi-power-menu --choices=shutdown/reboot/logout/lockscreen" # Power Menu
+
+keys = [
+    # My keys:
+    Key([mod], "Return", lazy.spawn(myTerminal), desc="Launch terminal"),
+    Key([sup], "f", lazy.spawn(myBrowser), desc="Open up the default browser"),
+    Key([sup, "shift"], "f", lazy.spawn("firefox -p"), desc="Launch Firefox Profiles"),
+    Key([mod], "d", lazy.spawn(myFileManager), desc="Open the default file manager"),
+    Key([sup], "c", lazy.spawn(myEditor), desc="Launch VS Code"),
+    Key([sup], "m", lazy.spawn(myMusicPlayer), desc="Launch Music Player"),
+    Key([mod], "p", lazy.spawn(programLauncher), desc="Launch Dmenu"),
+    Key([sup], "p", lazy.spawn(rofiLauncher), desc="Launch Rofi launcher!"),
+    Key([sup], "r", lazy.spawn(powerMenu), desc="Launch Power Menu!"),
+
+    # Volume keys:
+    Key([mod], "F3", lazy.spawn(volumeUp), desc="Volume up!"),
+    Key([mod], "F2", lazy.spawn(volumeDown), desc="Volume Down!"),
+    Key([mod], "F4", lazy.spawn(volumeMute), desc="Mute!"),
+    Key([mod], "F1", lazy.spawn(volumeUnmute),desc="Unmute!"),
+
+    # Close window, shutdown and restart keys:
+    Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+
+    # Switch Window Focus:
+    Key([sup], "Left", lazy.layout.left(), desc="Move focus to left"),
+    Key([sup], "Right", lazy.layout.right(), desc="Move focus to right"),
+    Key([sup], "Down", lazy.layout.down(), desc="Move focus down"),
+    Key([sup], "Up", lazy.layout.up(), desc="Move focus up"),
+    Key([sup], "space", lazy.layout.next(), desc="Move window focus to other window"),
+
+    # Move windows between left/right columns or move up/down in current stack.
+    Key([sup, "shift"], "Left", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([sup, "shift"], "Right", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([sup, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([sup, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
+
+    # Grow windows. If current window is on the edge of screen and direction
+    Key([mod, "shift"], "Left", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([mod, "shift"], "Right", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "shift"], "Down", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([mod, "shift"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+
+    # Toggle between different layouts as defined below
+    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
+    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+]
+
+## Workspaces:
+groups = [
+        Group('1', label="", layout='monadtall'),
+        Group('2', label="", layout='monadtall', matches=[Match(wm_class=["firefox"])]),
+        Group('3', label="󰅩", layout='monadtall', matches=[Match(wm_class=["code-oss"])]),
+        Group('4', label="󰪶", layout='monadtall', matches=[Match(wm_class=["Pcmanfm"])]),
+        Group('5', label="󰿎", layout='monadtall', matches=[Match(wm_class=["mpv"])]),
+        ]
+
+for i in groups:
+    keys.extend(
+        [
+            # mod1 + group number = switch to group
+            Key(
+                [mod],
+                i.name,
+                lazy.group[i.name].toscreen(),
+                desc="Switch to group {}".format(i.name),
+            ),
+            # mod1 + shift + group number = switch to & move focused window to group
+            Key(
+                [mod, "shift"],
+                i.name,
+                lazy.window.togroup(i.name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(i.name),
+            ),
+        ]
+    )
+
+## ScartchPads
+groups.append(ScratchPad('scratchpad', [
+    DropDown('term', 'alacritty',           width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
+    DropDown('mocp', 'alacritty -e mocp',   width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
+    DropDown('paco', 'pavucontrol',         width=0.4, height=0.6, x=0.3, y=0.1, opacity=1),
+    DropDown('rang', 'alacritty -e ranger', width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
+    ]))
+
+# Keybinding for ScartchPads:
+keys.extend([
+    Key(["control"], "1", lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key(["control"], "2", lazy.group['scratchpad'].dropdown_toggle('mocp')),
+    Key(["control"], "3", lazy.group['scratchpad'].dropdown_toggle('paco')),
+    Key(["control"], "4", lazy.group['scratchpad'].dropdown_toggle('rang')),
+])
+
+## Window behaviour - Layouts:
+layouts = [
+    layout.MonadTall(
+        border_focus=catppuccin['green'],
+        border_normal=catppuccin['inactive'],
+        margin=7
+        ),
+    layout.Max(),
+    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
+    # layout.Matrix(),
+    # layout.MonadWide(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    # layout.TreeTab(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
+]
+
+## Default widgets settings:
+widget_defaults = dict(
+    font=myFont,
+    fontsize=14,
+    padding=3,
+)
+extension_defaults = widget_defaults.copy()
+
+## Decorations for the bar:
+powerline_left = {
+    "decorations": [
+        PowerLineDecoration(
+            path="arrow_right"
+            )
+    ]
+}
+
+powerline_right = {
+    "decorations": [
+        PowerLineDecoration(
+            path="arrow_left"
+            )
+    ]
+}
+
+## The bar:
+screens = [
+    Screen(
+        top=bar.Bar(
+            [
+                widget.CurrentLayoutIcon(
+                    background=catppuccin['mauve'],
+                    foreground=catppuccin['bg'],
+                    padding=10,
+                    scale=0.5,
+                    **powerline_right
+                    ),
+                widget.GroupBox(
+                    disable_drag=True,
+                    active=catppuccin['mauve'],
+                    inactive=catppuccin['inactive'],
+                    highlight_method='text',
+                    background=catppuccin['bg'],
+                    spacing=5,
+                    foreground=catppuccin['inactive'],
+                    padding=3,
+                    this_current_screen_border=catppuccin['green'],
+                    **powerline_right
+                    ),
+                widget.WindowName(
+                    background=catppuccin['title'],
+                    foreground=catppuccin['fg'],
+                    font=myTitleFont,
+                    max_chars=80,
+                    fontsize=14,
+                    **powerline_left
+                    ),
+                widget.CPU(
+                    format='  {load_percent}%',
+                    background=catppuccin['mauve'],
+                    foreground=catppuccin['bg'],
+                    **powerline_left
+                    ),
+                widget.ThermalZone(
+                    format=' {temp}°C',
+                    background=catppuccin['blue'],
+                    high=70,
+                    crit=80,
+                    fgcolor_crit=catppuccin['red'],
+                    fgcolor_high=catppuccin['yellow'],
+                    fgcolor_normal=catppuccin['bg'],
+                    zone='/sys/class/thermal/thermal_zone0/temp',
+                    update_interval=2,
+                    **powerline_left
+                    ),
+                widget.Memory(
+                        format=' {MemUsed: .0f}{mm}',
+                        measure_mem='M',
+                        background=catppuccin['green'],
+                        foreground=catppuccin['bg'],
+                        **powerline_left
+                        ),
+                widget.PulseVolume(
+                        fmt='󰓃 {:>4}',
+                        background=catppuccin['yellow'],
+                        foreground=catppuccin['bg'],
+                        update_interval=0.1,
+                        **powerline_left
+                        ),
+                widget.Clock(
+                        format='  %a%e-%b',
+                        background=catppuccin['peach'],
+                        foreground=catppuccin['bg'],
+                        **powerline_left
+                        ),
+                widget.Clock(
+                        format='  %H:%M',
+                        background=catppuccin['red'],
+                        foreground=catppuccin['bg'],
+                        **powerline_left
+                        ),
+                widget.Systray(
+                        background=catppuccin['bg'],
+                        iconsize=30,
+                        ),
+            ],
+            24,
+        ),
+    ),
+]
+
+# Drag floating layouts.
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
+]
+
+## Default settings:
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: list
+follow_mouse_focus = True
+bring_front_click = False
+floats_kept_above = True
+cursor_warp = False
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+    ]
+)
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+auto_minimize = True
+wmname = "Qtile"
+
