@@ -251,17 +251,17 @@ screens = [
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
                     margin=-7
-                        ),
+                    ),
                 widget.Spacer(
                     length=-7,
                     background=catppuccin['bg_1']
-                        ),
+                    ),
                 # Temperature
                 widget.Image(
                     filename="~/.config/qtile/icons/temp.png",
                     background=catppuccin['bg_1'],
                     margin_y=4
-                        ),
+                    ),
                 widget.ThermalZone(
                     format='{temp}°C',
                     high=70,
@@ -276,7 +276,7 @@ screens = [
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
                     margin=-7
-                        ),
+                    ),
                 widget.Spacer(
                     length=-7,
                     background=catppuccin['bg_1']
@@ -286,7 +286,7 @@ screens = [
                     filename="~/.config/qtile/icons/ram.png",
                     background=catppuccin['bg_1'],
                     margin_y=4
-                        ),
+                    ),
                 widget.Memory(
                     format='{MemUsed:.0f}{mm}',
                     measure_mem='M',
@@ -306,7 +306,7 @@ screens = [
                     filename="~/.config/qtile/icons/sound.png",
                     background=catppuccin['bg_1'],
                     margin_y=4
-                        ),
+                    ),
                 widget.PulseVolume(
                     fmt='{:>4}',
                     background=catppuccin['bg_1'],
@@ -321,12 +321,12 @@ screens = [
                     length=-7,
                     background=catppuccin['bg_1']
                     ),
-                # Date and Time
+                # Time
                 widget.Image(
                     filename="~/.config/qtile/icons/time.png",
                     background=catppuccin['bg_1'],
                     margin_y=4
-                        ),
+                    ),
                 widget.Clock(
                     format='%H:%M',
                     background=catppuccin['bg_1'],
@@ -340,12 +340,12 @@ screens = [
                     length=-7,
                     background=catppuccin['bg_1']
                     ),
-                # Date and Time
+                # Date
                 widget.Image(
                     filename="~/.config/qtile/icons/date.png",
                     background=catppuccin['bg_1'],
                     margin_y=4
-                        ),
+                    ),
                 widget.Clock(
                     format='%e.%b',
                     background=catppuccin['bg_1'],
