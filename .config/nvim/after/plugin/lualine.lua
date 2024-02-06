@@ -9,8 +9,6 @@ require("lualine").setup {
         {
           "filename",
           path = 1,
-          fg = "#1c1d21",
-          bg = "#b4befe",
         }
       }
     }
