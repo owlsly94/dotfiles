@@ -2,7 +2,7 @@ configuration {
   display-drun: "Applications:";
   display-window: "Windows:";
   drun-display-format: "{icon} {name}";
-  font: "JetBrainsMono Nerd Font Medium 10";
+  font: "Iosevka Nerd Font Bold 11";
   modi: "window,run,drun";
   show-icons: true;
   icon-theme: "Papirus";
@@ -11,11 +11,11 @@ configuration {
 @theme "/dev/null"
 
 * {
-  bg: #1f1d2e;
+  bg: #1e1e2e;
   bg-alt: #313244;
 
-  fg: #cba6f7;
-  fg-alt: #bac2de;
+  fg: #89b4fa;
+  fg-alt: #a6adc8;
 
   background-color: @bg;
   
@@ -35,7 +35,9 @@ element {
 }
 
 element selected {
-  text-color: @fg;
+  text-color: @bg;
+  background-color: @fg;
+  border-radius: 8px;
 }
 
 element-text {
@@ -46,6 +48,8 @@ element-text {
 
 element-icon {
   size: 30;
+  background-color: @fg;
+  border-radius: 8px;
 }
 
 entry {
