@@ -81,9 +81,9 @@ keys = [
     Key([sup, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([sup, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
 
-    # Window size changer
-    Key(["control"], "Left", lazy.layout.shrink(), desc="Shrink left!"),
-    Key(["control"], "Right", lazy.layout.grow(), desc="Grow Right!"),
+    # Window size changer for MonadTall
+    Key(["control"], "Right", lazy.layout.shrink(), desc="Shrink Right!"),
+    Key(["control"], "Left", lazy.layout.grow(), desc="Grow Left!"),
 
     # Grow windows. If current window is on the edge of screen and direction
     Key([mod, "shift"], "Left", lazy.layout.grow_left(), desc="Grow window to the left"),
