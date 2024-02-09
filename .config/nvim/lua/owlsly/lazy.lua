@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -9,6 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
@@ -59,7 +61,7 @@ require("lazy").setup({
     -- Git
     { "kdheepak/lazygit.nvim" },
     { "airblade/vim-gitgutter" },
-    
+
     -- Debugging
     { "mfussenegger/nvim-dap" },
     { "rcarriga/nvim-dap-ui" },
@@ -69,7 +71,7 @@ require("lazy").setup({
     --Writting
     { "junegunn/goyo.vim" },
     { "preservim/vim-pencil" },
-    
+
     -- Misc
     { "mbbill/undotree" },
     { "uga-rosa/ccc.nvim" },
@@ -83,10 +85,7 @@ require("lazy").setup({
     -- Looks
     { "nvim-lualine/lualine.nvim"},
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { "romgrk/barbar.nvim",
-        dependencies = {
-          "lewis6991/gitsigns.nvim"
-        }
-    }
-
+    { "folke/tokyonight.nvim" },
+    { "romgrk/barbar.nvim", dependencies = { "lewis6991/gitsigns.nvim" } },
+    { "nvimdev/dashboard-nvim", event = 'VimEnter', },
 })
