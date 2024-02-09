@@ -23,6 +23,7 @@ def wallChanger(qtile):
 mod             = "mod1" #Default mod key ALT
 sup             = "mod4" #Default mod key SUPER or WINDOWS
 myTerminal      = "alacritty" #Default terminal
+mySecTerminal   = "kitty" # Backup terminal
 myBrowser       = "firefox" #Default browser
 myBrave         = "brave-browser" # Brave browser
 myFont          = "Iosevka Nerd Font Bold" # Default Font
@@ -44,6 +45,7 @@ myChatGPT       = "brave-browser --app=https://chat.openai.com" # ChatGPT
 keys = [
     # My keys:
     Key([mod], "Return", lazy.spawn(myTerminal), desc="Launch terminal"),
+    Key([sup], "Return", lazy.spawn(mySecTerminal), desc="Launch second terminal"),
     Key([sup], "f", lazy.spawn(myBrowser), desc="Open up the default browser"),
     Key([sup, "shift"], "f", lazy.spawn("firefox -p"), desc="Launch Firefox Profiles"),
     Key([mod], "d", lazy.spawn(myFileManager), desc="Open the default file manager"),
@@ -54,7 +56,7 @@ keys = [
     Key([sup], "r", lazy.spawn(powerMenu), desc="Launch Power Menu!"),
     Key([sup], "w", lazy.function(wallChanger), desc="Wallpaper changer!"),
     Key([sup], "b", lazy.spawn(myBrave), desc="Launch Brave browser!"),
-    Key([sup], "m", lazy.spawn(mySpotify), desc="Launch Spotify!"),
+    Key([sup], "s", lazy.spawn(mySpotify), desc="Launch Spotify!"),
     Key([sup], "g", lazy.spawn(myChatGPT), desc="Launch ChatGPT!"),
 
     # Volume keys:
