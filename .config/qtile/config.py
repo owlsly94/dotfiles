@@ -105,6 +105,7 @@ groups = [
         Group('3', label="󰨞", layout='monadtall', matches=[Match(wm_class=["code-oss"])]),
         Group('4', label="", layout='monadtall', matches=[Match(wm_class=["Pcmanfm"])]),
         Group('5', label="󰿎", layout='monadtall', matches=[Match(wm_class=["mpv"])]),
+        Group('6', label="", layout='monadtall', matches=[Match(wm_class=["open.spotify.com"])]),
         ]
 
 for i in groups:
