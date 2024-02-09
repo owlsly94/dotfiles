@@ -24,6 +24,11 @@ def wifiMenu(qtile):
     script = os.path.expanduser('~/.config/qtile/scripts/rofi-wifi-menu.sh')
     subprocess.call([script])
 
+# Wallpaper selector:
+def wallSelector(qtile):
+    script = os.path.expanduser('~/.config/qtile/scripts/wallpaper_selector.sh')
+    subprocess.call([script])
+
 ## My variables:
 mod             = "mod1" #Default mod key ALT
 sup             = "mod4" #Default mod key SUPER or WINDOWS
@@ -59,7 +64,8 @@ keys = [
     Key([mod], "p", lazy.spawn(programLauncher), desc="Launch Dmenu"),
     Key([sup], "p", lazy.spawn(rofiLauncher), desc="Launch Rofi launcher!"),
     Key([sup], "r", lazy.spawn(powerMenu), desc="Launch Power Menu!"),
-    Key([mod], "w", lazy.function(wifiMenu), desc="Launch WiFi menu!"),
+    Key([mod], "i", lazy.function(wifiMenu), desc="Launch WiFi menu!"),
+    Key([mod], "w", lazy.function(wallSelector), desc="Wallpaper selector"),
     Key([sup], "w", lazy.function(wallChanger), desc="Wallpaper changer!"),
     Key([sup], "b", lazy.spawn(myBrave), desc="Launch Brave browser!"),
     Key([sup], "s", lazy.spawn(mySpotify), desc="Launch Spotify!"),
