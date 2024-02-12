@@ -109,10 +109,12 @@ history = 10000
 multiplier = 3
 
 [shell]
-program = "/usr/bin/zsh"
+program = "/bin/zsh"
 
 [window]
 title = "Alacritty"
+blur = true
+opacity = 0.8
 
 [window.class]
 general = "Alacritty"
