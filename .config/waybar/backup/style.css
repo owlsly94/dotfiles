@@ -1,6 +1,6 @@
 * {
     font-family: Iosevka Nerd Font;
-    font-size: 14px;
+    font-size: 12px;
     min-height: 20px;
 }
 
@@ -87,14 +87,6 @@ button:hover {
     margin: 3px;
     padding: 3px;
     background-color: #1e1e2e;
-    border-radius: 8px;
-}
-
-#window {
-  font-size: 14px;
-  font-weight: bold;
-  padding: 3px;
-  border-radius: 8px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
