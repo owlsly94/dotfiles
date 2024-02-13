@@ -1,3 +1,5 @@
+@import "../../.cache/wal/colors-waybar.css";
+
 * {
     font-family: Iosevka Nerd Font;
     font-size: 14px;
@@ -6,7 +8,7 @@
 
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
-    color: #cdd6f4;
+    color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -41,11 +43,15 @@ button:hover {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #ffffff;
+    color: #7f849c;
 }
 
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.active {
+  color: @color3;
 }
 
 #workspaces button.focused {
@@ -86,8 +92,12 @@ button:hover {
 #workspaces {
     margin: 3px;
     padding: 3px;
-    background-color: #1e1e2e;
     border-radius: 8px;
+}
+
+#workspaces {
+  background-color: @background;
+  font-size: 16px;
 }
 
 #window {
@@ -95,6 +105,9 @@ button:hover {
   font-weight: bold;
   padding: 3px;
   border-radius: 8px;
+  background-color: @background;
+  padding-left: 10px;
+  padding-right:10px
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -108,8 +121,8 @@ button:hover {
 }
 
 #clock {
-    background-color: #f38ba8;
-    color: #1e1e2e;
+    background-color: @background;
+    color: @foreground;
     font-weight: bold;
     border-radius: 8px;
     margin: 3px;
@@ -147,16 +160,16 @@ label:focus {
 }
 
 #cpu {
-    background-color: #a6e3a1;
-    color: #1e1e2e;
+    background-color: @background;
+    color: @foreground;
     font-weight: bold;
     border-radius: 8px;
     margin: 3px;
 }
 
 #memory {
-    background-color: #f9e2af;
-    color: #1e1e2e;
+    background-color: @background;
+    color: @foreground;
     font-weight: bold;
     border-radius: 8px;
     margin: 3px;
@@ -179,16 +192,16 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: #89b4fa;
-    color: #1e1e2e;
+    background-color: @background;
+    color: @foreground;
     font-weight: bold;
     border-radius: 8px;
     margin: 3px;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: @background;
+    color: @color1;
 }
 
 #wireplumber {
@@ -215,8 +228,8 @@ label:focus {
 }
 
 #temperature {
-    background-color: #fab387;
-    color: #1e1e2e;
+    background-color: @background;
+    color: @foreground;
     font-weight: bold;
     border-radius: 8px;
     margin: 3px;
