@@ -50,6 +50,7 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     { "nvim-treesitter/nvim-treesitter-context" },
     { "kylechui/nvim-surround" },
+    { "folke/trouble.nvim" },
 
     -- File navigation
     {
