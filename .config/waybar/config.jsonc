@@ -54,7 +54,8 @@
     "format-icons": ["", "", ""]
   },
   "memory": {
-    "format": "  {used} Gb"
+    "format": "  {used} GB",
+    "on-click": "kitty -e htop",
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
