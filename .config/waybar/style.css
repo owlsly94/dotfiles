@@ -31,7 +31,7 @@ window#waybar.hidden {
   }
 
 #workspaces button.active {
-    color: @color3;
+    color: @color6;
   }
 
 #workspaces button.focused {
