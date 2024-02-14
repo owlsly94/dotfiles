@@ -33,10 +33,10 @@
   },
   "custom/updates": {
     "format": "  {}",
-    "interval": 7200, // check for updates every two hours
-    "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",
-    "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "kitty -e yay -Syu", // update system
+    "interval": 7200,
+    "exec": "i=$(checkupdates | wc -l); echo \"$i\"; checkupdates | column -t | tr '\n' '\r'",
+    "exec-if": "exit 0",
+    "on-click": "kitty -e yay -Syu",
     "signal": 8
   },
   "clock": {
