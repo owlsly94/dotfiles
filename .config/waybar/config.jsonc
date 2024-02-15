@@ -36,9 +36,9 @@
   "custom/updates": {
     "format": "  {}",
     "interval": 7200,
-    "exec": "i=$(checkupdates | wc -l); echo \"$i\"; checkupdates | column -t | tr '\n' '\r'",
+    "exec": "pacman -Qu | wc -l",
     "exec-if": "exit 0",
-    "on-click": "kitty -e yay -Syu",
+    "on-click": "kitty -e pacman -Syu",
     "signal": 8
   },
   "clock": {
