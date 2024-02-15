@@ -13,7 +13,7 @@ change_wallpaper() {
     --transition-type="wipe" \
     --transition-duration=0.7
 
-  echo "Wallpaper changed to: $selected_wallpaper"
+  notify-send "Pywall" "Wallpaper changed to: $selected_wallpaper"
 
   wal -i "$selected_wallpaper"
 
