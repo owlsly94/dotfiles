@@ -1,3 +1,4 @@
+@import "../../.cache/wal/colors-waybar.css";
 
 * {
     border: none;
@@ -9,8 +10,8 @@
   }
 
 window#waybar {
-    background-color: rgb(17, 17, 27);
-    color: rgb(205, 214, 244);
+    background-color: rgba(43, 48, 59, 0);
+    color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
   }
@@ -21,25 +22,25 @@ window#waybar.hidden {
 
 #workspaces button {
     padding: 0 5px;
-    color: rgb(108, 112, 134);
+    color: @color1;
   }
 
 #workspaces button:hover {
-    background: rgb(30, 30, 46);
-    color: rgb(203, 166, 247);
+    background: @color0;
+    color: @foreground;
   }
 
 #workspaces button.active {
-    color: rgb(166, 227, 161);
+    color: @color6;
   }
 
 #workspaces button.focused {
-    color: rgb(166, 227, 161);
-    background: rgb(30, 30, 46);
+    color: @color3;
+    background: @background;
   }
 
 #workspaces button.urgent {
-    background-color: rgb(235, 160, 172);
+    background-color: @color9;
   }
 
 #clock,
@@ -51,7 +52,7 @@ window#waybar.hidden {
 #tray {
     padding: 0 10px;
     margin: 3px 0px;
-    background: rgb(30, 30, 46);
+    background: @background;
   }
 
 #window,
@@ -62,13 +63,13 @@ window#waybar.hidden {
   }
 
 #workspaces {
-    background: rgb(30, 30, 46);
+    background: @background;
     font-size: 16px;
   }
 
 #custom-updates {
-  color: rgb(250, 179, 135);
-  background: rgb(30, 30, 46);
+  color: @foreground;
+  background: @background;
   border-radius: 8px;
   }
 
@@ -77,60 +78,59 @@ window#waybar.hidden {
     font-weight: bold;
     padding: 3px;
     border-radius: 8px;
-    background-color: rgb(30, 30, 46);
-    color: rgb(205, 214, 244);
+    background-color: @background;
     padding-left: 10px;
     padding-right:10px
   }
 
 #clock {
-    background-color: rgb(30, 30, 46);
-    color: rgb(243, 139, 168);
+    background-color: @background;
+    color: @foreground;
     border-radius: 8px;
     margin: 3px;
   }
 
 #cpu {
-    background-color: rgb(30, 30, 46);
-    color: rgb(137, 180, 250);
+    background-color: @background;
+    color: @foreground;
     border-radius: 8px;
     margin: 3px;
   }
 
 #memory {
-    background-color: rgb(30, 30, 46);
-    color: rgb(166, 227, 161);
+    background-color: @background;
+    color: @foreground;
     border-radius: 8px;
     margin: 3px;
   }
 
 #pulseaudio {
-    background-color: rgb(30, 30, 46);
-    color: rgb(203, 166, 247);
+    background-color: @background;
+    color: @foreground;
     font-weight: bold;
     border-radius: 8px;
     margin: 3px;
   }
 
 #pulseaudio.muted {
-    background-color: rgb(30, 30, 46);
-    color: rgb(245, 194, 231);
+    background-color: @background;
+    color: @color1;
   }
 
 #temperature {
-    background-color: rgb(30, 30, 46);
-    color: rgb(249, 226, 175);
+    background-color: @background;
+    color: @foreground;
     font-weight: bold;
     border-radius: 8px;
     margin: 3px;
   }
 
 #temperature.critical {
-    background-color: rgb(243, 139, 168);
+    background-color: @color10;
   }
 
 #tray {
-    background-color: rgb(30, 30, 46);
+    background-color: @background;
     border-radius: 8px;
   }
 
@@ -140,6 +140,6 @@ window#waybar.hidden {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: rgb(30, 30, 46);
+    background-color: @color1;
   }
 
