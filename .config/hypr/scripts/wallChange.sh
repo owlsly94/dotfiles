@@ -17,7 +17,7 @@ change_wallpaper() {
 
   wal -i "$selected_wallpaper"
 
-  sh "$HOME/.config/waybar/start.sh"
+#  sh "$HOME/.config/waybar/start.sh"
 }
 
 wallpapers_folder="$HOME/.config/wallpapers/"
