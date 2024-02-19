@@ -10,11 +10,11 @@
     "hyprland/window"
   ],
   "modules-right": [
-    "pulseaudio",
     "cpu",
-    "memory",
     "temperature",
+    "memory",
     "custom/updates",
+    "pulseaudio",
     "clock",
     "tray"
   ],
