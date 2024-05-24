@@ -39,6 +39,7 @@ bindkey -v
 # Aliases
 alias l="exa --icons --all"
 alias v="nvim"
+alias cat="bat"
 
 # Plugins
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
