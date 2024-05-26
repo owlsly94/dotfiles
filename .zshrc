@@ -37,8 +37,10 @@ SAVEHIST=2000
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # Aliases
-alias l="exa --icons --all"
+alias l="eza --icons  -a --group-directories-first -1"
+alias ll="eza --icons  -a --group-directories-first -1 --no-user --long"
 alias v="nvim"
+alias sv = "sudo nvim"
 alias cat="bat"
 
 # Plugins
