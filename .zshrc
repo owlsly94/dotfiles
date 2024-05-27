@@ -40,7 +40,7 @@ bindkey -v
 alias l="eza --icons  -a --group-directories-first -1"
 alias ll="eza --icons  -a --group-directories-first -1 --no-user --long"
 alias v="nvim"
-alias sv = "sudo nvim"
+alias sv="sudo nvim"
 alias cat="bat"
 
 # Plugins
