@@ -1,10 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# The following lines were added by compinstall
-
+# Start Starship
 eval "$(starship init zsh)"
 
+# Completion
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
@@ -30,12 +27,14 @@ setopt no_list_ambiguous
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=2000
 SAVEHIST=2000
 bindkey -v
 # End of lines configured by zsh-newuser-install
+
 # Aliases
 alias l="eza --icons --all"
 alias ll="eza --icons  -a --group-directories-first -1 --no-user --long"
@@ -44,8 +43,17 @@ alias v="nvim"
 alias sv="sudo nvim"
 alias cat="bat"
 
-# Plugins
+# Github Lazy
+lazyg() {
+	git add .
+	git commit -m "$1"
+	git push
+}
+
+## Plugins
+# Syntax Highlighting
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Autosuggestions
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
