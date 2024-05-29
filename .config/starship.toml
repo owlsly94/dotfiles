@@ -23,6 +23,7 @@ $docker_context\
 [](fg:#06969A bg:#33658A)\
 $time\
 [ ](fg:#33658A)\
+$character\
 """
 command_timeout = 5000
 # Disable the blank line at the start of the prompt
@@ -34,6 +35,9 @@ show_always = true
 style_user = "bg:#3B4252"
 style_root = "bg:#3B4252"
 format = '[$user ]($style)'
+
+[character]
+success_symbol = '[❯](#a6e3a1)'
 
 [directory]
 style = "bg:#434C5E"
