@@ -48,6 +48,8 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
+"Videos" = " "
+".config" = " "
 # Keep in mind that the order matters. For example:
 # "Important Documents" = "  "
 # will not be replaced, because "Documents" was already substituted before.
@@ -75,7 +77,7 @@ style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
-symbol = " "
+symbol = ""
 style = "bg:#4C566A"
 format = '[ $symbol $branch ]($style)'
 
@@ -104,7 +106,7 @@ style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
-symbol = ""
+symbol = " "
 style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
@@ -114,6 +116,7 @@ style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
+symbol = " "
 style = "bg:#3B4252"
 format = '[(\($virtualenv\) )]($style)'
 
