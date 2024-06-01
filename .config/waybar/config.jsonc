@@ -38,7 +38,6 @@
     "interval": 7200,
     "exec": "sh ~/.config/hypr/scripts/updates.sh",
     "exec-if": "exit 0",
-    "on-click": "kitty -e pacman -Syu",
     "signal": 8
   },
   "clock": {
@@ -48,7 +47,8 @@
     },
   "cpu": {
     "format": "  {usage}%",
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "kitty -e btop"
   },
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
