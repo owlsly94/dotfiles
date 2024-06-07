@@ -1,21 +1,8 @@
 #!/bin/bash
 
-updates() {
-    if ! pacman_updates=$(checkupdates 2> /dev/null | wc -l ); then
-        pacman_updates=0
-    fi
+# Check for updates and count them
+updates=$(yay -Qu | wc -l)
 
-    if ! aur_updates=$(yay -Qum 2> /dev/null | wc -l ); then
-        aur_updates=0
-    fi
+# Output the number of updates in JSON format
+echo "$updates"
 
-    available=$(("$pacman_updates" + "$aur_updates"))
-
-    if [ $available == 0 ]; then 
-        echo "0"
-    else
-        echo "$available"
-    fi
-}
-
-echo "$(updates)"
