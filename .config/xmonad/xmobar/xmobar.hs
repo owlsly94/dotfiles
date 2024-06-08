@@ -13,7 +13,7 @@ Config {
    -- layout
    , sepChar            = "%" -- delineator between plugin names and straight text
    , alignSep           = "}{" -- separator between left-right alignment
-   , template           = " <icon=xmonad.xpm/>  %UnsafeStdinReader% }{  %thermal0%  %memory%  %cpu%  <fc=#a6e3a1>%volume%</fc><fc=#fab387>%wifi%</fc> %LYNI%  %date%  "
+   , template           = " <icon=xmonad.xpm/>  %UnsafeStdinReader% }{ <fc=#cba6f7>%cputemp%</fc>  %memory%  %cpu%  <fc=#a6e3a1>%volume%</fc><fc=#fab387>%wifi%</fc> %LYNI%  %date%  "
 
    -- general behavior
    , lowerOnStart       = True    -- send to bottom of window stack on start
@@ -31,9 +31,6 @@ Config {
         -- CPU Usage
         [ Run Cpu             ["-t", "<fc=#74c7ec><fn=1> </fn> <total>%</fc>"] 20
 
-        -- Thermal zone
-        , Run ThermalZone 0   ["-t","<fc=#cba6f7><fn=1></fn> <temp>°C</fc>"] 30
-                          
         -- memory usage monitor
         , Run Memory          ["-t","<fc=#89b4fa><fn=1>  </fn><used>Mb</fc>"] 10
 
@@ -49,6 +46,9 @@ Config {
 
         -- Wifi Network
         , Run Com             ".config/xmonad/scripts/wifi.sh" [] "wifi" 36000
+
+        -- CPU Temp
+        , Run Com             ".config/xmonad/scripts/cpu-temp.sh" [] "cputemp" 30
 
         , Run UnsafeStdinReader
 
