@@ -78,7 +78,6 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Fullscreen (fullscreenFull)
-import XMonad.Layout.Cross(simpleCross)
 import XMonad.Layout.Spiral(spiral)
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.MultiToggle
@@ -128,7 +127,7 @@ myModMask = mod1Mask
 --------- TERMINAL ----------
 -----------------------------
 myTerminal :: String
-myTerminal = "alacritty"
+myTerminal = "kitty"
 
 -----------------------------
 ---------- BROWSER ----------
@@ -470,8 +469,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 -----------------------------
 main :: IO ()
 main = do
-    xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobar0.hs"
-    xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobar1.hs"
+    xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobar.hs"
     xmonad . ewmh $
         myBaseConfig
                 { startupHook = myStartupHook
@@ -487,7 +485,7 @@ main = do
                 , keys = myKeys
                 , mouseBindings = myMouseBindings
                 , logHook = dynamicLogWithPP xmobarPP
-                          { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
+                          { ppOutput = \x -> hPutStrLn xmproc x
                           , ppCurrent = xmobarColor greenColor "" . wrap "" "" -- Current workspace in xmobar
                           , ppVisible = xmobarColor redColor ""                -- Visible but not current workspace
                           , ppHidden = xmobarColor purpleColor "" . wrap "" ""   -- Hidden workspaces in xmobar
