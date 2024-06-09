@@ -219,102 +219,53 @@ myBorderWidth = 2
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
   where
-        doubleLts '<' = "<<"
-        doubleLts x   = [x]
+    doubleLts '<' = "<<"
+    doubleLts x   = [x]
 
 myWorkspaces :: [String]
-myWorkspaces = clickable . map xmobarEscape
-               $ ["\62601", "\62057", "\985630", "\61564", "\987086"]
+myWorkspaces =
+  clickable . map xmobarEscape $ ["\62601", "\62057", "\985630", "\61564", "\987086"]
   where
-        clickable l = [ "<action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action>" |
-                      (i,ws) <- zip [1..5] l,
-                      let n = i ]
+    clickable l =
+      [ "<action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action>"
+      | (i,ws) <- zip [1..5] l
+      , let n = i
+      ]
 
 -----------------------------
 ------- WINDOW RULES --------
 -----------------------------
-myManageHook::ManageHook
+myManageHook :: ManageHook
 myManageHook = composeAll
-             [ className =? "Firefox-esr" --> doShift ( myWorkspaces !! 1 )
-             , className =? "Brave-browser" --> doShift ( myWorkspaces !! 1 )
-             , className =? "Code" --> doShift ( myWorkspaces !! 2 )
-             , className =? "Pcmanfm" --> doShift ( myWorkspaces !! 3 )
-             , className =? "vlc" --> doShift ( myWorkspaces !! 4 )
-             , isFullscreen -->  doFullFloat
-             , isDialog --> doCenterFloat
-             ] <+> manageDocks <+> namedScratchpadManageHook myScratchpads
+    [ className =? "Firefox-esr"   --> doShift (myWorkspaces !! 1)
+    , className =? "Brave-browser" --> doShift (myWorkspaces !! 1)
+    , className =? "Code"          --> doShift (myWorkspaces !! 2)
+    , className =? "Pcmanfm"       --> doShift (myWorkspaces !! 3)
+    , className =? "vlc"           --> doShift (myWorkspaces !! 4)
+    , isFullscreen                 --> doFullFloat
+    , isDialog                     --> doCenterFloat
+    ] <+> manageDocks <+> namedScratchpadManageHook myScratchpads
 
 -----------------------------
 ------- SCRATCHPADS ---------
 -----------------------------
 myScratchpads :: [NamedScratchpad]
-myScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm
-                , NS "mocp" spawnMocp findMocp manageMocp
-                , NS "paco" spawnPaco findPaco managePaco
-                , NS "rang" spawnRang findRang manageRang
-                , NS "bitw" spawnBitw findBitw manageBitw
-                , NS "chgt" spawnChgt findChgt manageChgt
-                , NS "spot" spawnSpot findSpot manageSpot
-                ]
+myScratchpads =
+  [ NS "terminal"  (myTerminal ++ " -t scratchpad")   (title =? "scratchpad") customFloatingRect
+  , NS "mocp"      (myTerminal ++ " -t mocp -e mocp") (title =? "mocp")       customFloatingRect
+  , NS "paco"      "pavucontrol"                     (className =? "Pavucontrol") customFloatingRect
+  , NS "rang"      (myTerminal ++ " -t ranger -e ranger") (title =? "ranger") customFloatingRect
+  , NS "bitw"      "bitwarden-desktop"               (className =? "Bitwarden") customFloatingRect
+  , NS "chgt"      myChatGPT                         (title =? "ChatGPT")     customFloatingRect
+  , NS "spot"      mySpotify                         (title =? "Spotify")     customFloatingRect
+  ]
   where
-    spawnTerm  = myTerminal ++ " -t scratchpad"
-    findTerm   = title =? "scratchpad"
-    manageTerm = customFloating $ W.RationalRect l t w h
-               where
-                 h = 0.9
-                 w = 0.9
-                 t = 0.95 -h
-                 l = 0.95 -w
-    spawnMocp  = myTerminal ++ " -t mocp -e mocp"
-    findMocp   = title =? "mocp"
-    manageMocp = customFloating $ W.RationalRect l t w h
-               where
-                 h = 0.9
-                 w = 0.9
-                 t = 0.95 -h
-                 l = 0.95 -w
-    spawnPaco  = "pavucontrol"
-    findPaco   = className =? "Pavucontrol"
-    managePaco = customFloating $ W.RationalRect l t w h
-               where
-                h = 0.9
-                w = 0.9
-                t = 0.95 -h
-                l = 0.95 -w
-    spawnRang  = myTerminal ++ " -t ranger -e ranger"
-    findRang   = title =? "ranger"
-    manageRang = customFloating $ W.RationalRect l t w h
-               where
-                h = 0.9
-                w = 0.9
-                t = 0.95 -h
-                l = 0.95 -w
-    spawnBitw  = "bitwarden-desktop"
-    findBitw   = className =? "Bitwarden"
-    manageBitw = customFloating $ W.RationalRect l t w h
-               where
-                h = 0.9
-                w = 0.9
-                t = 0.95 -h
-                l = 0.95 -w
-
-    spawnChgt  = myChatGPT
-    findChgt   = title =? "ChatGPT"
-    manageChgt = customFloating $ W.RationalRect l t w h
-               where
-                h = 0.9
-                w = 0.9
-                t = 0.95 -h
-                l = 0.95 -w
-
-    spawnSpot  = mySpotify
-    findSpot   = title =? "Spotify"
-    manageSpot = customFloating $ W.RationalRect l t w h
-               where
-                h = 0.9
-                w = 0.9
-                t = 0.95 -h
-                l = 0.95 -w
+    customFloatingRect = customFloating $ W.RationalRect l t w h
+      where
+        h = 0.9
+        w = 0.9
+        t = 0.95 - h
+        l = 0.95 - w
 
 -- Base Config
 myBaseConfig = desktopConfig
@@ -331,7 +282,6 @@ mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
 -- Layouts customization
 tall    = renamed [Replace "\984640"]
---        $ gaps [(U,10), (D,10), (L,10), (R,10)]
         $ smartBorders
         $ mySpacing 8
         $ ResizableTall 1 (3/100) (1/2) []
