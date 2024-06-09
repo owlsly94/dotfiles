@@ -14,8 +14,8 @@ updates() {
     if [ $available == 0 ]; then 
         echo "  0"
     else
-        echo "$available"
+        echo "  $available"
     fi
 }
 
-echo "  $(updates)"
+echo "$(updates)"
