@@ -25,6 +25,7 @@ local options = {
 	wrap = false,
 	cursorline = true,
 	fileencoding = "utf-8",
+  clipboard = 'unnamedplus',
 
 	backup = false,
 	writebackup = false,
