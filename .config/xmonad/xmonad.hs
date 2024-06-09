@@ -130,11 +130,17 @@ myTerminal :: String
 myTerminal = "kitty"
 
 -----------------------------
+----- SECOND TERMINAL -------
+-----------------------------
+mySecondTerminal :: String
+mySecondTerminal = "alacritty"
+
+-----------------------------
 ---------- BROWSER ----------
 -----------------------------
 myBrowser, myBrave :: String
 myBrowser = "firefox"
-myBrave = "brave-browser"
+myBrave = "brave"
 
 -----------------------------
 ------- FILE MANAGER --------
@@ -237,7 +243,7 @@ myWorkspaces =
 -----------------------------
 myManageHook :: ManageHook
 myManageHook = composeAll
-    [ className =? "Firefox-esr"   --> doShift (myWorkspaces !! 1)
+    [ className =? "firefox"       --> doShift (myWorkspaces !! 1)
     , className =? "Brave-browser" --> doShift (myWorkspaces !! 1)
     , className =? "Code"          --> doShift (myWorkspaces !! 2)
     , className =? "Pcmanfm"       --> doShift (myWorkspaces !! 3)
@@ -251,13 +257,13 @@ myManageHook = composeAll
 -----------------------------
 myScratchpads :: [NamedScratchpad]
 myScratchpads =
-  [ NS "terminal"  (myTerminal ++ " -t scratchpad")   (title =? "scratchpad") customFloatingRect
-  , NS "mocp"      (myTerminal ++ " -t mocp -e mocp") (title =? "mocp")       customFloatingRect
-  , NS "paco"      "pavucontrol"                     (className =? "Pavucontrol") customFloatingRect
-  , NS "rang"      (myTerminal ++ " -t ranger -e ranger") (title =? "ranger") customFloatingRect
-  , NS "bitw"      "bitwarden-desktop"               (className =? "Bitwarden") customFloatingRect
-  , NS "chgt"      myChatGPT                         (title =? "ChatGPT")     customFloatingRect
-  , NS "spot"      mySpotify                         (title =? "Spotify")     customFloatingRect
+  [ NS "terminal"  (mySecondTerminal ++ " -t scratchpad")       (title =? "scratchpad")      customFloatingRect
+  , NS "mocp"      (mySecondTerminal ++ " -t mocp -e mocp")     (title =? "mocp")            customFloatingRect
+  , NS "paco"      "pavucontrol"                                (className =? "Pavucontrol") customFloatingRect
+  , NS "rang"      (mySecondTerminal ++ " -t ranger -e ranger") (title =? "ranger")          customFloatingRect
+  , NS "bitw"      "bitwarden-desktop"                          (className =? "Bitwarden")   customFloatingRect
+  , NS "chgt"      myChatGPT                                    (title =? "ChatGPT")         customFloatingRect
+  , NS "spot"      mySpotify                                    (title =? "Spotify")         customFloatingRect
   ]
   where
     customFloatingRect = customFloating $ W.RationalRect l t w h
@@ -317,85 +323,82 @@ myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   
   -- Custom keys
-  [ ((modMask,  xK_Return),             spawn $ myTerminal )
-  , ((mod4Mask, xK_f),                  spawn $ myBrowser )
-  , ((mod4Mask .|. shiftMask, xK_f),    spawn $ myBrowser ++ " -p" )
-  , ((modMask,  xK_p),                  spawn $ dMenu )
-  , ((modMask,  xK_d),                  spawn $ myFileManager )
-  , ((mod4Mask, xK_c),                  spawn $ myWorkEditor )
-  , ((mod4Mask, xK_m),                  spawn $ myMusicPlayer )
-  , ((mod4Mask, xK_p),                  spawn $ rofiLauncher )
-  , ((mod4Mask, xK_r),                  spawn $ powerMenu )
-  , ((mod4Mask, xK_w),                  spawn $ wallChanger )
-  , ((modMask,  xK_v),                  spawn $ myEditor )
-  , ((mod4Mask, xK_b),                  spawn $ myBrave )
+  [ ((modMask,  xK_Return),                   spawn $ myTerminal )
+  , ((mod4Mask, xK_f),                        spawn $ myBrowser )
+  , ((mod4Mask .|. shiftMask, xK_f),          spawn $ myBrowser ++ " -p" )
+  , ((mod4Mask, xK_b),                        spawn $ myBrave )
+  , ((modMask,  xK_p),                        spawn $ dMenu )
+  , ((mod4Mask, xK_p),                        spawn $ rofiLauncher )
+  , ((modMask,  xK_d),                        spawn $ myFileManager )
+  , ((mod4Mask, xK_c),                        spawn $ myWorkEditor )
+  , ((mod4Mask, xK_m),                        spawn $ myMusicPlayer )
+  , ((mod4Mask, xK_r),                        spawn $ powerMenu )
+  , ((mod4Mask, xK_w),                        spawn $ wallChanger )
+  , ((modMask,  xK_v),                        spawn $ myEditor )
 
   -- Sound Keys
-  , ((modMask, xK_F12),     spawn $ volumeUp )
-  , ((modMask, xK_F11),     spawn $ volumeDown )
-  , ((modMask, xK_F10),     spawn $ volumeMute )
-  , ((modMask, xK_F9),      spawn $ volumeUnmute )
+  , ((modMask, xK_F3),                        spawn $ volumeUp )
+  , ((modMask, xK_F2),                        spawn $ volumeDown )
+  , ((modMask, xK_F4),                        spawn $ volumeMute )
+  , ((modMask, xK_F1),                        spawn $ volumeUnmute )
 
   -- Kill window/s, Restart, Shutdown Keys
-  , ((modMask .|. shiftMask, xK_c), kill1 )
-  , ((modMask .|. shiftMask, xK_x), killAll )
-  , ((modMask .|. shiftMask , xK_r ), spawn $ myRecompileRestart )
-  , ((modMask .|. shiftMask, xK_q), io (exitWith ExitSuccess) )
+  , ((modMask .|. shiftMask, xK_c),           kill1 )
+  , ((modMask .|. shiftMask, xK_x),           killAll )
+  , ((modMask .|. shiftMask , xK_r ),         spawn $ myRecompileRestart )
+  , ((modMask .|. shiftMask, xK_q),           io (exitWith ExitSuccess) )
 
   -- Scratchpads
-  , ((mod4Mask, xK_1),   namedScratchpadAction myScratchpads "terminal")
-  , ((mod4Mask, xK_2),   namedScratchpadAction myScratchpads "mocp")
-  , ((mod4Mask, xK_3),   namedScratchpadAction myScratchpads "paco")
-  , ((mod4Mask, xK_4),   namedScratchpadAction myScratchpads "rang")
-  , ((mod4Mask, xK_5),   namedScratchpadAction myScratchpads "bitw")
-  , ((mod4Mask, xK_g),   namedScratchpadAction myScratchpads "chgt" )
-  , ((mod4Mask, xK_m),   namedScratchpadAction myScratchpads "spot" )
+  , ((mod4Mask, xK_1),                        namedScratchpadAction myScratchpads "terminal")
+  , ((mod4Mask, xK_2),                        namedScratchpadAction myScratchpads "mocp")
+  , ((mod4Mask, xK_3),                        namedScratchpadAction myScratchpads "paco")
+  , ((mod4Mask, xK_4),                        namedScratchpadAction myScratchpads "rang")
+  , ((mod4Mask, xK_5),                        namedScratchpadAction myScratchpads "bitw")
+  , ((mod4Mask, xK_g),                        namedScratchpadAction myScratchpads "chgt" )
+  , ((mod4Mask, xK_m),                        namedScratchpadAction myScratchpads "spot" )
 
   -- Switch Layouts
-  , ((modMask, xK_space), sendMessage NextLayout)
+  , ((modMask, xK_space),                     sendMessage NextLayout)
 
   -- Kill XMobar
-  , ((controlMask .|. shiftMask, xK_b), spawn $ "killall xmobar")
+  , ((controlMask .|. shiftMask, xK_b),       spawn $ "killall xmobar")
 
   -- XMobar show and hide
-  , ((controlMask, xK_b), sendMessage $ ToggleStruts)
-
-  -- XMobar show and hide gaps
---  , ((controlMask, xK_g), sendMessage $ ToggleGaps )
+  , ((controlMask, xK_b),                     sendMessage $ ToggleStruts)
 
   -- Toggle Fullscreen with no borders
-  , ((modMask, xK_n),       sendMessage $ Toggle NBFULL)
+  , ((modMask, xK_n),                         sendMessage $ Toggle NBFULL)
 
   -- Switch workspaces
-  , ((controlMask .|. modMask , xK_Left ), prevWS)
-  , ((controlMask .|. modMask , xK_Right ), nextWS)
+  , ((controlMask .|. modMask , xK_Left ),    prevWS)
+  , ((controlMask .|. modMask , xK_Right ),   nextWS)
 
   --  Reset the layouts on the current workspace to default.
-  , ((modMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
+  , ((modMask .|. shiftMask, xK_space),       setLayout $ XMonad.layoutHook conf)
 
   -- Move focus on a window
-  , ((mod4Mask, xK_Left), windows W.focusDown)
-  , ((mod4Mask, xK_Right), windows W.focusUp  )
+  , ((mod4Mask, xK_Left),                     windows W.focusDown)
+  , ((mod4Mask, xK_Right),                    windows W.focusUp  )
 
   -- Move focus to the master window.
-  , ((mod4Mask .|. shiftMask, xK_m), windows W.focusMaster  )
+  , ((mod4Mask .|. shiftMask, xK_m),          windows W.focusMaster  )
 
   -- Swap master window with stack
-  , ((mod4Mask .|. shiftMask, xK_Left), windows W.swapDown  )
-  , ((mod4Mask .|. shiftMask, xK_Right), windows W.swapUp    )
+  , ((mod4Mask .|. shiftMask, xK_Left),       windows W.swapDown  )
+  , ((mod4Mask .|. shiftMask, xK_Right),      windows W.swapUp    )
 
   -- Shrink and expand the master area.
-  , ((controlMask .|. shiftMask , xK_Left), sendMessage Shrink)
-  , ((controlMask .|. shiftMask , xK_Right), sendMessage Expand)
+  , ((controlMask .|. shiftMask , xK_Left),   sendMessage Shrink)
+  , ((controlMask .|. shiftMask , xK_Right),  sendMessage Expand)
 
   -- Push window back into tiling.
-  , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink)
+  , ((controlMask .|. shiftMask , xK_t),      withFocused $ windows . W.sink)
 
   -- Increment the number of windows in the master area.
-  , ((controlMask .|. mod4Mask, xK_Left), sendMessage (IncMasterN 1))
+  , ((controlMask .|. mod4Mask, xK_Left),     sendMessage (IncMasterN 1))
 
   -- Decrement the number of windows in the master area.
-  , ((controlMask .|. mod4Mask, xK_Right), sendMessage (IncMasterN (-1)))
+  , ((controlMask .|. mod4Mask, xK_Right),    sendMessage (IncMasterN (-1)))
 
   ]
   ++
