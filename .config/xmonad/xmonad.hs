@@ -273,12 +273,6 @@ myScratchpads =
         t = 0.95 - h
         l = 0.95 - w
 
--- Base Config
-myBaseConfig = desktopConfig
-
--- Mapping
-encodeCChar = map fromIntegral . B.unpack
-
 -----------------------------
 --------- LAYOUTS -----------
 -----------------------------
@@ -424,13 +418,13 @@ main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobar.hs"
     xmonad . ewmh $
-        myBaseConfig
+        desktopConfig
                 { startupHook = myStartupHook
                 , layoutHook = myLayout
-                , manageHook = manageSpawn <+> myManageHook <+> manageHook myBaseConfig
+                , manageHook = manageSpawn <+> myManageHook <+> manageHook desktopConfig
                 , modMask = myModMask
                 , borderWidth = myBorderWidth
-                , handleEventHook    = handleEventHook myBaseConfig
+                , handleEventHook    = handleEventHook desktopConfig
                 , focusFollowsMouse = myFocusFollowsMouse
                 , workspaces = myWorkspaces
                 , focusedBorderColor = myFocusedBorderColor
