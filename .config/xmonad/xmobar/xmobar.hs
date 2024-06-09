@@ -13,7 +13,7 @@ Config {
    -- layout
    , sepChar            = "%" -- delineator between plugin names and straight text
    , alignSep           = "}{" -- separator between left-right alignment
-   , template           = " <icon=xmonad.xpm/>  %UnsafeStdinReader% }{ <fc=#cba6f7>%cputemp%</fc>  %memory%  %cpu%  <fc=#a6e3a1>%volume%</fc><fc=#fab387>%wifi%</fc> %LYNI%  %date%  "
+   , template           = " <icon=xmonad.xpm/>  %UnsafeStdinReader% }{ %cpu%  <fc=#89b4fa>%cputemp%</fc>  %memory%  <fc=#94e2d5>%volume%</fc><fc=#fab387>%wifi%</fc> %LYNI%  <fc=#f9e2af>%updates%</fc>  %date%  "
 
    -- general behavior
    , lowerOnStart       = True    -- send to bottom of window stack on start
@@ -29,10 +29,10 @@ Config {
    , commands = 
 
         -- CPU Usage
-        [ Run Cpu             ["-t", "<fc=#74c7ec><fn=1> </fn> <total>%</fc>"] 20
+        [ Run Cpu             ["-t", "<fc=#cba6f7><fn=1> </fn> <total>%</fc>"] 20
 
         -- memory usage monitor
-        , Run Memory          ["-t","<fc=#89b4fa><fn=1>  </fn><used>Mb</fc>"] 10
+        , Run Memory          ["-t","<fc=#74c7ec><fn=1>  </fn><used>Mb</fc>"] 10
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
@@ -42,10 +42,13 @@ Config {
         , Run Com             ".config/xmonad/scripts/volume.sh" [] "volume" 10
 
         -- Check the weather
-        , Run Weather         "LYNI" ["-t", "<fc=#f9e2af><fn=1> </fn> <station> <tempC>°C</fc>" ] 36000
+        , Run Weather         "LYNI" ["-t", "<fc=#a6e3a1><fn=1> </fn> <station> <tempC>°C</fc>" ] 36000
 
         -- Wifi Network
         , Run Com             ".config/xmonad/scripts/wifi.sh" [] "wifi" 36000
+
+        -- Check for updates
+        , Run Com             ".config/xmonad/scripts/updates.sh" [] "updates" 72000
 
         -- CPU Temp
         , Run Com             ".config/xmonad/scripts/cpu-temp.sh" [] "cputemp" 30
