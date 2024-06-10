@@ -149,6 +149,12 @@ myFileManager :: String
 myFileManager = "pcmanfm"
 
 -----------------------------
+------ STEAM LAUNCHER -------
+-----------------------------
+mySteamLauncher :: String
+mySteamLauncher = "steam"
+
+-----------------------------
 ---------- EDITORS ----------
 -----------------------------
 myWorkEditor, myEditor :: String
@@ -230,11 +236,11 @@ xmobarEscape = concatMap doubleLts
 
 myWorkspaces :: [String]
 myWorkspaces =
-  clickable . map xmobarEscape $ ["\62601", "\62057", "\985630", "\61564", "\987086"]
+  clickable . map xmobarEscape $ ["\62601", "\62057", "\985630", "\61564", "\987086", "\61878" ]
   where
     clickable l =
       [ "<action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action>"
-      | (i,ws) <- zip [1..5] l
+      | (i,ws) <- zip [1..6] l
       , let n = i
       ]
 
@@ -248,6 +254,7 @@ myManageHook = composeAll
     , className =? "Code"          --> doShift (myWorkspaces !! 2)
     , className =? "Pcmanfm"       --> doShift (myWorkspaces !! 3)
     , className =? "vlc"           --> doShift (myWorkspaces !! 4)
+    , className =? "steam"         --> doShift (myWorkspaces !! 5)
     , isFullscreen                 --> doFullFloat
     , isDialog                     --> doCenterFloat
     ] <+> manageDocks <+> namedScratchpadManageHook myScratchpads
@@ -329,6 +336,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((mod4Mask, xK_r),                        spawn $ powerMenu )
   , ((mod4Mask, xK_w),                        spawn $ wallChanger )
   , ((modMask,  xK_v),                        spawn $ myEditor )
+  , ((mod4Mask, xK_s),                        spawn $ mySteamLauncher )
 
   -- Sound Keys
   , ((modMask, xK_F3),                        spawn $ volumeUp )
