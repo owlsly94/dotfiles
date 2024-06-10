@@ -236,7 +236,7 @@ xmobarEscape = concatMap doubleLts
 
 myWorkspaces :: [String]
 myWorkspaces =
-  clickable . map xmobarEscape $ ["\62601", "\62057", "\985630", "\61564", "\987086", "\61878" ]
+  clickable . map xmobarEscape $ ["\62601 ", "\62057 ", "\985630 ", "\61564 ", "\987086 ", "\61878 " ]
   where
     clickable l =
       [ "<action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action>"
