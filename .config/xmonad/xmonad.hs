@@ -114,8 +114,8 @@ myStartupHook = mapM_ spawnOnce
 ---------- COLORS -----------
 -----------------------------
 myNormalBorderColor, myFocusedBorderColor :: String
-myNormalBorderColor   = "#45475a"
-myFocusedBorderColor  = "#cba6f7"
+myNormalBorderColor   = fgColor
+myFocusedBorderColor  = purpleColor
 
 -----------------------------
 ---------- MODKEY -----------
