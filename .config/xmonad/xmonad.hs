@@ -114,8 +114,8 @@ myStartupHook = mapM_ spawnOnce
 ---------- COLORS -----------
 -----------------------------
 myNormalBorderColor, myFocusedBorderColor :: String
-myNormalBorderColor   = fgColor
-myFocusedBorderColor  = purpleColor
+myNormalBorderColor   = base01
+myFocusedBorderColor  = base05
 
 -----------------------------
 ---------- MODKEY -----------
@@ -441,15 +441,15 @@ main = do
                 , mouseBindings = myMouseBindings
                 , logHook = dynamicLogWithPP xmobarPP
                           { ppOutput = \x -> hPutStrLn xmproc x
-                          , ppCurrent = xmobarColor greenColor "" . wrap "" "" -- Current workspace in xmobar
-                          , ppVisible = xmobarColor redColor ""                -- Visible but not current workspace
-                          , ppHidden = xmobarColor purpleColor "" . wrap "" ""   -- Hidden workspaces in xmobar
-                          , ppHiddenNoWindows = xmobarColor fgColor ""    -- Hidden workspaces (no windows)
-                          , ppTitle = xmobarColor textColor "" . shorten 60   -- Title of active window in xmobar
+                          , ppCurrent = xmobarColor base09 "" . wrap "" "" -- Current workspace in xmobar
+                          , ppVisible = xmobarColor base03 ""                -- Visible but not current workspace
+                          , ppHidden = xmobarColor base05 "" . wrap "" ""   -- Hidden workspaces in xmobar
+                          , ppHiddenNoWindows = xmobarColor base01 ""    -- Hidden workspaces (no windows)
+                          , ppTitle = xmobarColor base02 "" . shorten 60   -- Title of active window in xmobar
                           , ppSep =  "<fc=#f5e0dc>  \60272  </fc>"                     -- Separators in xmobar
-                          , ppLayout = xmobarColor lavanderColor ""
+                          , ppLayout = xmobarColor base12 ""
                           , ppWsSep = "  "
-                          , ppUrgent = xmobarColor redColor "" . wrap "!" "!"  -- Urgent workspace
+                          , ppUrgent = xmobarColor base03 "" . wrap "!" "!"  -- Urgent workspace
                           , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                           --, ppOrder  = \(ws:_:t:_) -> [ws,t]
                           }
