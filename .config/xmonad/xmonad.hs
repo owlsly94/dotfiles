@@ -425,32 +425,30 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobar.hs"
-    xmonad . ewmh $
-        desktopConfig
-                { startupHook = myStartupHook
-                , layoutHook = myLayout
-                , manageHook = manageSpawn <+> myManageHook <+> manageHook desktopConfig
-                , modMask = myModMask
-                , borderWidth = myBorderWidth
-                , handleEventHook    = handleEventHook desktopConfig
-                , focusFollowsMouse = myFocusFollowsMouse
-                , workspaces = myWorkspaces
-                , focusedBorderColor = myFocusedBorderColor
-                , normalBorderColor = myNormalBorderColor
-                , keys = myKeys
-                , mouseBindings = myMouseBindings
-                , logHook = dynamicLogWithPP xmobarPP
-                          { ppOutput = \x -> hPutStrLn xmproc x
-                          , ppCurrent = xmobarColor base09 "" . wrap "" "" -- Current workspace in xmobar
-                          , ppVisible = xmobarColor base03 ""                -- Visible but not current workspace
-                          , ppHidden = xmobarColor base05 "" . wrap "" ""   -- Hidden workspaces in xmobar
-                          , ppHiddenNoWindows = xmobarColor base01 ""    -- Hidden workspaces (no windows)
-                          , ppTitle = xmobarColor base02 "" . shorten 60   -- Title of active window in xmobar
-                          , ppSep =  "<fc=#f5e0dc>  \60272  </fc>"                     -- Separators in xmobar
-                          , ppLayout = xmobarColor base12 ""
-                          , ppWsSep = "  "
-                          , ppUrgent = xmobarColor base03 "" . wrap "!" "!"  -- Urgent workspace
-                          , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
-                          --, ppOrder  = \(ws:_:t:_) -> [ws,t]
-                          }
-                }
+    xmonad . ewmh $ desktopConfig
+        { startupHook         = myStartupHook
+        , layoutHook          = myLayout
+        , manageHook          = manageSpawn <+> myManageHook <+> manageHook desktopConfig
+        , modMask             = myModMask
+        , borderWidth         = myBorderWidth
+        , handleEventHook     = handleEventHook desktopConfig
+        , focusFollowsMouse   = myFocusFollowsMouse
+        , workspaces          = myWorkspaces
+        , focusedBorderColor  = myFocusedBorderColor
+        , normalBorderColor   = myNormalBorderColor
+        , keys                = myKeys
+        , mouseBindings       = myMouseBindings
+        , logHook             = dynamicLogWithPP xmobarPP
+            { ppOutput          = \x -> hPutStrLn xmproc x
+            , ppCurrent         = xmobarColor base09 "" . wrap "" ""    -- Current workspace in xmobar
+            , ppVisible         = xmobarColor base03 ""                 -- Visible but not current workspace
+            , ppHidden          = xmobarColor base05 "" . wrap "" ""    -- Hidden workspaces in xmobar
+            , ppHiddenNoWindows = xmobarColor base01 ""                 -- Hidden workspaces (no windows)
+            , ppTitle           = xmobarColor base02 "" . shorten 60    -- Title of active window in xmobar
+            , ppSep             =  "<fc=#f5e0dc>  \60272  </fc>"        -- Separators in xmobar
+            , ppLayout          = xmobarColor base04 ""
+            , ppWsSep           = "  "
+            , ppUrgent          = xmobarColor base03 "" . wrap "!" "!"  -- Urgent workspace
+            , ppOrder           = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+            }
+        }
