@@ -51,6 +51,8 @@ import XMonad
 -- Hooks
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers(doFullFloat, doCenterFloat, isFullscreen, isDialog)
@@ -60,7 +62,7 @@ import XMonad.Config.Desktop
 import XMonad.Config.Azerty
 
 -- Utils
-import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.Run(spawnPipe, hPutStrLn)
 import XMonad.Actions.SpawnOn
 import XMonad.Util.SpawnOnce
 import XMonad.Util.EZConfig (additionalKeys, additionalMouseBindings)
@@ -224,6 +226,23 @@ myFocusFollowsMouse = True
 myBorderWidth :: Dimension
 myBorderWidth = 2
 
+-----------------------------
+---------- XMOBAR -----------
+-----------------------------
+myXmobarPP :: PP
+myXmobarPP = def
+  { ppCurrent         = xmobarColor base09 "" . wrap "" ""    -- Current workspace in xmobar
+  , ppVisible         = xmobarColor base03 ""                 -- Visible but not current workspace
+  , ppHidden          = xmobarColor base05 "" . wrap "" ""    -- Hidden workspaces in xmobar
+  , ppHiddenNoWindows = xmobarColor base01 ""                 -- Hidden workspaces (no windows)
+  , ppTitle           = xmobarColor base02 "" . shorten 60    -- Title of active window in xmobar
+  , ppSep             =  "<fc=#f5e0dc>  \60272  </fc>"        -- Separators in xmobar
+  , ppLayout          = xmobarColor base04 ""
+  , ppWsSep           = "  "
+  , ppUrgent          = xmobarColor base03 "" . wrap "!" "!"  -- Urgent workspace
+  , ppOrder           = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+}
+ 
 -----------------------------
 -------- WORKSPACES ---------
 -----------------------------
@@ -437,17 +456,6 @@ main = do
         , normalBorderColor   = myNormalBorderColor
         , keys                = myKeys
         , mouseBindings       = myMouseBindings
-        , logHook             = dynamicLogWithPP xmobarPP
-            { ppOutput          = \x -> hPutStrLn xmproc x
-            , ppCurrent         = xmobarColor base09 "" . wrap "" ""    -- Current workspace in xmobar
-            , ppVisible         = xmobarColor base03 ""                 -- Visible but not current workspace
-            , ppHidden          = xmobarColor base05 "" . wrap "" ""    -- Hidden workspaces in xmobar
-            , ppHiddenNoWindows = xmobarColor base01 ""                 -- Hidden workspaces (no windows)
-            , ppTitle           = xmobarColor base02 "" . shorten 60    -- Title of active window in xmobar
-            , ppSep             =  "<fc=#f5e0dc>  \60272  </fc>"        -- Separators in xmobar
-            , ppLayout          = xmobarColor base04 ""
-            , ppWsSep           = "  "
-            , ppUrgent          = xmobarColor base03 "" . wrap "!" "!"  -- Urgent workspace
-            , ppOrder           = \(ws:l:t:ex) -> [ws,l]++ex++[t]
-            }
+        , logHook             = dynamicLogWithPP myXmobarPP
+            { ppOutput        = hPutStrLn xmproc }
         }
