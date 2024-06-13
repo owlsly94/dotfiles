@@ -87,6 +87,7 @@ import XMonad.Layout.IndependentScreens
 import XMonad.Layout.CenteredMaster(centerMaster)
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Renamed
+import XMonad.Layout.Grid
 
 import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet as W
@@ -108,6 +109,7 @@ myStartupHook = mapM_ spawnOnce
   , "killall dunst"
   , "dunst"
   , "picom --config ~/.config/picom/picom.conf"
+  , "gsettings set org.gnome.desktop.interface cursor-theme 'Catppuccin-Mocha-Green'"
   , "setWMName \"LG3D\""
   ]
 
@@ -243,15 +245,15 @@ myXmobarPP = def
   , ppOrder           = \(ws:l:t:ex) -> [ws,l]++ex++[t]
 }
  
------------------------------
--------- WORKSPACES ---------
------------------------------
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
   where
     doubleLts '<' = "<<"
     doubleLts x   = [x]
 
+-----------------------------
+-------- WORKSPACES ---------
+-----------------------------
 myWorkspaces :: [String]
 myWorkspaces =
   clickable . map xmobarEscape $ ["\62601 ", "\62057 ", "\985630 ", "\61564 ", "\987086 ", "\61878 " ]
@@ -313,11 +315,15 @@ tall    = renamed [Replace "\984640"]
 monocle = renamed [Replace "\985967"]
         $ smartBorders
         $ Full
+grid    = renamed [Replace "\984920"]
+        $ smartBorders
+        $ mySpacing 8
+        $ Grid
 
 -- Layout hook
 myLayout = avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
         where
-            myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle
+            myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle ||| grid
 
 -----------------------------
 ------ MOUSE BINDINGS -------
@@ -332,7 +338,6 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- mod-button3, Set the window to floating mode and resize by dragging
     , ((modMask, 3), (\w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster))
-
     ]
 
 -----------------------------
@@ -377,62 +382,33 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((mod4Mask, xK_g),                        namedScratchpadAction myScratchpads "chgt" )
   , ((mod4Mask, xK_m),                        namedScratchpadAction myScratchpads "spot" )
 
-  -- Switch Layouts
-  , ((modMask, xK_space),                     sendMessage NextLayout)
-
-  -- Kill XMobar
+  -- Layouts, Workspaces, Focusing, XMobar, Swapping, Shrinking, Incrementing
   , ((controlMask .|. shiftMask, xK_b),       spawn $ "killall xmobar")
-
-  -- XMobar show and hide
+  , ((modMask, xK_space),                     sendMessage NextLayout)
   , ((controlMask, xK_b),                     sendMessage $ ToggleStruts)
-
-  -- Toggle Fullscreen with no borders
   , ((modMask, xK_n),                         sendMessage $ Toggle NBFULL)
-
-  -- Switch workspaces
+  , ((modMask .|. shiftMask, xK_space),       setLayout $ XMonad.layoutHook conf)
   , ((controlMask .|. modMask , xK_Left ),    prevWS)
   , ((controlMask .|. modMask , xK_Right ),   nextWS)
-
-  --  Reset the layouts on the current workspace to default.
-  , ((modMask .|. shiftMask, xK_space),       setLayout $ XMonad.layoutHook conf)
-
-  -- Move focus on a window
   , ((mod4Mask, xK_Left),                     windows W.focusDown)
   , ((mod4Mask, xK_Right),                    windows W.focusUp  )
-
-  -- Move focus to the master window.
   , ((mod4Mask .|. shiftMask, xK_m),          windows W.focusMaster  )
-
-  -- Swap master window with stack
   , ((mod4Mask .|. shiftMask, xK_Left),       windows W.swapDown  )
   , ((mod4Mask .|. shiftMask, xK_Right),      windows W.swapUp    )
-
-  -- Shrink and expand the master area.
   , ((controlMask .|. shiftMask , xK_Left),   sendMessage Shrink)
   , ((controlMask .|. shiftMask , xK_Right),  sendMessage Expand)
-
-  -- Push window back into tiling.
   , ((controlMask .|. shiftMask , xK_t),      withFocused $ windows . W.sink)
-
-  -- Increment the number of windows in the master area.
   , ((controlMask .|. mod4Mask, xK_Left),     sendMessage (IncMasterN 1))
-
-  -- Decrement the number of windows in the master area.
   , ((controlMask .|. mod4Mask, xK_Right),    sendMessage (IncMasterN (-1)))
-
   ]
   ++
-
   [((m .|. modMask, k), windows $ f i)
 
   --Keyboard layouts
    | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0]
-
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)
       , (\i -> W.greedyView i . W.shift i, shiftMask)]]
-
   ++
-
   [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
       | (key, sc) <- zip [xK_Left, xK_Right] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
