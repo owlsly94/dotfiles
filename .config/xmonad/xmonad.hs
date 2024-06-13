@@ -205,13 +205,13 @@ wallChanger = "$HOME/.config/xmonad/scripts/feh-randomize.sh"
 -------- SPOTIFY ------------
 -----------------------------
 mySpotify :: String
-mySpotify = "brave-browser --app=https://open.spotify.com/"
+mySpotify = "brave --app=https://open.spotify.com/"
 
 -----------------------------
 -------- SPOTIFY ------------
 -----------------------------
 myChatGPT :: String
-myChatGPT = "brave-browser --app=https://chat.openai.com"
+myChatGPT = "brave --app=https://chat.openai.com"
 
 -----------------------------
 -------- MOUSE FOCUS --------
