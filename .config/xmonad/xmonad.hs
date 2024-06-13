@@ -109,7 +109,6 @@ myStartupHook = mapM_ spawnOnce
   , "killall dunst"
   , "dunst"
   , "picom --config ~/.config/picom/picom.conf"
-  , "gsettings set org.gnome.desktop.interface cursor-theme 'Catppuccin-Mocha-Green'"
   , "setWMName \"LG3D\""
   ]
 
