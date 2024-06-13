@@ -443,7 +443,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobar.hs"
-    xmonad . ewmh $ desktopConfig
+    xmonad . docks . ewmhFullscreen . ewmh $ desktopConfig
         { startupHook         = myStartupHook
         , layoutHook          = myLayout
         , manageHook          = manageSpawn <+> myManageHook <+> manageHook desktopConfig
