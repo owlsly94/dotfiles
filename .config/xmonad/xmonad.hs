@@ -222,6 +222,31 @@ myBorderWidth :: Dimension
 myBorderWidth = 2
 
 -----------------------------
+------- MAIN CONFIG ---------
+-----------------------------
+main :: IO ()
+main = do
+    xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobar.hs"
+    xmonad . docks . ewmhFullscreen . ewmh $ myConfig xmproc
+
+myConfig xmproc = def
+    { startupHook         = myStartupHook
+    , layoutHook          = myLayout
+    , manageHook          = manageSpawn <+> myManageHook <+> manageHook def
+    , modMask             = myModMask
+    , borderWidth         = myBorderWidth
+    , handleEventHook     = handleEventHook def
+    , focusFollowsMouse   = myFocusFollowsMouse
+    , workspaces          = myWorkspaces
+    , focusedBorderColor  = myFocusedBorderColor
+    , normalBorderColor   = myNormalBorderColor
+    , keys                = myKeys
+    , mouseBindings       = myMouseBindings
+    , logHook             = dynamicLogWithPP myXmobarPP
+        { ppOutput        = hPutStrLn xmproc }
+    }   
+
+-----------------------------
 ---------- XMOBAR -----------
 -----------------------------
 myXmobarPP :: PP
@@ -394,7 +419,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ++
   [((m .|. modMask, k), windows $ f i)
 
-  --Keyboard layouts
    | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0]
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)
       , (\i -> W.greedyView i . W.shift i, shiftMask)]]
@@ -402,26 +426,3 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
       | (key, sc) <- zip [xK_Left, xK_Right] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-
------------------------------
-------- MAIN CONFIG ---------
------------------------------
-main :: IO ()
-main = do
-    xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobar.hs"
-    xmonad . docks . ewmhFullscreen . ewmh $ desktopConfig
-        { startupHook         = myStartupHook
-        , layoutHook          = myLayout
-        , manageHook          = manageSpawn <+> myManageHook <+> manageHook desktopConfig
-        , modMask             = myModMask
-        , borderWidth         = myBorderWidth
-        , handleEventHook     = handleEventHook desktopConfig
-        , focusFollowsMouse   = myFocusFollowsMouse
-        , workspaces          = myWorkspaces
-        , focusedBorderColor  = myFocusedBorderColor
-        , normalBorderColor   = myNormalBorderColor
-        , keys                = myKeys
-        , mouseBindings       = myMouseBindings
-        , logHook             = dynamicLogWithPP myXmobarPP
-            { ppOutput        = hPutStrLn xmproc }
-        }
