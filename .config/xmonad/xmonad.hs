@@ -164,12 +164,6 @@ myWorkEditor = "code"
 myEditor     = myTerminal ++ " -e nvim"
 
 -----------------------------
-------- MUSIC PLAYER --------
------------------------------
-myMusicPlayer :: String
-myMusicPlayer = myTerminal ++ " -e mocp"
-
------------------------------
 ------ VOLUME CONTROL -------
 -----------------------------
 volumeUp, volumeDown, volumeMute, volumeUnmute :: String
@@ -354,7 +348,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((mod4Mask, xK_p),                        spawn $ rofiLauncher )
   , ((modMask,  xK_d),                        spawn $ myFileManager )
   , ((mod4Mask, xK_c),                        spawn $ myWorkEditor )
-  , ((mod4Mask, xK_m),                        spawn $ myMusicPlayer )
   , ((mod4Mask, xK_r),                        spawn $ powerMenu )
   , ((mod4Mask, xK_w),                        spawn $ wallChanger )
   , ((modMask,  xK_v),                        spawn $ myEditor )
