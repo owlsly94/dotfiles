@@ -396,10 +396,10 @@ myAditionalKeys =
   , ("M4-S-m",       windows W.focusMaster)
   , ("M4-S-<Left>",  windows W.swapDown)
   , ("M4-S-<Right>", windows W.swapUp)
-  , ("C-S-<Left>",   sendMessage Shrink)
-  , ("C-S-<Right>",  sendMessage Expand)
-  , ("C-M4-<Left>",  sendMessage $ IncMasterN 1)
-  , ("C-M4-<Right>", sendMessage $ IncMasterN (-1))
+  , ("M4-C-<Left>",  sendMessage Shrink)
+  , ("M4-C-<Right>", sendMessage Expand)
+  , ("C-S-<Left>",   sendMessage $ IncMasterN 1)
+  , ("C-S-<Right>",  sendMessage $ IncMasterN (-1))
   ]
 
 myKeys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
