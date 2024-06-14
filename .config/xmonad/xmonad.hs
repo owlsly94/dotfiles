@@ -278,7 +278,6 @@ myManageHook = composeAll
 myScratchpads :: [NamedScratchpad]
 myScratchpads =
   [ NS "terminal"  (mySecondTerminal ++ " -t scratchpad")       (title =? "scratchpad")      customFloatingRect
-  , NS "mocp"      (mySecondTerminal ++ " -t mocp -e mocp")     (title =? "mocp")            customFloatingRect
   , NS "paco"      "pavucontrol"                                (className =? "Pavucontrol") customFloatingRect
   , NS "rang"      (mySecondTerminal ++ " -t ranger -e ranger") (title =? "ranger")          customFloatingRect
   , NS "bitw"      "bitwarden-desktop"                          (className =? "Bitwarden")   customFloatingRect
@@ -367,10 +366,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Scratchpads
   , ((mod4Mask, xK_1),                        namedScratchpadAction myScratchpads "terminal")
-  , ((mod4Mask, xK_2),                        namedScratchpadAction myScratchpads "mocp")
-  , ((mod4Mask, xK_3),                        namedScratchpadAction myScratchpads "paco")
-  , ((mod4Mask, xK_4),                        namedScratchpadAction myScratchpads "rang")
-  , ((mod4Mask, xK_5),                        namedScratchpadAction myScratchpads "bitw")
+  , ((mod4Mask, xK_2),                        namedScratchpadAction myScratchpads "paco")
+  , ((mod4Mask, xK_3),                        namedScratchpadAction myScratchpads "rang")
+  , ((mod4Mask, xK_4),                        namedScratchpadAction myScratchpads "bitw")
   , ((mod4Mask, xK_g),                        namedScratchpadAction myScratchpads "chgt" )
   , ((mod4Mask, xK_m),                        namedScratchpadAction myScratchpads "spot" )
 
