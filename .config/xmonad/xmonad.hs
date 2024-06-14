@@ -65,7 +65,7 @@ import XMonad.Config.Azerty
 import XMonad.Util.Run(spawnPipe, hPutStrLn)
 import XMonad.Actions.SpawnOn
 import XMonad.Util.SpawnOnce
-import XMonad.Util.EZConfig (additionalKeys, additionalMouseBindings)
+import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Actions.CycleWS
 import XMonad.Actions.CopyWindow
 import XMonad.Actions.WithAll
@@ -244,7 +244,7 @@ myConfig xmproc = def
     , mouseBindings       = myMouseBindings
     , logHook             = dynamicLogWithPP myXmobarPP
         { ppOutput        = hPutStrLn xmproc }
-    }   
+    } `additionalKeysP` myAditionalKeys
 
 -----------------------------
 ---------- XMOBAR -----------
@@ -343,86 +343,75 @@ myLayout = avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
             myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle ||| grid
 
 -----------------------------
------- MOUSE BINDINGS -------
------------------------------
-myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
-
-    -- mod-button1, Set the window to floating mode and move by dragging
-    [ ((modMask, 1), (\w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster))
-
-    -- mod-button2, Raise the window to the top of the stack
-    , ((modMask, 2), (\w -> focus w >> windows W.shiftMaster))
-
-    -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modMask, 3), (\w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster))
-    ]
-
------------------------------
 ------- KEY BINDINGS --------
 -----------------------------
-myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
-  
-  -- Custom keys
-  [ ((modMask,  xK_Return),                   spawn $ myTerminal)
-  , ((mod4Mask, xK_f),                        spawn $ myBrowser)
-  , ((mod4Mask .|. shiftMask, xK_f),          spawn $ myBrowser ++ " -p")
-  , ((mod4Mask, xK_b),                        spawn $ myBrave)
-  , ((modMask,  xK_p),                        spawn $ dMenu)
-  , ((mod4Mask, xK_p),                        spawn $ rofiLauncher)
-  , ((modMask,  xK_d),                        spawn $ myFileManager)
-  , ((mod4Mask, xK_c),                        spawn $ myWorkEditor)
-  , ((mod4Mask, xK_r),                        spawn $ powerMenu)
-  , ((mod4Mask, xK_w),                        spawn $ wallChanger)
-  , ((modMask,  xK_v),                        spawn $ myEditor)
-  , ((mod4Mask, xK_s),                        spawn $ mySteamLauncher)
+myAditionalKeys :: [(String, X ())]
+myAditionalKeys =
 
-  -- Sound Keys
-  , ((modMask, xK_F3),                        spawn $ volumeUp)
-  , ((modMask, xK_F2),                        spawn $ volumeDown)
-  , ((modMask, xK_F4),                        spawn $ volumeMute)
-  , ((modMask, xK_F1),                        spawn $ volumeUnmute)
+    -- Custom keys
+  [ ("M-<Return>",  spawn $ myTerminal)
+  , ("M4-f",        spawn $ myBrowser)
+  , ("M4-S-f",      spawn $ myBrowser ++ " -p")
+  , ("M4-b",        spawn $ myBrave)
+  , ("M-p",         spawn $ rofiLauncher)
+  , ("M4-p",        spawn $ powerMenu)
+  , ("M4-d",        spawn $ dMenu)
+  , ("M-d",         spawn $ myFileManager)
+  , ("M4-c",        spawn $ myWorkEditor)
+  , ("M4-w",        spawn $ wallChanger)
+  , ("M-v",         spawn $ myEditor)
+  , ("M4-s",        spawn $ mySteamLauncher)
 
-  -- Kill window/s, Restart, Shutdown Keys
-  , ((modMask .|. shiftMask, xK_c),           kill1)
-  , ((modMask .|. shiftMask, xK_x),           killAll)
-  , ((modMask .|. shiftMask , xK_r ),         spawn $ myRecompileRestart)
-  , ((modMask .|. shiftMask, xK_q),           io (exitWith ExitSuccess))
+  -- Sound control keys
+  , ("<F2>",        spawn $ volumeDown)
+  , ("<F3>",        spawn $ volumeUp)
+  , ("<F4>",        spawn $ volumeMute)
+  , ("<F1>",        spawn $ volumeUnmute)
 
-  -- Scratchpads
-  , ((mod4Mask, xK_1),                        namedScratchpadAction myScratchpads "terminal")
-  , ((mod4Mask, xK_2),                        namedScratchpadAction myScratchpads "paco")
-  , ((mod4Mask, xK_3),                        namedScratchpadAction myScratchpads "rang")
-  , ((mod4Mask, xK_4),                        namedScratchpadAction myScratchpads "bitw")
-  , ((mod4Mask, xK_g),                        namedScratchpadAction myScratchpads "chgt")
-  , ((mod4Mask, xK_m),                        namedScratchpadAction myScratchpads "spot")
+  -- Kill window/s, restart, shutdown keys
+  , ("M-S-c",       kill1)
+  , ("M-S-x",       killAll)
+  , ("M-S-r",       spawn $ myRecompileRestart)
+  , ("M-S-q",       io exitSuccess)
+
+  -- Scratchpads 
+  , ("M4-1",        namedScratchpadAction myScratchpads "terminal")
+  , ("M4-2",        namedScratchpadAction myScratchpads "paco")
+  , ("M4-3",        namedScratchpadAction myScratchpads "rang")
+  , ("M4-4",        namedScratchpadAction myScratchpads "bitw")
+  , ("M4-g",        namedScratchpadAction myScratchpads "chgt")
+  , ("M4-m",        namedScratchpadAction myScratchpads "spot")
 
   -- Layouts, Workspaces, Focusing, XMobar, Swapping, Shrinking, Incrementing
-  , ((controlMask .|. shiftMask, xK_b),       spawn $ "killall xmobar")
-  , ((modMask, xK_space),                     sendMessage NextLayout)
-  , ((controlMask, xK_b),                     sendMessage $ ToggleStruts)
-  , ((modMask, xK_n),                         sendMessage $ Toggle NBFULL)
-  , ((modMask .|. shiftMask, xK_space),       setLayout $ XMonad.layoutHook conf)
-  , ((controlMask .|. modMask , xK_Left ),    prevWS)
-  , ((controlMask .|. modMask , xK_Right ),   nextWS)
-  , ((mod4Mask, xK_Left),                     windows W.focusDown)
-  , ((mod4Mask, xK_Right),                    windows W.focusUp)
-  , ((mod4Mask .|. shiftMask, xK_m),          windows W.focusMaster)
-  , ((mod4Mask .|. shiftMask, xK_Left),       windows W.swapDown)
-  , ((mod4Mask .|. shiftMask, xK_Right),      windows W.swapUp)
-  , ((controlMask .|. shiftMask , xK_Left),   sendMessage Shrink)
-  , ((controlMask .|. shiftMask , xK_Right),  sendMessage Expand)
-  , ((controlMask .|. shiftMask , xK_t),      withFocused $ windows . W.sink)
-  , ((controlMask .|. mod4Mask, xK_Left),     sendMessage (IncMasterN 1))
-  , ((controlMask .|. mod4Mask, xK_Right),    sendMessage (IncMasterN (-1)))
-  ]
-  ++
-  [((m .|. modMask, k), windows $ f i)
+  , ("C-S-b",       spawn $ "killall xmobar")
+  , ("M-<Space>",   sendMessage NextLayout)
+  , ("C-b",         sendMessage $ ToggleStruts)
+  , ("M-n",         sendMessage $ Toggle NBFULL)
+  , ("C-M-<Left>",  prevWS)
+  , ("C-M-<Right>", nextWS)
 
-   | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0]
-      , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)
-      , (\i -> W.greedyView i . W.shift i, shiftMask)]]
-  ++
-  [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-      | (key, sc) <- zip [xK_Left, xK_Right] [0..]
-      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  -- Window controls
+  , ("M4-<Left>",    windows W.focusDown)
+  , ("M4-<Right>",   windows W.focusUp)
+  , ("M4-S-m",       windows W.focusMaster)
+  , ("M4-S-<Left>",  windows W.swapDown)
+  , ("M4-S-<Right>", windows W.swapUp)
+  , ("C-S-<Left>",   sendMessage Shrink)
+  , ("C-S-<Right>",  sendMessage Expand)
+  , ("C-M4-<Left>",  sendMessage $ IncMasterN 1)
+  , ("C-M4-<Right>", sendMessage $ IncMasterN (-1))
+  ]
+
+myKeys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
+myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
+ [((m .|. modm, k), windows $ onCurrentScreen f i)
+ | (i, k) <- zip (workspaces' conf) [xK_1 .. xK_9]
+ , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
+ ]
+
+myMouseBindings :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())
+myMouseBindings XConfig {XMonad.modMask = modm} = M.fromList
+  [ ((modm, button1), \w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster)
+  , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
+  , ((modm, button3), (\w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster))
+  ]
