@@ -389,6 +389,18 @@ myAditionalKeys =
   , ("M-n",         sendMessage $ Toggle NBFULL)
   , ("C-M-<Left>",  prevWS)
   , ("C-M-<Right>", nextWS)
+  , ("M1-1",        windows $ W.view $ myWorkspaces !! 0)
+  , ("M1-2",        windows $ W.view $ myWorkspaces !! 1)
+  , ("M1-3",        windows $ W.view $ myWorkspaces !! 2)
+  , ("M1-4",        windows $ W.view $ myWorkspaces !! 3)
+  , ("M1-5",        windows $ W.view $ myWorkspaces !! 4)
+  , ("M1-6",        windows $ W.view $ myWorkspaces !! 5)
+  , ("M1-S-1",      windows $ W.shift $ myWorkspaces !! 0)
+  , ("M1-S-2",      windows $ W.shift $ myWorkspaces !! 1)
+  , ("M1-S-3",      windows $ W.shift $ myWorkspaces !! 2)
+  , ("M1-S-4",      windows $ W.shift $ myWorkspaces !! 3)
+  , ("M1-S-5",      windows $ W.shift $ myWorkspaces !! 4)
+  , ("M1-S-6",      windows $ W.shift $ myWorkspaces !! 5)
 
   -- Window controls
   , ("M4-<Left>",    windows W.focusDown)
