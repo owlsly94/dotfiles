@@ -59,7 +59,6 @@ import XMonad.Hooks.ManageHelpers(doFullFloat, doCenterFloat, isFullscreen, isDi
 
 -- Config
 import XMonad.Config.Desktop
-import XMonad.Config.Azerty
 
 -- Utils
 import XMonad.Util.Run(spawnPipe, hPutStrLn)
@@ -348,7 +347,7 @@ myLayout = avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
 myAditionalKeys :: [(String, X ())]
 myAditionalKeys =
 
-    -- Custom keys
+    -- Launchers
   [ ("M-<Return>",  spawn $ myTerminal)
   , ("M4-f",        spawn $ myBrowser)
   , ("M4-S-f",      spawn $ myBrowser ++ " -p")
@@ -362,13 +361,13 @@ myAditionalKeys =
   , ("M-v",         spawn $ myEditor)
   , ("M4-s",        spawn $ mySteamLauncher)
 
-  -- Sound control keys
+  -- Volume Control
   , ("<F2>",        spawn $ volumeDown)
   , ("<F3>",        spawn $ volumeUp)
   , ("<F4>",        spawn $ volumeMute)
   , ("<F1>",        spawn $ volumeUnmute)
 
-  -- Kill window/s, restart, shutdown keys
+  -- Window managment
   , ("M-S-c",       kill1)
   , ("M-S-x",       killAll)
   , ("M-S-r",       spawn $ myRecompileRestart)
@@ -382,7 +381,7 @@ myAditionalKeys =
   , ("M4-g",        namedScratchpadAction myScratchpads "chgt")
   , ("M4-m",        namedScratchpadAction myScratchpads "spot")
 
-  -- Layouts, Workspaces, Focusing, XMobar, Swapping, Shrinking, Incrementing
+  -- Layouts and Workspaces
   , ("C-S-b",       spawn $ "killall xmobar")
   , ("M-<Space>",   sendMessage NextLayout)
   , ("C-b",         sendMessage $ ToggleStruts)
@@ -402,7 +401,7 @@ myAditionalKeys =
   , ("M1-S-5",      windows $ W.shift $ myWorkspaces !! 4)
   , ("M1-S-6",      windows $ W.shift $ myWorkspaces !! 5)
 
-  -- Window controls
+  -- Focus and Resizing
   , ("M4-<Left>",    windows W.focusDown)
   , ("M4-<Right>",   windows W.focusUp)
   , ("M4-S-m",       windows W.focusMaster)
