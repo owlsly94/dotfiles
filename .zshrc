@@ -42,6 +42,7 @@ alias lss="eza --icons  -a --group-directories-first -1"
 alias v="nvim"
 alias sv="sudo nvim"
 alias cat="bat"
+alias how="tldr"
 
 # Github Lazy
 lazyg() {
@@ -56,4 +57,6 @@ source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Autosuggestions
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-
+# Zoxide
+eval "$(zoxide init zsh)"
+alias cd="z"
