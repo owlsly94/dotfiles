@@ -98,20 +98,6 @@ import Control.Monad (liftM2)
 import Colors.CatppuccinMocha
 
 -----------------------------
---------- AUTOSTART ---------
------------------------------
-myStartupHook :: X ()
-myStartupHook = mapM_ spawnOnce
-  [ "~/.fehbg"
-  , "nm-applet"
-  , "xfce4-power-manager"
-  , "killall dunst"
-  , "dunst"
-  , "picom --config ~/.config/picom/picom.conf"
-  , "setWMName \"LG3D\""
-  ]
-
------------------------------
 ---------- COLORS -----------
 -----------------------------
 myNormalBorderColor, myFocusedBorderColor :: String
@@ -244,6 +230,20 @@ myConfig xmproc = def
     , logHook             = dynamicLogWithPP myXmobarPP
         { ppOutput        = hPutStrLn xmproc }
     } `additionalKeysP` myAditionalKeys
+
+-----------------------------
+--------- AUTOSTART ---------
+-----------------------------
+myStartupHook :: X ()
+myStartupHook = mapM_ spawnOnce
+  [ "~/.fehbg"
+  , "nm-applet"
+  , "xfce4-power-manager"
+  , "killall dunst"
+  , "dunst"
+  , "picom --config ~/.config/picom/picom.conf"
+  , "setWMName \"LG3D\""
+  ]
 
 -----------------------------
 ---------- XMOBAR -----------
