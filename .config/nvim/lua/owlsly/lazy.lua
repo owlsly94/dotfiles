@@ -51,6 +51,7 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter-context" },
     { "kylechui/nvim-surround" },
     { "folke/trouble.nvim" },
+    { "JoosepAlviste/nvim-ts-context-commentstring" },
 
     -- File navigation
     {
@@ -81,10 +82,6 @@ require("lazy").setup({
     { "mbbill/undotree" },
     { "uga-rosa/ccc.nvim" },
     { "nvim-pack/nvim-spectre" },
-    {
-      "folke/noice.nvim",
-      dependencies = { { "MunifTanjim/nui.nvim" }, { "rcarriga/nvim-notify" }, { "nvim-lua/plenary.nvim" }  },
-    },
     { "norcalli/nvim-colorizer.lua" },
 
     -- Looks
