@@ -13,7 +13,7 @@ Config {
    -- layout
    , sepChar            = "%" -- delineator between plugin names and straight text
    , alignSep           = "}{" -- separator between left-right alignment
-   , template           = " <icon=xmonad.xpm/>  %UnsafeStdinReader% }{ %cpu%  <fc=#89b4fa>%cputemp%</fc>  %memory%  <fc=#94e2d5>%volume%</fc><fc=#fab387>%wifi%</fc> %LYNI%  <fc=#f9e2af>%updates%</fc>  %date%  "
+   , template           = " <icon=xmonad.xpm/>  %UnsafeStdinReader% }{ %cpu%  <fc=#89b4fa>%cputemp%</fc>  %memory%  <fc=#a6e3a1>%volume%</fc><fc=#fab387>%wifi%</fc> <fc=#f9e2af>%updates%</fc>  %date%  "
 
    -- general behavior
    , lowerOnStart       = True    -- send to bottom of window stack on start
