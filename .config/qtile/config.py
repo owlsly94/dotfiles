@@ -33,7 +33,7 @@ sup             = "mod4" #Default mod key SUPER or WINDOWS
 myTerminal      = "alacritty" #Default terminal
 mySecTerminal   = "kitty" # Backup terminal
 myBrowser       = "firefox" #Default browser
-myBrave         = "brave-browser" # Brave browser
+myBrave         = "brave" # Brave browser
 myFont          = "Iosevka Nerd Font Bold" # Default Font
 myTitleFont     = "JetBrains Mono Bold" # Title Font
 widgetFont      = "FontAwesome"
@@ -47,8 +47,8 @@ volumeMute      = "pamixer --mute" # Mute
 volumeUnmute    = "pamixer --unmute" # Unmute
 rofiLauncher    = "rofi -show drun -show-icons" # Rofi Launcher
 powerMenu       = "rofi -show session-menu -modi session-menu:~/.config/qtile/scripts/rofi-power-menu --choices=shutdown/reboot/logout/lockscreen" # Power Menu
-mySpotify       = "brave-browser --app=https://open.spotify.com/" # Spotify 
-myChatGPT       = "brave-browser --app=https://chat.openai.com" # ChatGPT
+mySpotify       = "brave --app=https://open.spotify.com/" # Spotify 
+myChatGPT       = "brave --app=https://chat.openai.com" # ChatGPT
 
 keys = [
     # My keys:
