@@ -59,8 +59,8 @@ keys = [
     Key([mod], "d", lazy.spawn(myFileManager), desc="Open the default file manager"),
     Key([sup], "c", lazy.spawn(myEditor), desc="Launch VS Code"),
     Key([sup], "m", lazy.spawn(myMusicPlayer), desc="Launch Music Player"),
-    Key([mod], "p", lazy.spawn(programLauncher), desc="Launch Dmenu"),
-    Key([sup], "p", lazy.spawn(rofiLauncher), desc="Launch Rofi launcher!"),
+    Key([sup], "p", lazy.spawn(programLauncher), desc="Launch Dmenu"),
+    Key([mod], "p", lazy.spawn(rofiLauncher), desc="Launch Rofi launcher!"),
     Key([sup], "r", lazy.spawn(powerMenu), desc="Launch Power Menu!"),
     Key([mod], "i", lazy.function(wifiMenu), desc="Launch WiFi menu!"),
     Key([mod], "w", lazy.function(wallSelector), desc="Wallpaper selector"),
@@ -262,7 +262,7 @@ screens = [
                     ),
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
-                    margin=-7
+                    margin=0
                     ),
                 widget.Spacer(
                     length=0,
