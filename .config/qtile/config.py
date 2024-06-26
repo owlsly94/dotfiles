@@ -122,8 +122,8 @@ for vt in range(1, 8):
 
 groups = [
         Group('1', label="", layout='monadtall'),
-        Group('2', label="", layout='monadtall', matches=[Match(wm_class=["Firefox-esr"])]),
-        Group('3', label="󰨞", layout='monadtall', matches=[Match(wm_class=["code-oss"])]),
+        Group('2', label="", layout='monadtall', matches=[Match(wm_class=["firefox"])]),
+        Group('3', label="󰨞", layout='monadtall', matches=[Match(wm_class=["Code"])]),
         Group('4', label="", layout='monadtall', matches=[Match(wm_class=["Pcmanfm"])]),
         Group('5', label="󰿎", layout='monadtall', matches=[Match(wm_class=["mpv"])]),
         Group('6', label="", layout='monadtall', matches=[Match(wm_class=["open.spotify.com"])]),
