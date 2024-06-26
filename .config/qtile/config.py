@@ -1,13 +1,11 @@
-import os
+import os 
 import subprocess
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from qtile_extras import widget
-from qtile_extras.widget.decorations import PowerLineDecoration
-from qtile_extras.widget.decorations import RectDecoration
 from colors import catppuccin
+import psutil
 
 @hook.subscribe.startup_once
 def autostart():
@@ -112,7 +110,16 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
 ]
 
-## Workspaces:
+for vt in range(1, 8):
+    keys.append(
+        Key(
+            ["control", "mod1"],
+            f"f{vt}",
+            lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
+            desc=f"Switch to VT{vt}",
+        )
+    )
+
 groups = [
         Group('1', label="", layout='monadtall'),
         Group('2', label="", layout='monadtall', matches=[Match(wm_class=["Firefox-esr"])]),
@@ -125,14 +132,12 @@ groups = [
 for i in groups:
     keys.extend(
         [
-            # mod1 + group number = switch to group
             Key(
                 [mod],
                 i.name,
                 lazy.group[i.name].toscreen(),
                 desc="Switch to group {}".format(i.name),
             ),
-            # mod1 + shift + group number = switch to & move focused window to group
             Key(
                 [mod, "shift"],
                 i.name,
@@ -142,7 +147,6 @@ for i in groups:
         ]
     )
 
-## ScartchPads
 groups.append(ScratchPad('scratchpad', [
     DropDown('term', 'alacritty',           width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
     DropDown('mocp', 'alacritty -e mocp',   width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
@@ -150,7 +154,6 @@ groups.append(ScratchPad('scratchpad', [
     DropDown('rang', 'alacritty -e ranger', width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
     ]))
 
-# Keybinding for ScartchPads:
 keys.extend([
     Key([sup], "1", lazy.group['scratchpad'].dropdown_toggle('term')),
     Key([sup], "2", lazy.group['scratchpad'].dropdown_toggle('mocp')),
@@ -158,7 +161,6 @@ keys.extend([
     Key([sup], "4", lazy.group['scratchpad'].dropdown_toggle('rang')),
 ])
 
-## Window behaviour - Layouts:
 layouts = [
     layout.MonadTall(
         border_focus=catppuccin['mauve'],
@@ -178,7 +180,6 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-## Default widgets settings:
 widget_defaults = dict(
     font=myFont,
     fontsize=14,
@@ -186,7 +187,6 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-## Show only window name
 def longNameParse(text): 
     for string in ["Chromium", "Firefox"]:
         if string in text:
@@ -195,7 +195,22 @@ def longNameParse(text):
             text = text
     return text
 
-## The bar:
+def get_cpu_temperature():
+    temps = psutil.sensors_temperatures()
+    if 'k10temp' in temps:
+        temp = temps['k10temp'][0].current
+        return f"{round(temp)}" 
+    return 'N/A'
+
+cpu_temp_widget = widget.GenPollText(
+    func=lambda: f"{get_cpu_temperature()}°C",
+    update_interval=5,
+    fontsize=14,
+    padding=10,
+    background=catppuccin['bg_1'],
+    foreground=catppuccin['blue'],
+)
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -208,10 +223,10 @@ screens = [
                     ),
                 widget.Image(
                     filename="~/.config/qtile/icons/f_slash.png",
-                    margin=-7
+                    margin=0
                     ),
                 widget.Spacer(
-                    length=-7,
+                    length=0,
                     background=catppuccin['bg_1']
                     ),
                 widget.GroupBox(
@@ -228,10 +243,10 @@ screens = [
                     ),
                 widget.Image(
                     filename="~/.config/qtile/icons/f_slash.png",
-                    margin=-7
+                    margin=0
                     ),
                 widget.Spacer(
-                    length=-7,
+                    length=0,
                     background=catppuccin['bg_1']
                     ),
                 widget.WindowName(
@@ -249,7 +264,7 @@ screens = [
                     margin=-7
                     ),
                 widget.Spacer(
-                    length=-7,
+                    length=0,
                     background=catppuccin['bg_1']
                     ),
                 # CPU
@@ -265,10 +280,10 @@ screens = [
                     ),
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
-                    margin=-7
+                    margin=0
                     ),
                 widget.Spacer(
-                    length=-7,
+                    length=0,
                     background=catppuccin['bg_1']
                     ),
                 # Temperature
@@ -277,23 +292,13 @@ screens = [
                     background=catppuccin['bg_1'],
                     margin_y=4
                     ),
-                widget.ThermalZone(
-                    format='{temp}°C',
-                    high=70,
-                    crit=80,
-                    fgcolor_crit=catppuccin['red'],
-                    fgcolor_high=catppuccin['yellow'],
-                    fgcolor_normal=catppuccin['blue'],
-                    zone='/sys/class/thermal/thermal_zone0/temp',
-                    update_interval=2,
-                    background=catppuccin['bg_1'],
-                    ),
+                cpu_temp_widget,
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
-                    margin=-7
+                    margin=0
                     ),
                 widget.Spacer(
-                    length=-7,
+                    length=0,
                     background=catppuccin['bg_1']
                     ),
                 # RAM Memory
@@ -310,10 +315,10 @@ screens = [
                     ),
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
-                    margin=-7
+                    margin=0
                     ),
                 widget.Spacer(
-                    length=-7,
+                    length=0,
                     background=catppuccin['bg_1']
                     ),
                 # Sound
@@ -330,10 +335,10 @@ screens = [
                     ),
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
-                    margin=-7
+                    margin=0
                     ),
                 widget.Spacer(
-                    length=-7,
+                    length=0,
                     background=catppuccin['bg_1']
                     ),
                 # Time
@@ -349,10 +354,10 @@ screens = [
                     ),
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
-                    margin=-7
+                    margin=0
                     ),
                 widget.Spacer(
-                    length=-7,
+                    length=0,
                     background=catppuccin['bg_1']
                     ),
                 # Date
@@ -380,14 +385,12 @@ screens = [
     ),
 ]
 
-# Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
-## Default settings:
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
@@ -395,9 +398,7 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus=catppuccin['mauve'],
     float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
@@ -411,5 +412,7 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
-wmname = "Qtile"
-
+wl_input_rules = None
+wl_xcursor_theme = None
+wl_xcursor_size = 24
+wmname = "LG3D"
