@@ -275,7 +275,7 @@ screens = [
                     margin_y=4,
                     ),
                 widget.CPU(
-                    format='{load_percent}%',
+                        format='{load_percent:.0f}%',
                     foreground=catppuccin['mauve'],
                     background=catppuccin['bg_1'],
                     ),
@@ -310,7 +310,7 @@ screens = [
                     ),
                 widget.Memory(
                     format='{MemUsed:.0f}{mm}',
-                    measure_mem='M',
+                    measure_mem='G',
                     background=catppuccin['bg_1'],
                     foreground=catppuccin['green'],
                     ),
