@@ -207,7 +207,7 @@ cpu_temp_widget = widget.GenPollText(
     func=lambda: f"{get_cpu_temperature()}°C",
     update_interval=5,
     fontsize=14,
-    padding=10,
+    padding=4,
     background=catppuccin['bg_1'],
     foreground=catppuccin['blue'],
 )
