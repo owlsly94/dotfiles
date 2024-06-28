@@ -373,13 +373,17 @@ screens = [
                     background=catppuccin['bg_1'],
                     foreground=catppuccin['red'],
                 ),
-                widget.Spacer(
-                    length=7,
-                    background=catppuccin['bg_1']
+                widget.Image(
+                    filename="~/.config/qtile/icons/b_slash.png",
+                    margin=0
                 ),
                 widget.Systray(
                     background=catppuccin['bg_1'],
                     iconsize=30,
+                ),
+                widget.Spacer(
+                    length=8,
+                    background=catppuccin['bg_1']
                 ),
             ],
             30,
