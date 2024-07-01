@@ -203,6 +203,7 @@ widget_defaults = dict(
     font=myFont,
     fontsize=14,
     padding=3,
+    background=catppuccin['bg_1'],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -211,7 +212,6 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(
-                    background=catppuccin['bg_1'],
                     foreground=catppuccin['bg_1'],
                     padding=10,
                     scale=0.55,
@@ -222,14 +222,12 @@ screens = [
                 ),
                 widget.Spacer(
                     length=0,
-                    background=catppuccin['bg_1']
                 ),
                 widget.GroupBox(
                     disable_drag=True,
                     active=catppuccin['mauve'],
                     inactive=catppuccin['maroon'],
                     highlight_method='text',
-                    background=catppuccin['bg_1'],
                     spacing=5,
                     foreground=catppuccin['inactive'],
                     padding=3,
@@ -242,10 +240,8 @@ screens = [
                 ),
                 widget.Spacer(
                     length=0,
-                    background=catppuccin['bg_1']
                 ),
                 widget.WindowName(
-                    background=catppuccin['bg_1'],
                     foreground=catppuccin['rosewater'],
                     font=myTitleFont,
                     format="{name}",
@@ -260,18 +256,15 @@ screens = [
                 ),
                 widget.Spacer(
                     length=0,
-                    background=catppuccin['bg_1']
                 ),
                 # CPU
                 widget.Image(
                     filename="~/.config/qtile/icons/cpu.png",
-                    background=catppuccin['bg_1'],
                     margin_y=4,
                 ),
                 widget.CPU(
                     format='{load_percent:.0f}%',
                     foreground=catppuccin['mauve'],
-                    background=catppuccin['bg_1'],
                 ),
                 widget.Image(
                     filename="~/.config/qtile/icons/b_slash.png",
@@ -279,7 +272,6 @@ screens = [
                 ),
                 widget.Spacer(
                     length=0,
-                    background=catppuccin['bg_1']
                 ),
                 # Temperature
                 widget.Image(
@@ -292,7 +284,6 @@ screens = [
                     update_interval=5,
                     fontsize=14,
                     padding=4,
-                    background=catppuccin['bg_1'],
                     foreground=catppuccin['blue'],
                 ),
                 widget.Image(
@@ -301,18 +292,15 @@ screens = [
                 ),
                 widget.Spacer(
                     length=0,
-                    background=catppuccin['bg_1']
                 ),
                 # RAM Memory
                 widget.Image(
                     filename="~/.config/qtile/icons/ram.png",
-                    background=catppuccin['bg_1'],
                     margin_y=4
                 ),
                 widget.Memory(
                     format='{MemUsed:.0f}{mm}',
                     measure_mem='G',
-                    background=catppuccin['bg_1'],
                     foreground=catppuccin['green'],
                 ),
                 widget.Image(
@@ -321,17 +309,14 @@ screens = [
                 ),
                 widget.Spacer(
                     length=0,
-                    background=catppuccin['bg_1']
                 ),
                 # Sound
                 widget.Image(
                     filename="~/.config/qtile/icons/sound.png",
-                    background=catppuccin['bg_1'],
                     margin_y=4
                 ),
                 widget.PulseVolume(
                     fmt='{:>4}',
-                    background=catppuccin['bg_1'],
                     foreground=catppuccin['yellow'],
                     update_interval=0.1,
                 ),
@@ -341,17 +326,14 @@ screens = [
                 ),
                 widget.Spacer(
                     length=0,
-                    background=catppuccin['bg_1']
                 ),
                 # Time
                 widget.Image(
                     filename="~/.config/qtile/icons/time.png",
-                    background=catppuccin['bg_1'],
                     margin_y=4
                 ),
                 widget.Clock(
                     format='%H:%M',
-                    background=catppuccin['bg_1'],
                     foreground=catppuccin['peach'],
                 ),
                 widget.Image(
@@ -360,17 +342,14 @@ screens = [
                 ),
                 widget.Spacer(
                     length=0,
-                    background=catppuccin['bg_1']
                 ),
                 # Date
                 widget.Image(
                     filename="~/.config/qtile/icons/date.png",
-                    background=catppuccin['bg_1'],
                     margin_y=4
                 ),
                 widget.Clock(
                     format='%e.%b',
-                    background=catppuccin['bg_1'],
                     foreground=catppuccin['red'],
                 ),
                 widget.Image(
@@ -378,12 +357,10 @@ screens = [
                     margin=0
                 ),
                 widget.Systray(
-                    background=catppuccin['bg_1'],
                     iconsize=30,
                 ),
                 widget.Spacer(
                     length=8,
-                    background=catppuccin['bg_1']
                 ),
             ],
             30,
