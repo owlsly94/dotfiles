@@ -48,8 +48,8 @@ def get_cpu_temperature():
 ## My variables:
 mod             = "mod1" #Default mod key ALT
 sup             = "mod4" #Default mod key SUPER or WINDOWS
-myTerminal      = "alacritty" #Default terminal
-mySecTerminal   = "kitty" # Backup terminal
+myTerminal      = "kitty" #Default terminal
+mySecTerminal   = "alacritty" # Backup terminal
 myBrowser       = "firefox" #Default browser
 myBrave         = "brave" # Brave browser
 myFont          = "Iosevka Nerd Font Bold" # Default Font
