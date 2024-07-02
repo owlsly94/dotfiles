@@ -54,10 +54,8 @@ myBrowser       = "firefox" #Default browser
 myBrave         = "brave" # Brave browser
 myFont          = "Iosevka Nerd Font Bold" # Default Font
 myTitleFont     = "JetBrains Mono Bold" # Title Font
-widgetFont      = "FontAwesome"
 myFileManager   = "pcmanfm" # Default File Manager
 myEditor        = "code" # Default Editor
-myMusicPlayer   = "alacritty -e mocp" # Default Music Player
 programLauncher = ["dmenu_run", "-fn", myFont, "-nb", catppuccin['bg'], "-nf", catppuccin['blue'], "-sb", catppuccin['green'], "-sf", catppuccin['bg']] # Run DMenu
 volumeUp        = "pamixer -i 5" # Volume Up
 volumeDown      = "pamixer -d 5" # Volume Down
@@ -76,7 +74,6 @@ keys = [
     Key([sup, "shift"], "f", lazy.spawn("firefox -p"), desc="Launch Firefox Profiles"),
     Key([mod], "d", lazy.spawn(myFileManager), desc="Open the default file manager"),
     Key([sup], "c", lazy.spawn(myEditor), desc="Launch VS Code"),
-    Key([sup], "m", lazy.spawn(myMusicPlayer), desc="Launch Music Player"),
     Key([sup], "p", lazy.spawn(programLauncher), desc="Launch Dmenu"),
     Key([mod], "p", lazy.spawn(rofiLauncher), desc="Launch Rofi launcher!"),
     Key([sup], "r", lazy.spawn(powerMenu), desc="Launch Power Menu!"),
@@ -168,16 +165,14 @@ for i in groups:
 
 groups.append(ScratchPad('scratchpad', [
     DropDown('term', 'alacritty',           width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
-    DropDown('mocp', 'alacritty -e mocp',   width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
     DropDown('paco', 'pavucontrol',         width=0.4, height=0.6, x=0.3, y=0.1, opacity=1),
     DropDown('rang', 'alacritty -e ranger', width=0.5, height=0.5, x=0.2, y=0.2, opacity=1),
     ]))
 
 keys.extend([
     Key([sup], "1", lazy.group['scratchpad'].dropdown_toggle('term')),
-    Key([sup], "2", lazy.group['scratchpad'].dropdown_toggle('mocp')),
-    Key([sup], "3", lazy.group['scratchpad'].dropdown_toggle('paco')),
-    Key([sup], "4", lazy.group['scratchpad'].dropdown_toggle('rang')),
+    Key([sup], "2", lazy.group['scratchpad'].dropdown_toggle('paco')),
+    Key([sup], "3", lazy.group['scratchpad'].dropdown_toggle('rang')),
 ])
 
 layouts = [
@@ -381,16 +376,18 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
-    float_rules=[
-        *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
-    ]
-)
+        border_focus=catppuccin['mauve'],
+        border_normal=catppuccin['inactive'],
+        float_rules=[
+            *layout.Floating.default_float_rules,
+            Match(wm_class="confirmreset"),  # gitk
+            Match(wm_class="makebranch"),  # gitk
+            Match(wm_class="maketag"),  # gitk
+            Match(wm_class="ssh-askpass"),  # ssh-askpass
+            Match(title="branchdialog"),  # gitk
+            Match(title="pinentry"),  # GPG key password entry
+            ]
+        )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
