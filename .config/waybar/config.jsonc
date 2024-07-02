@@ -39,7 +39,7 @@
     "sort-by-number": true
   },
   "custom/updates": {
-    "format": "  {}",
+    "format": "  {}",
     "interval": 7200,
     "exec": "sh ~/.config/hypr/scripts/updates.sh",
     "exec-if": "exit 0",
