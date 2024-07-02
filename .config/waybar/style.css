@@ -39,7 +39,7 @@ window#waybar.hidden {
   }
 
 #workspaces button.urgent {
-    background-color: rgb(235, 160, 172);
+    color: rgb(235, 160, 172);
   }
 
 #clock,
