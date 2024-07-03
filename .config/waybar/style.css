@@ -27,6 +27,7 @@ window#waybar.hidden {
 #workspaces button:hover {
     background: rgb(30, 30, 46);
     color: rgb(203, 166, 247);
+    border-radius: 8px;
   }
 
 #workspaces button.active {
@@ -52,6 +53,9 @@ window#waybar.hidden {
     padding: 0 10px;
     margin: 3px 0px;
     background: rgb(30, 30, 46);
+    border-radius: 8px;
+    margin: 3px;
+    font-weight: bold;
   }
 
 #window,
@@ -66,12 +70,6 @@ window#waybar.hidden {
     font-size: 16px;
   }
 
-#custom-updates {
-  color: rgb(249, 226, 175);
-  background: rgb(30, 30, 46);
-  border-radius: 8px;
-  }
-
 #window {
     font-size: 14px;
     font-weight: bold;
@@ -83,33 +81,24 @@ window#waybar.hidden {
     padding-right:10px
   }
 
-#clock {
-    background-color: rgb(30, 30, 46);
-    color: rgb(243, 139, 168);
-    border-radius: 8px;
-    margin: 3px;
+#cpu {
+    color: rgb(203, 166, 247);
   }
 
-#cpu {
-    background-color: rgb(30, 30, 46);
-    color: rgb(203, 166, 247);
-    border-radius: 8px;
-    margin: 3px;
+#temperature {
+    color: rgb(137, 180, 250);
   }
 
 #memory {
-    background-color: rgb(30, 30, 46);
     color: rgb(166, 227, 161);
-    border-radius: 8px;
-    margin: 3px;
+  }
+
+#custom-updates {
+    color: rgb(249, 226, 175);
   }
 
 #pulseaudio {
-    background-color: rgb(30, 30, 46);
     color: rgb(250, 179, 135);
-    font-weight: bold;
-    border-radius: 8px;
-    margin: 3px;
   }
 
 #pulseaudio.muted {
@@ -117,21 +106,12 @@ window#waybar.hidden {
     color: rgb(245, 194, 231);
   }
 
-#temperature {
-    background-color: rgb(30, 30, 46);
-    color: rgb(137, 180, 250);
-    font-weight: bold;
-    border-radius: 8px;
-    margin: 3px;
+#clock {
+    color: rgb(243, 139, 168);
   }
 
 #temperature.critical {
     background-color: rgb(243, 139, 168);
-  }
-
-#tray {
-    background-color: rgb(30, 30, 46);
-    border-radius: 8px;
   }
 
 #tray > .passive {
