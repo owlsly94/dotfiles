@@ -1,6 +1,7 @@
 * {
-  font-family: JetBrainsMono;
-  color: #e5e9f0;
+  font-family: Ubuntu Nerd Font;
+  font-size: 15px;
+  color: #cdd6f4;
   background: transparent;
 }
 
@@ -32,7 +33,7 @@
 }
 
 #entry:selected {
-  background-color: #2e3440;
+  background-color: #1e1e2e;
 }
 
 #text {
