@@ -1,6 +1,9 @@
 # Start Starship
 eval "$(starship init zsh)"
 
+# Doom emacs
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
 # Completion
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -43,6 +46,7 @@ alias v="nvim"
 alias sv="sudo nvim"
 alias cat="bat"
 alias how="tldr"
+alias emacs="emacsclient -c -a 'emacs'"
 
 # Github Lazy
 lazyg() {
