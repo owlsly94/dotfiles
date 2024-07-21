@@ -6,7 +6,7 @@ confirm_update() {
     read -r response
     case "$response" in
         [yY][eE][sS]|[yY])
-            echo "Proceeding with the update using yay..."
+            echo "Proceeding with the update using paru..."
             ;;
         [nN][oO]|[nN])
             echo "Update canceled."
@@ -32,11 +32,11 @@ sudo pacman -Rns $(pacman -Qdtq) --noconfirm
 
 # Update AUR packages
 echo "Updating AUR packages..."
-yay -Syu --noconfirm
+paru -Syu --noconfirm
 
 # Clean up Yay cache
 echo "Cleaning up Yay cache..."
-yay -Sc --noconfirm
+paru -Sc --noconfirm
 
 echo "System update complete!"
 sleep 3
