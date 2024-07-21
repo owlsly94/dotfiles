@@ -32,24 +32,62 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+;;
+;; Tokyo Night Theme
 (setq doom-theme 'doom-tokyo-night)
-
-(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font" :size 14)
-      doom-big-font (font-spec :family "Iosevka Nerd Font" :size 20))
-
+;;
+;; JetBrainsMono Nerd Font
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+;;
+;; Iosevka Nerd Font
+;;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+;;      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+;;      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+;;
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
-
+;;
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
-
-
+;;
+;;
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
+(after! lsp-mode
+  (setq lsp-headerline-breadcrumb-enable nil
+        lsp-signature-auto-activate nil
+        lsp-ui-doc-enable nil))
+(after! dap-mode
+  (setq dap-auto-configure-features '(sessions locals breakpoints expressions repl controls tooltip)))
+
+(use-package! yasnippet
+  :config
+  (yas-global-mode 1))
+
+;; All-the-icons
+(use-package! all-the-icons
+  :if (display-graphic-p))
+
+;; Web Development
+(use-package! web-mode
+  :mode ("\\.html?\\'" "\\.css?\\'")
+  :config
+  (setq web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2))
+
+;; JavaScript
+(use-package! js2-mode
+  :mode "\\.js\\'"
+  :interpreter "node"
+  :config
+  (setq js2-basic-offset 2))
+
 ;;   (after! PACKAGE
 ;;     (setq x y))
 ;;

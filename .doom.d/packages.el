@@ -8,6 +8,10 @@
 (package! catppuccin-theme
   :recipe (:host github :repo "catppuccin/emacs"))
 (package! tldr)
+(package! elpy)
+(package! web-mode)
+(package! all-the-icons)
+(package! js2-mode)
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
