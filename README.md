@@ -24,6 +24,8 @@
 
 </div>
 
+![image](https://raw.githubusercontent.com/owlsly94/dotfiles/main/assets/screen1.png)
+![image](https://raw.githubusercontent.com/owlsly94/dotfiles/main/assets/screen2.png)
 
 ## Installation
 1. Clone the repo
