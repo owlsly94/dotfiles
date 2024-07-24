@@ -31,7 +31,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-  "sh", "-c", "feh --bg-scale ~/.config/wallpapers/demonky.jpg", NULL,
+  "sh", "-c", "feh --bg-scale ~/.config/wallpapers/jinx-chaos-and-curses-bg-1920x1200.jpg", NULL,
 	"dunst", NULL,
   "picom", NULL,
   "slstatus", NULL,
