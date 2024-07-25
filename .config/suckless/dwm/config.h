@@ -1,4 +1,3 @@
-/* See LICENSE file for copyright and license details. */
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -15,10 +14,10 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono:style=Bold:size=11",
+static const char *fonts[]          = { "Iosevka Nerd Font:style=Bold:size=11",
                                         "Iosevka Nerd Font:style=Bold:size=13",
                                       };
-static const char dmenufont[]       = "JetBrains Mono:style=Bold:size=11";
+static const char dmenufont[]       = "Iosevka Nerd Font:style=Bold:size=11";
 static const char col_gray1[]       = "#1e1e2e";
 static const char col_gray2[]       = "#f38ba8";
 static const char col_gray3[]       = "#cba6f7";
@@ -39,7 +38,7 @@ static const char *const autostart[] = {
 };
 
 /* tagging */
-static const char *tags[] = { " ", " ", " ", " ", "󰈙 ", " ", " ", " ", " " };
+static const char *tags[] = { "", "", "", "", "󰈙", "", "", "", "" };
 
 static const char *tagsel[][2] = {
 	{ "#f38ba8", "#1e1e2e" },
@@ -59,8 +58,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
 };
 
 /* layout(s) */
@@ -71,9 +69,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "󰕴 ",      tile },    /* first entry is default */
+	{ " ",      NULL },    /* no layout function means floating behavior */
+	{ "󰕫 ",      monocle },
 };
 
 /* key definitions */
