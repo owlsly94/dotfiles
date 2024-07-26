@@ -49,6 +49,7 @@ window#waybar.hidden {
 #temperature,
 #pulseaudio,
 #custom-updates,
+#custom-powermenu,
 #tray {
     padding: 0 10px;
     margin: 3px 0px;
@@ -87,6 +88,10 @@ window#waybar.hidden {
 
 #temperature {
     color: rgb(137, 180, 250);
+  }
+
+#custom-powermenu {
+    color: rgb(243, 139, 168);
   }
 
 #memory {

@@ -16,6 +16,7 @@
     "custom/updates",
     "pulseaudio",
     "clock",
+    "custom/powermenu",
     "tray"
   ],
   "hyprland/workspaces": {
@@ -37,6 +38,12 @@
       "10": " "
     },
     "sort-by-number": true
+  },
+  "custom/powermenu": {
+    "format": " 󰐥 ",
+    "exec": "echo ' 󰐥 '",
+    "on-click": "wlogout",
+    "tooltip-format": "power menu",
   },
   "custom/updates": {
     "format": "  {}",
