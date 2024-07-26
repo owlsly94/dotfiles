@@ -7,16 +7,30 @@ require'nvim-treesitter.configs'.setup {
     disable = function(_, buf)
         local max_filesize = 100 * 1024 -- 100 KB
         local filename = vim.api.nvim_buf_get_name(buf)
+        print("Filename: " .. tostring(filename)) -- Debug print
+
+        if not filename or filename == "" then
+          return false
+        end
+
         local handle = io.popen("stat -c %s " .. filename)
+
         if handle then
           local result = handle:read("*a")
           handle:close()
-          if result and tonumber(result) > max_filesize then
+          print("File size result: " .. tostring(result)) -- Debug print
+
+          local file_size = tonumber(result)
+          print("File size: " .. tostring(file_size)) -- Debug print
+
+          if file_size and file_size > max_filesize then
             return true
           end
         end
+
         return false
     end,
     additional_vim_regex_highlighting = false,
   },
 }
+

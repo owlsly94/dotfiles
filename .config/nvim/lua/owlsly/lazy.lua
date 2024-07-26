@@ -34,8 +34,11 @@ require("lazy").setup({
         { "hrsh7th/cmp-nvim-lua" },
         { "onsails/lspkind.nvim" },
         { "windwp/nvim-ts-autotag" },
-        { "windwp/nvim-autopairs" },
         { "gelguy/wilder.nvim" },
+        { "windwp/nvim-autopairs", config = function ()
+            require("nvim-autopairs").setup {}
+          end,
+        },
 
         -- Snippets
         { "L3MON4D3/LuaSnip", version = "2.*" },
