@@ -16,7 +16,7 @@
     "custom/updates",
     "pulseaudio",
     "clock",
-    "custom/powermenu",
+//    "custom/powermenu",
     "tray"
   ],
   "hyprland/workspaces": {
