@@ -100,6 +100,7 @@ static const char *volup[]          = { "pamixer", "-i", "5", NULL }; /* Pulse A
 static const char *voldown[]        = { "pamixer", "-d", "5", NULL }; /* Pulse Audio Volume Down string */
 static const char *mute[]           = { "pamixer", "--mute", NULL }; /* Pulse Audio Mute Volume string */
 static const char *unmute[]         = { "pamixer", "--unmute", NULL }; /* Pulse Audio Unmute Volume string */
+static const char *steam[]          = { "steam", NULL }; /* Steam */
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -115,6 +116,7 @@ static const Key keys[] = {
 	{ MODKEY,			                  XK_F2,	   spawn,	         {.v = voldown} },
 	{ MODKEY,			                  XK_F4,	   spawn,	         {.v = mute } },
 	{ MODKEY,			                  XK_F1,	   spawn, 	       {.v = unmute } },
+  { SUPERKEY,                     XK_g,      spawn,          {.v = steam } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ SUPERKEY,                     XK_Left,   focusstack,     {.i = +1 } },
 	{ SUPERKEY,                     XK_Right,  focusstack,     {.i = -1 } },
