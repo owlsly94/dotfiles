@@ -15,7 +15,8 @@
     "memory",
     "custom/updates",
     "pulseaudio",
-    "clock",
+    "custom/clock",
+//    "clock",
 //    "custom/powermenu",
     "tray"
   ],
@@ -53,11 +54,16 @@
     "on-click": "kitty -e sh ~/.config/hypr/scripts/paru.sh",
     "signal": 8
   },
+  "custom/clock": {
+    "format": "󰃰  {}",
+    "interval": 60,
+    "exec": "date +'%H:%M %e.%b'"
+  },
   "clock": {
-    "format": "󰃰  {:%R %e.%b}",
+    "format": "󰃰  {:%e.%b}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}"
-    },
+  },
   "cpu": {
     "format": "  {usage}%",
     "tooltip": false,

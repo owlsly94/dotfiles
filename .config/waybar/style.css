@@ -44,6 +44,7 @@ window#waybar.hidden {
   }
 
 #clock,
+#custom-clock,
 #cpu,
 #memory,
 #temperature,
@@ -114,6 +115,10 @@ window#waybar.hidden {
 #clock {
     color: rgb(243, 139, 168);
   }
+
+#custom-clock {
+    color: rgb(243, 139, 168);
+}
 
 #temperature.critical {
     color: rgb(17, 17, 27);
