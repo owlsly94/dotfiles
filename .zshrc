@@ -47,6 +47,8 @@ alias sv="sudo nvim"
 alias cat="bat"
 alias how="tldr"
 alias emacs="emacsclient -c -a 'emacs'"
+alias cp="cp -i"
+alias mv="mv -i"
 
 # Github Lazy
 lazyg() {
