@@ -32,11 +32,11 @@ sudo pacman -Rns $(pacman -Qdtq) --noconfirm
 
 # Update AUR packages
 echo "Updating AUR packages..."
-paru -Syu --noconfirm
+yay -Syu --noconfirm
 
 # Clean up Yay cache
 echo "Cleaning up Yay cache..."
-paru -Sc --noconfirm
+yay -Sc --noconfirm
 
 echo "System update complete!"
 sleep 3
