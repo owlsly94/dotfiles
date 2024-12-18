@@ -127,13 +127,13 @@ mySecondTerminal = "alacritty"
 -----------------------------
 myBrowser, myBrave :: String
 myBrowser = "firefox"
-myBrave = "brave"
+myBrave = "zen-browser"
 
 -----------------------------
 ------- FILE MANAGER --------
 -----------------------------
 myFileManager :: String
-myFileManager = "pcmanfm"
+myFileManager = "thunar"
 
 -----------------------------
 ------ STEAM LAUNCHER -------
@@ -242,6 +242,7 @@ myStartupHook = mapM_ spawnOnce
   , "killall dunst"
   , "dunst"
   , "picom --config ~/.config/picom/picom.conf"
+  , "/usr/lib/polkit-kde-authentication-agent-1"
   , "setWMName \"LG3D\""
   ]
 
@@ -254,7 +255,7 @@ myXmobarPP = def
   , ppVisible         = xmobarColor base03 ""                 -- Visible but not current workspace
   , ppHidden          = xmobarColor base05 "" . wrap "" ""    -- Hidden workspaces in xmobar
   , ppHiddenNoWindows = xmobarColor base01 ""                 -- Hidden workspaces (no windows)
-  , ppTitle           = xmobarColor base02 "" . shorten 60    -- Title of active window in xmobar
+  , ppTitle           = xmobarColor base02 "" . shorten 80    -- Title of active window in xmobar
   , ppSep             =  "<fc=#f5e0dc>  \60272  </fc>"        -- Separators in xmobar
   , ppLayout          = xmobarColor base04 ""
   , ppWsSep           = "  "
@@ -287,9 +288,9 @@ myWorkspaces =
 myManageHook :: ManageHook
 myManageHook = composeAll
     [ className =? "firefox"       --> doShift (myWorkspaces !! 1)
-    , className =? "Brave-browser" --> doShift (myWorkspaces !! 1)
+    , className =? "zen-beta"      --> doShift (myWorkspaces !! 1)
     , className =? "Code"          --> doShift (myWorkspaces !! 2)
-    , className =? "Pcmanfm"       --> doShift (myWorkspaces !! 3)
+    , className =? "Thunar"        --> doShift (myWorkspaces !! 3)
     , className =? "vlc"           --> doShift (myWorkspaces !! 4)
     , className =? "steam"         --> doShift (myWorkspaces !! 5)
     , isFullscreen                 --> doFullFloat
