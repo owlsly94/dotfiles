@@ -65,9 +65,9 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format                     argument */
-  { cpu_perc, "^c#cba6f7^| 󰘚 %s%% |",    NULL },
-  { run_command, "^c#89b4fa^  %s°C ",   "sensors k10temp-pci-00c3 | grep 'Tctl' | awk '{print $2}' | sed 's/+//;s/°C//'" },
-  { ram_used, "^c#a6e3a1^|   %s |",       NULL },
+  { cpu_perc, "^c#cba6f7^    %s%%  ",    NULL },
+  { run_command, "^c#89b4fa^  %s°C ", "sensors k10temp-pci-00c3 | grep 'Tctl' | awk '{gsub(/[^0-9.]/, \"\", $2); printf \"%d\\n\", $2 + 0.5}'" },
+  { ram_used, "^c#a6e3a1^    %s  ",       NULL },
   { run_command, "^c#f9e2af^   %s ",  "pamixer --get-volume" },
-	{ datetime, "^c#f38ba8^| 󰃰  %s | ",    "%F %T" },
+	{ datetime, "^c#f38ba8^  󰃰  %s   ",    "%H:%M %a, %d %b"  },
 };
