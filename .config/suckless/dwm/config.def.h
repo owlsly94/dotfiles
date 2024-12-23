@@ -103,6 +103,10 @@ static const char *voldown[]        = { "pamixer", "-d", "5", NULL }; /* Pulse A
 static const char *mute[]           = { "pamixer", "--mute", NULL }; /* Pulse Audio Mute Volume string */
 static const char *unmute[]         = { "pamixer", "--unmute", NULL }; /* Pulse Audio Unmute Volume string */
 static const char *steam[]          = { "steam", NULL }; /* Steam */
+static const char *jelly[]          = { "jellyfinmediaplayer" };
+
+/* Restart signal  */
+#include "selfrestart.c"
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -112,6 +116,7 @@ static const Key keys[] = {
   { SUPERKEY|ShiftMask,           XK_f,      spawn,          {.v = firefox } },
   { SUPERKEY,                     XK_b,      spawn,          {.v = zen } },
   { MODKEY,                       XK_d,      spawn,          {.v = thunar } },
+  { MODKEY,                       XK_j,      spawn,          {.v = jelly} },
   { SUPERKEY,                     XK_c,      spawn,          {.v = code } },
   { MODKEY,			                  XK_F3,     spawn,	         {.v = volup } },
 	{ MODKEY,			                  XK_F2,	   spawn,	         {.v = voldown} },
@@ -164,6 +169,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+  { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
@@ -183,4 +189,3 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
