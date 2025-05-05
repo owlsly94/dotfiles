@@ -1,4 +1,3 @@
-
 * {
     border: none;
     border-radius: 0;
@@ -6,43 +5,42 @@
     font-weight: bold;
     font-size: 14px;
     min-height: 0;
-  }
+}
 
 window#waybar {
     background-color: rgb(17, 17, 27);
     color: rgb(205, 214, 244);
-    transition-property: background-color;
-    transition-duration: .5s;
-  }
+    transition: background-color 0.5s;
+}
 
 window#waybar.hidden {
     opacity: 0.2;
-  }
+}
 
 #workspaces button {
     padding: 0 5px;
     color: rgb(108, 112, 134);
-  }
+    background: transparent;
+    border-radius: 8px;
+}
 
 #workspaces button:hover {
     background: rgb(30, 30, 46);
     color: rgb(203, 166, 247);
-    border-radius: 8px;
-  }
+}
 
-#workspaces button.active {
-    color: rgb(166, 227, 161);
-  }
-
+#workspaces button.active,
 #workspaces button.focused {
     color: rgb(166, 227, 161);
     background: rgb(30, 30, 46);
-  }
+}
 
 #workspaces button.urgent {
     color: rgb(235, 160, 172);
-  }
+}
 
+#window,
+#workspaces,
 #clock,
 #custom-clock,
 #cpu,
@@ -52,85 +50,45 @@ window#waybar.hidden {
 #custom-updates,
 #custom-powermenu,
 #tray {
-    padding: 0 10px;
-    margin: 3px 0px;
+    margin: 3px;
+    padding: 3px 10px;
+    border-radius: 8px;
     background: rgb(30, 30, 46);
-    border-radius: 8px;
-    margin: 3px;
-    font-weight: bold;
-  }
-
-#window,
-#workspaces {
-    margin: 3px;
-    padding: 3px;
-    border-radius: 8px;
-  }
+}
 
 #workspaces {
-    background: rgb(30, 30, 46);
     font-size: 16px;
-  }
+}
 
 #window {
     font-size: 14px;
-    font-weight: bold;
-    padding: 3px;
-    border-radius: 8px;
-    background-color: rgb(30, 30, 46);
-    color: rgb(205, 214, 244);
     padding-left: 10px;
-    padding-right:10px
-  }
+    padding-right: 10px;
+}
 
-#cpu {
-    color: rgb(203, 166, 247);
-  }
-
-#temperature {
-    color: rgb(137, 180, 250);
-  }
-
-#custom-powermenu {
-    color: rgb(243, 139, 168);
-  }
-
-#memory {
-    color: rgb(166, 227, 161);
-  }
-
-#custom-updates {
-    color: rgb(249, 226, 175);
-  }
-
-#pulseaudio {
-    color: rgb(250, 179, 135);
-  }
+#cpu       { color: rgb(203, 166, 247); }
+#temperature { color: rgb(137, 180, 250); }
+#memory    { color: rgb(166, 227, 161); }
+#custom-updates { color: rgb(249, 226, 175); }
+#pulseaudio { color: rgb(250, 179, 135); }
+#custom-powermenu { color: rgb(243, 139, 168); }
+#clock,
+#custom-clock { color: rgb(243, 139, 168); }
 
 #pulseaudio.muted {
-    background-color: rgb(30, 30, 46);
     color: rgb(245, 194, 231);
-  }
-
-#clock {
-    color: rgb(243, 139, 168);
-  }
-
-#custom-clock {
-    color: rgb(243, 139, 168);
 }
 
 #temperature.critical {
     color: rgb(17, 17, 27);
     background-color: rgb(243, 139, 168);
-  }
+}
 
 #tray > .passive {
     -gtk-icon-effect: dim;
-  }
+}
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: rgb(30, 30, 46);
-  }
+}
 
