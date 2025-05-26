@@ -57,7 +57,7 @@
   "custom/clock": {
     "format": "󰃰  {}",
     "interval": 60,
-    "exec": "date +'%H:%M %e.%b'"
+    "exec": "date +'%H:%M %a %e.%b'"
   },
   "clock": {
     "format": "󰃰  {:%e.%b}",
