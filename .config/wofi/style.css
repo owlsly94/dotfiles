@@ -1,6 +1,6 @@
 * {
-  font-family: Ubuntu Nerd Font;
-  font-size: 15px;
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 14px;
   color: #cdd6f4;
   background: transparent;
 }
@@ -38,4 +38,9 @@
 
 #text {
   margin: 2px;
+}
+
+#text:selected {
+  color:  #bb9af7;
+  font-weight: bold;
 }
