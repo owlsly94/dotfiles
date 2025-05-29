@@ -52,12 +52,48 @@ alias how="tldr"
 alias emacs="emacsclient -c -a 'emacs'"
 alias cp="cp -i"
 alias mv="mv -i"
+alias server="ssh stefan@192.168.1.21"
 
 # Github Lazy
 lazyg() {
 	git add .
 	git commit -m "$1"
 	git push
+}
+
+# Get local IP
+myip() {
+  ip addr show | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}' | cut -d/ -f1
+}
+
+# Check public IP
+pubip() {
+  curl -s ifconfig.me
+}
+
+# Show memory usage
+mem() {
+  free -h
+}
+
+# Show CPU info
+cpuinfo() {
+  lscpu | grep -E 'Model name|Socket|Thread|Core'
+}
+
+# Disk usage sorted by size
+dus() {
+  du -sh * | sort -hr
+}
+
+# Reload the shell
+reload() {
+  source ~/.zshrc && echo "✅ Reloaded .zshrc"
+}
+
+# Serve current directory on HTTP (great for testing)
+serve() {
+  python3 -m http.server "${1:-8000}"
 }
 
 # Copy file with a progress bar
@@ -78,6 +114,28 @@ cpp() {
         }
     }
     END { print "" }' total_size="$(stat -c '%s' "${1}")" count=0
+}
+
+# Extract any archive with one command
+extract() {
+  if [ -f "$1" ]; then
+    case "$1" in
+      *.tar.bz2) tar xjf "$1" ;;
+      *.tar.gz)  tar xzf "$1" ;;
+      *.bz2)     bunzip2 "$1" ;;
+      *.rar)     unrar x "$1" ;;
+      *.gz)      gunzip "$1" ;;
+      *.tar)     tar xf "$1" ;;
+      *.tbz2)    tar xjf "$1" ;;
+      *.tgz)     tar xzf "$1" ;;
+      *.zip)     unzip "$1" ;;
+      *.Z)       uncompress "$1" ;;
+      *.7z)      7z x "$1" ;;
+      *)         echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
 
 ## Plugins
