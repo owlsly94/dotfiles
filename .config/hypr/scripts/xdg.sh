@@ -1,13 +1,13 @@
 #!/bin/bash
 
-systemctl --user stop xdg-desktop-portal xdg-desktop-portal-hyprland
-
-killall -q xdg-desktop-portal-hyprland
-killall -q xdg-desktop-portal
-
-/usr/lib/xdg-desktop-portal-hyprland &
-
-sleep 1
-
-/usr/lib/xdg-desktop-portal &
-
+killall -9 xdg-desktop-portal
+sleep 2
+killall -9 xdg-desktop-portal-hyprland
+sleep 2
+systemctl --user stop xdg-desktop-portal
+sleep 2
+systemctl --user stop xdg-desktop-portal-hyprland
+sleep 2
+systemctl --user start xdg-desktop-portal-hyprland
+sleep 2
+systemctl --user start xdg-desktop-portal
