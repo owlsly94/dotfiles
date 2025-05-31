@@ -9,15 +9,3 @@ command = "kitty --class kitty-dropterm"
 class = "kitty-dropterm"
 size = "75% 60%"
 
-[scratchpads.chatgpt]
-animation = "fromTop"
-command = "chromium --class=chatgpt-app --app=https://chat.openai.com"
-class = "chatgpt-app"
-size = "75% 60%"
-
-[scratchpads.gemini]
-animation = "fromTop"
-command = "chromium --class=gemini-app --app=https://gemini.google.com/app"
-class = "gemini-app"
-size = "75% 60%"
-
