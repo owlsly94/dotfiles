@@ -138,7 +138,42 @@ extract() {
   fi
 }
 
-## Plugins
+# Find and grep functions
+f() { find . -name "$1"; }
+
+grepf() { grep -rnw . -e "$1"; }
+
+# Weather
+weather() {
+  curl wttr.in/"${1:-Belgrade}"
+}
+
+# CPU functions
+cpuinfo() {
+  lscpu | grep -E 'Model name|CPU\(s\)|MHz|Architecture'
+}
+
+stress-test() {
+  stress --cpu "$(nproc)" --timeout "${1:-30}"
+}
+
+# Show directory sizes, sorted
+duh() {
+  du -sh ./* 2>/dev/null | sort -hr
+}
+
+# Create a compressed archive easily
+archive() {
+  tar -czvf "${1}.tar.gz" "${1}"
+}
+
+# Show public IP and hostname info
+myhost() {
+  echo "IP: $(curl -s ifconfig.me)"
+  echo "Host: $(hostnamectl)"
+  echo "Uptime: $(uptime -p)"
+}
+
 # Syntax Highlighting
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Autosuggestions
