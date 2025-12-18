@@ -17,7 +17,7 @@
 - **ALT + Space** – Otvara Wofi (launcher)
 - **ALT + G** – Pokreće Steam
 - **ALT + J** – Pokreće Jellyfin Media Player
-- **ALT + H** – Otvara HBO aplikaciju
+- **ALT + H** – Otvara help na engleskom
 
 ---
 

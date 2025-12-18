@@ -21,7 +21,7 @@ This document contains a clean overview of your Hyprland keybindings with short 
 - **ALT + Space** – Open Wofi launcher
 - **ALT + G** – Launch Steam
 - **ALT + J** – Launch Jellyfin Media Player
-- **SUPER + H** – Open HBO application
+- **SUPER + H** – Open help in Serbian
 
 ---
 
