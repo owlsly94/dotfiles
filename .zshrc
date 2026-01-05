@@ -53,6 +53,8 @@ alias emacs="emacsclient -c -a 'emacs'"
 alias cp="cp -i"
 alias mv="mv -i"
 alias server="ssh stefan@192.168.1.21"
+alias movie='mpv --profile=movies'
+alias yt='mpv --profile=youtube'
 
 # Github Lazy
 lazyg() {
