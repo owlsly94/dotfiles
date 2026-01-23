@@ -5,7 +5,7 @@ updates() {
         pacman_updates=0
     fi
 
-    if ! aur_updates=$(paru -Qum 2> /dev/null | wc -l ); then
+    if ! aur_updates=$(yay -Qum 2> /dev/null | wc -l ); then
         aur_updates=0
     fi
 
