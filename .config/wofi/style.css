@@ -1,46 +1,72 @@
+/* TokyoNight Palette */
+@define-color bg      #1a1b26;
+@define-color bg_alt  #24283b;
+@define-color fg      #c0caf5;
+@define-color cyan    #7dcfff;
+@define-color blue    #7aa2f7;
+@define-color magenta #bb9af7;
+@define-color yellow  #e0af68;
+@define-color red     #f7768e;
+
 * {
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 14px;
-  color: #cdd6f4;
-  background: transparent;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
 }
 
-#window {
-  background: rgba(41, 46, 66, 0.5);
-  margin: auto;
-  padding: 10px;
-  border-radius: 20px;
-  border: 2px solid #cba6f7;
-}
-
-#input {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 15px;
+window {
+    margin: 0px;
+    border: 2px solid @magenta;
+    border-radius: 12px;
+    background-color: @bg;
+    color: @fg;
 }
 
 #outer-box {
-  padding: 20px;
+    margin: 10px;
+    border: none;
+    background-color: transparent;
 }
 
-#img {
-  margin-right: 6px;
+#input {
+    margin: 5px;
+    border: 1px solid @blue;
+    border-radius: 8px;
+    color: @fg;
+    background-color: @bg_alt;
+    padding: 10px;
 }
 
-#entry {
-  padding: 10px;
-  border-radius: 15px;
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
 }
 
-#entry:selected {
-  background-color: #1e1e2e;
+#scroll {
+    margin: 0px;
+    border: none;
 }
 
 #text {
-  margin: 2px;
+    margin: 5px;
+    border: none;
+    color: @fg;
+}
+
+#entry {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#entry:selected {
+    background-color: @bg_alt;
+    outline: none;
 }
 
 #text:selected {
-  color:  #bb9af7;
-  font-weight: bold;
+    color: @cyan;
+}
+
+#img {
+    margin-right: 10px;
 }
