@@ -1,88 +1,105 @@
+/* TokyoNight Color Palette */
+@define-color bg          rgba(26, 27, 38, 0.9);
+@define-color bg_alt      rgba(36, 40, 59, 1.0);
+@define-color fg          #c0caf5;
+@define-color cyan        #7dcfff;
+@define-color blue        #7aa2f7;
+@define-color magenta     #bb9af7;
+@define-color pink        #ff007c;
+@define-color green       #9ece6a;
+@define-color yellow      #e0af68;
+@define-color red         #f7768e;
+@define-color comment     #565f89;
+
 * {
     border: none;
     border-radius: 0;
-    font-family: JetBrainsMono Nerd Font;
+    font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     font-size: 14px;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: rgb(17, 17, 27);
-    color: rgb(205, 214, 244);
+    background-color: @bg;
+    color: @fg;
+    border-bottom: 2px solid rgba(187, 154, 247, 0.2);
     transition: background-color 0.5s;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-#workspaces button {
-    padding: 0 5px;
-    color: rgb(108, 112, 134);
-    background: transparent;
-    border-radius: 8px;
-}
-
-#workspaces button:hover {
-    background: rgb(30, 30, 46);
-    color: rgb(203, 166, 247);
-}
-
-#workspaces button.active,
-#workspaces button.focused {
-    color: rgb(166, 227, 161);
-    background: rgb(30, 30, 46);
-}
-
-#workspaces button.urgent {
-    color: rgb(235, 160, 172);
-}
-
-#window,
+/* Common styling for all modules */
 #workspaces,
 #taskbar,
-#clock,
-#custom-clock,
+#window,
 #cpu,
 #memory,
 #temperature,
 #pulseaudio,
 #custom-updates,
-#custom-powermenu,
-#tray {
-    margin: 3px;
-    padding: 3px 10px;
-    border-radius: 8px;
-    background: rgb(30, 30, 46);
-}
-
-#workspaces {
-    font-size: 16px;
-}
-
-#window {
-    font-size: 14px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-#cpu       { color: rgb(203, 166, 247); }
-#temperature { color: rgb(137, 180, 250); }
-#memory    { color: rgb(166, 227, 161); }
-#custom-updates { color: rgb(249, 226, 175); }
-#pulseaudio { color: rgb(250, 179, 135); }
-#custom-powermenu { color: rgb(243, 139, 168); }
 #clock,
-#custom-clock { color: rgb(243, 139, 168); }
+#tray {
+    margin: 4px 3px;
+    padding: 2px 10px;
+    border-radius: 8px;
+    background-color: @bg_alt;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 5px;
+    color: @comment;
+    background: transparent;
+}
+
+#workspaces button:hover {
+    color: @cyan;
+}
+
+#workspaces button.active {
+    color: @magenta;
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+/* Taskbar icons */
+#taskbar button {
+    padding: 0 5px;
+    background: transparent;
+}
+
+#taskbar button.active {
+    background: rgba(122, 162, 247, 0.2);
+    border-bottom: 2px solid @blue;
+}
+
+/* Window Title (Center) */
+#window {
+    color: @fg;
+    background: transparent; /* Makes the center look cleaner */
+}
+
+/* Module Colors */
+#cpu              { color: @magenta; }
+#temperature      { color: @blue; }
+#memory           { color: @green; }
+#custom-updates   { color: @yellow; }
+#pulseaudio       { color: @cyan; }
+#clock            { color: @pink; }
 
 #pulseaudio.muted {
-    color: rgb(245, 194, 231);
+    color: @comment;
 }
 
 #temperature.critical {
-    color: rgb(17, 17, 27);
-    background-color: rgb(243, 139, 168);
+    color: @bg;
+    background-color: @red;
+}
+
+/* Tray styling */
+#tray {
+    padding-right: 15px;
 }
 
 #tray > .passive {
@@ -92,4 +109,3 @@ window#waybar.hidden {
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
 }
-

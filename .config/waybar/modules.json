@@ -1,10 +1,79 @@
 {
-  // taskbar
-	"wlr/taskbar": {
-		"format": "{icon}",
-		"icon-size": 14,
-		"tooltip-format": "{title}",
-		"on-click": "activate",
-		"on-click-middle": "close"
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": " ",
+      "2": " ",
+      "3": " ",
+      "4": " ",
+      "5": "󰿎 ",
+      "6": " ",
+      "7": " ",
+      "8": " ",
+      "9": "󰍇 ",
+      "10": " "
+    },
+    "sort-by-number": true
   },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 18,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close"
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "separate-outputs": true
+  },
+
+  "cpu": {
+    "format": "  {usage}%",
+    "tooltip": false,
+    "on-click": "kitty -e btop"
+  },
+
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", ""]
+  },
+
+  "memory": {
+    "format": "  {used} GB",
+    "on-click": "kitty -e htop"
+  },
+
+  "custom/updates": {
+    "format": "  {}",
+    "interval": 7200,
+    "exec": "sh ~/.config/hypr/scripts/updates.sh",
+    "on-click": "kitty -e sh ~/.config/hypr/scripts/paru.sh"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " ",
+    "format-icons": {
+      "default": [" ", " ", " "]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "clock": {
+    "format": "󰃰  {:%H:%M %a %e.%b}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  }
 }
