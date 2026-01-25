@@ -1,43 +1,36 @@
 #!/bin/bash
 
-# Function to display a confirmation prompt
-confirm_update() {
-    echo -n "Do you want to proceed with the update? (y/n): "
-    read -r response
-    case "$response" in
-        [yY][eE][sS]|[yY])
-            echo "Proceeding with the update using paru..."
-            ;;
-        [nN][oO]|[nN])
-            echo "Update canceled."
-            exit 1
-            ;;
-        *)
-            echo "Invalid input. Please enter 'y' for yes or 'n' for no."
-            confirm_update
-            ;;
-    esac
-}
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
 
-# Prompt the user for confirmation
-confirm_update
+echo -e "${MAGENTA}󰛭 Starting System Upgrade...${NC}"
 
-# Update and upgrade system packages
-echo "Updating system packages..."
-sudo pacman -Syu --noconfirm
+echo -n "Do you want to proceed with yay? (y/n): "
+read -r response
+if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    echo -e "${RED}Update canceled.${NC}"
+    exit 1
+fi
 
-# Check for any orphaned packages and remove them
-echo "Removing orphaned packages..."
-sudo pacman -Rns $(pacman -Qdtq) --noconfirm
+echo -e "${CYAN}󰇚 Syncing repositories and upgrading...${NC}"
+yay -Syu --noconfirm
 
-# Update AUR packages
-echo "Updating AUR packages..."
-paru -Syu --noconfirm
+ORPHANS=$(pacman -Qdtq)
+if [ -n "$ORPHANS" ]; then
+    echo -e "${CYAN}󱂵 Removing orphaned packages...${NC}"
+    sudo pacman -Rns $ORPHANS --noconfirm
+else
+    echo -e "${GREEN}󰄬 No orphaned packages to remove.${NC}"
+fi
 
-# Clean up Yay cache
-echo "Cleaning up Yay cache..."
-paru -Sc --noconfirm
+echo -e "${CYAN}󰃢 Cleaning yay cache...${NC}"
+yay -Sc --noconfirm
 
-echo "System update complete!"
-sleep 3
+echo -e "${MAGENTA}󰑐 Refreshing Waybar...${NC}"
+pkill -RTMIN+8 waybar
 
+echo -e "${GREEN}󰄬 System update complete!${NC}"
+sleep 2
