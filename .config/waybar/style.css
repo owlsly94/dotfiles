@@ -1,4 +1,7 @@
-/* TokyoNight Color Palette */
+/* * TokyoNight Waybar Theme 
+ * Unified Pill Style with Rounded Workspaces & Taskbar
+ */
+
 @define-color bg          rgba(26, 27, 38, 0.9);
 @define-color bg_alt      rgba(36, 40, 59, 1.0);
 @define-color fg          #c0caf5;
@@ -27,7 +30,7 @@ window#waybar {
     transition: background-color 0.5s;
 }
 
-/* Common styling for all modules */
+/* Common styling for all modules to create the "Pill" look */
 #workspaces,
 #taskbar,
 #window,
@@ -39,54 +42,74 @@ window#waybar {
 #clock,
 #tray {
     margin: 4px 3px;
-    padding: 2px 10px;
-    border-radius: 8px;
+    padding: 2px 12px;
+    border-radius: 12px; /* Increased for a smoother rounded look */
     background-color: @bg_alt;
 }
 
-/* Workspaces */
-#workspaces button {
+/* --- Workspaces --- */
+#workspaces {
     padding: 0 5px;
+}
+
+#workspaces button {
+    padding: 0 8px;
     color: @comment;
     background: transparent;
+    border-radius: 8px; /* Rounds the hover/active highlight */
+    transition: all 0.3s ease;
 }
 
 #workspaces button:hover {
     color: @cyan;
+    background: rgba(125, 207, 255, 0.1);
 }
 
 #workspaces button.active {
     color: @magenta;
+    background: rgba(187, 154, 247, 0.15);
 }
 
 #workspaces button.urgent {
     color: @red;
+    background: rgba(247, 118, 142, 0.2);
 }
 
-/* Taskbar icons */
-#taskbar button {
+/* --- Taskbar --- */
+#taskbar {
     padding: 0 5px;
+}
+
+#taskbar button {
+    padding: 0 6px;
+    margin: 2px 2px;
+    border-radius: 8px;
     background: transparent;
+    transition: all 0.3s ease;
 }
 
 #taskbar button.active {
     background: rgba(122, 162, 247, 0.2);
-    border-bottom: 2px solid @blue;
+    box-shadow: inset 0 -2px 0 @blue; 
 }
 
-/* Window Title (Center) */
+#taskbar button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Window Title (Center) --- */
 #window {
     color: @fg;
-    background: transparent; /* Makes the center look cleaner */
+    background: transparent; 
 }
 
-/* Module Colors */
-#cpu              { color: @magenta; }
-#temperature      { color: @blue; }
-#memory           { color: @green; }
-#custom-updates   { color: @yellow; }
-#pulseaudio       { color: @cyan; }
-#clock            { color: @pink; }
+/* --- Module Specific Colors --- */
+#cpu           { color: @magenta; }
+#temperature   { color: @blue; }
+#memory        { color: @green; }
+#custom-updates { color: @yellow; }
+#pulseaudio    { color: @cyan; }
+#clock         { color: @pink; }
 
 #pulseaudio.muted {
     color: @comment;
@@ -97,9 +120,10 @@ window#waybar {
     background-color: @red;
 }
 
-/* Tray styling */
+/* --- Tray styling --- */
 #tray {
-    padding-right: 15px;
+    padding-right: 12px;
+    padding-left: 12px;
 }
 
 #tray > .passive {
@@ -108,4 +132,15 @@ window#waybar {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
+}
+
+/* Help tooltips look Tokyo-themed */
+tooltip {
+    background: @bg;
+    border: 1px solid @magenta;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @fg;
 }
