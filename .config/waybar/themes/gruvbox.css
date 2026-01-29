@@ -1,0 +1,11 @@
+@define-color bg          rgba(40, 40, 40, 0.9);
+@define-color bg_alt      rgba(60, 56, 54, 1.0);
+@define-color fg          #ebdbb2;
+@define-color cyan        #83a598;
+@define-color blue        #458588;
+@define-color magenta     #d3869b;
+@define-color pink        #fb4934;
+@define-color green       #b8bb26;
+@define-color yellow      #fabd2f;
+@define-color red         #fb4934;
+@define-color comment     #928374;

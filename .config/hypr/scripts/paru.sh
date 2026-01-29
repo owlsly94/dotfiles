@@ -8,6 +8,9 @@ NC='\033[0m'
 
 echo -e "${MAGENTA}󰛭 Starting System Upgrade...${NC}"
 
+echo -e "${CYAN}󰃢 Cleaning system package cache (keeping 3 versions)...${NC}"
+sudo paccache -r
+
 echo -n "Do you want to proceed with yay? (y/n): "
 read -r response
 if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -16,7 +19,7 @@ if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo -e "${CYAN}󰇚 Syncing repositories and upgrading...${NC}"
-yay -Syu --noconfirm
+yay -Syu
 
 ORPHANS=$(pacman -Qdtq)
 if [ -n "$ORPHANS" ]; then
@@ -31,6 +34,8 @@ yay -Sc --noconfirm
 
 echo -e "${MAGENTA}󰑐 Refreshing Waybar...${NC}"
 pkill -RTMIN+8 waybar
+
+dunstify -u normal -i software-update-available "System Update" "All packages have been updated successfully."
 
 echo -e "${GREEN}󰄬 System update complete!${NC}"
 sleep 2
