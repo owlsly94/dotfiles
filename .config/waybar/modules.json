@@ -55,7 +55,7 @@
     "format": "  {}",
     "interval": 7200,
     "exec": "sh ~/.config/hypr/scripts/updates.sh",
-    "on-click": "kitty -e sh ~/.config/hypr/scripts/paru.sh"
+    "on-click": "kitty --hold sh -c 'topgrade'"
   },
 
   "pulseaudio": {
