@@ -57,7 +57,6 @@ window#waybar {
 
 #workspaces button.active {
     color: @magenta;
-    background: rgba(187, 154, 247, 0.15);
 }
 
 #workspaces button.urgent {
@@ -96,9 +95,9 @@ window#waybar {
 /* --- Module Specific Colors --- */
 #cpu           { color: @magenta; }
 #temperature   { color: @blue; }
-#memory        { color: @green; }
-#custom-updates { color: @yellow; }
-#pulseaudio    { color: @cyan; }
+#memory        { color: @cyan; }
+#custom-updates { color: @green; }
+#pulseaudio    { color: @yellow; }
 #clock         { color: @pink; }
 
 #pulseaudio.muted {

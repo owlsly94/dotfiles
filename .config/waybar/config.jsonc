@@ -6,8 +6,8 @@
   "spacing": 4,
 
   "modules-left": [
-    "hyprland/workspaces",
-    "wlr/taskbar"
+    "hyprland/workspaces"//,
+//    "wlr/taskbar"
   ],
   "modules-center": [
     "hyprland/window"
