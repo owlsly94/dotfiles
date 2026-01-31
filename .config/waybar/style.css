@@ -52,7 +52,6 @@ window#waybar {
 
 #workspaces button:hover {
     color: @cyan;
-    background: rgba(125, 207, 255, 0.1);
 }
 
 #workspaces button.active {
