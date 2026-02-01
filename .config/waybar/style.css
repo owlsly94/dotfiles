@@ -33,7 +33,7 @@ window#waybar {
 #tray {
     margin: 4px 3px;
     padding: 2px 12px;
-    border-radius: 12px; /* Increased for a smoother rounded look */
+    border-radius: 12px; /* Increase for a smoother rounded look */
     background-color: @bg_alt;
 }
 
