@@ -25,7 +25,6 @@
 </div>
 
 ![image](https://raw.githubusercontent.com/owlsly94/dotfiles/main/assets/screen1.png)
-![image](https://raw.githubusercontent.com/owlsly94/dotfiles/main/assets/screen2.png)
 
 ## Installation
 1. Clone the repo
@@ -55,4 +54,9 @@ tar -xzvf zsh.tar.gz
 ## Arch post-install script
 <p>
   You can easily use my <a href="https://github.com/owlsly94/arch-install">Arch Install script</a> to configure all this automatically.
+</p>
+
+## Arch post-install script for Hyprland
+<p>
+  If you just want to install Hyprland, go to <a href="https://github.com/owlsly94/hyprland">Hyprland</a>
 </p>
