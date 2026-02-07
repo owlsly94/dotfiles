@@ -1,6 +1,17 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
 
+  "logo": {
+    "source": "/home/owlsly/.config/fastfetch/logo.png",
+    "type": "auto",
+    "width": 30,
+    "height": 15,
+    "padding": {
+      "top": 2,
+      "right": 4
+    }
+  },
+
   "display": {
     "separator": "➜   "
   },
@@ -19,73 +30,81 @@
     "break",
 
     {
-      "key": "      OS           ",
+      "key": "      OS            ",
       "keyColor": "green",
       "type": "os"
     },
     {
-      "key": "    󰌢  Machine      ",
+      "key": "    󰌢  Machine       ",
       "keyColor": "cyan",
       "type": "host"
     },
     {
-      "key": "      Kernel       ",
+      "key": "      Kernel        ",
       "keyColor": "blue",
       "type": "kernel"
     },
     {
-      "key": "    󰅐  Uptime       ",
+      "key": "    󰅐  Uptime        ",
       "keyColor": "green",
       "type": "uptime"
     },
     {
-      "key": "      Packages     ",
+      "key": "    󱑎  System Age    ",
       "keyColor": "cyan",
+      "type": "command",
+      "shell": "/bin/sh",
+      "text": "birth_date=$(stat -c %W /); if [ \"$birth_date\" -le 0 ]; then birth_date=$(stat -c %Z /); fi; days=$(( ($(date +%s) - $birth_date) / 86400 )); echo \"$days days ago\"",
+      "format": "{1}"
+    },
+    {
+      "key": "      Packages      ",
+      "keyColor": "blue",
       "type": "packages"
     },
     {
-      "key": "      WM           ",
-      "keyColor": "blue",
+      "key": "      WM            ",
+      "keyColor": "green",
       "type": "wm"
     },
     {
-      "key": "      Shell        ",
-      "keyColor": "green",
+      "key": "      Shell         ",
+      "keyColor": "cyan",
       "type": "shell"
     },
     {
-      "key": "      Terminal     ",
-      "keyColor": "cyan",
+      "key": "      Terminal      ",
+      "keyColor": "blue",
       "type": "terminal"
     },
     {
-      "key": "      Font         ",
-      "keyColor": "blue",
+      "key": "      Font          ",
+      "keyColor": "green",
       "type": "terminalfont"
     },
     {
-      "key": "    󰻠  CPU          ",
-      "keyColor": "green",
+      "key": "    󰻠  CPU           ",
+      "keyColor": "cyan",
       "type": "cpu"
     },
     {
-      "key": "    󰍛  GPU          ",
-      "keyColor": "cyan",
+      "key": "    󰍛  GPU           ",
+      "keyColor": "blue",
       "type": "gpu"
     },
     {
-      "key": "      Memory       ",
-      "keyColor": "blue",
+      "key": "      Memory        ",
+      "keyColor": "green",
       "type": "memory"
     },
     {
-      "key": "      Wifi         ",
-      "keyColor": "green",
+      "key": "      Wifi          ",
+      "keyColor": "cyan",
       "type": "wifi"
     },
     {
-      "key": "    󰩟  Local IP     ",
-      "keyColor": "cyan",
+      "key": "    󰩟  Local IP      ",
+      "keyColor": "blue",
       "type": "localip",
       "compact": true
     },
@@ -107,4 +126,3 @@
     }
   ]
 }
-
