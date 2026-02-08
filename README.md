@@ -17,12 +17,12 @@
    Mostly config files of various window managers, compositors, editors and GTK themes and configs.</a>.<br/>
    Used mostly on Arch Linux, but I've also used them on Debian and Fedora.<br/>
 </p>
+</div>
 
 > [!WARNING]
-> I'm constantly changing something about my configs and I'm currently using mostly Hyprland,<br/>
+> I'm constantly changing my configs and I'm currently using Hyprland,<br/>
 > so bare in mind that window managers like Qtile, XMonad or Awesome configs could be broken do to updates.
 
-</div>
 
 ![image](https://raw.githubusercontent.com/owlsly94/dotfiles/main/assets/screen1.png)
 
