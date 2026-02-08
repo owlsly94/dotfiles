@@ -52,6 +52,8 @@ tar -xzvf zsh.tar.gz
 ```
 
 ## Arch post-install script
+> [!CAUTION]
+> **This repository is ARCHIVED.** > The code is kept for historical reference and will no longer receive updates or bug fixes.
 <p>
   You can easily use my <a href="https://github.com/owlsly94/arch-install">Arch Install script</a> to configure all this automatically.
 </p>
