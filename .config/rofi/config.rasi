@@ -1,23 +1,91 @@
 configuration {
-    modi: "drun";
-    show-icons: true;
-    icon-theme: "Papirus";
-    font: "JetBrainsMono Nerd Font 14";
-    terminal: "kitty";
-    drun-display-format: "{name}";
-    display-drun: "";
-    matching: "fuzzy";
-    case-sensitive: false;
-    sort: true;
-    disable-history: false;
-    window-location: center;
-    width: 20;
-    lines: 4;
-    fixed-num-lines: true;
-    parse-known-hosts: false;
-    always-show-match: true;
-    click-to-exit: true;
-    show-match: true;
-    scrollbar: false;
+    modi:                       "drun";
+    show-icons:                 true;
+    display-drun:               "Launch:";
+    drun-display-format:        "{name}";
+    font:                       "JetBrainsMono Nerd Font 12";
 }
 
+* {
+    bg:      #1a1b26;
+    bg-alt:  #24283b;
+    fg:      #c0caf5;
+    cyan:    #7dcfff;
+    blue:    #7aa2f7;
+    magenta: #bb9af7;
+    gray:    #565f89;
+    
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+window {
+    width:            500px;
+    height:           400px;
+    background-color: @bg;
+    border:           2px;
+    border-color:     @magenta;
+    border-radius:    12px;
+}
+
+mainbox {
+    padding:  15px;
+    children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+    margin:           0px 0px 10px 0px;
+    padding:          10px;
+    background-color: @bg-alt;
+    border:           1px;
+    border-color:     @blue;
+    border-radius:    8px;
+    children:         [ "prompt", "entry" ];
+}
+
+prompt {
+    text-color: @blue;
+    margin:     0px 5px 0px 0px;
+}
+
+entry {
+    text-color:        @fg; 
+    placeholder:       "Search...";
+    placeholder-color: @gray;
+    horizontal-align:  0;
+}
+
+listview {
+    margin:       5px 0px 0px 0px;
+    columns:      1;
+    lines:        8;
+    fixed-height: true;
+    scrollbar:    false;
+    spacing:      5px;
+}
+
+element {
+    padding:       8px;
+    border-radius: 8px;
+    spacing:       12px;
+}
+
+element normal.normal, 
+element alternate.normal {
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+element selected.normal {
+    background-color: @bg-alt;
+    text-color:       @cyan;
+}
+
+element-icon {
+    size: 36px;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}

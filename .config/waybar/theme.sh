@@ -2,7 +2,7 @@
 
 THEME_DIR="$HOME/.config/waybar/themes"
 COLOR_CONFIG="$HOME/.config/waybar/colors.css"
-MENU_BIN="wofi" # Change to "rofi -dmenu" if you use Rofi
+MENU_BIN="rofi -dmenu" # Change to "wofi" if you use wofi
 
 themes=$(ls "$THEME_DIR" | sed 's/\.css//')
 

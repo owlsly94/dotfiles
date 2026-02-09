@@ -1,0 +1,107 @@
+configuration {
+    show-icons: true;
+    icon-theme: "Papirus";
+    font: "JetBrainsMono Nerd Font 14";
+}
+
+* {
+    bg:          #0b0f14;
+    bg-alt:      #16191e;
+    bg-selected: #242931;
+    fg:          #ffffff;
+    fg-alt:      #949494;
+    accent:      #7aa2f7;
+    transparent: rgba(0,0,0,0);
+}
+
+window {
+    width:            1100px; 
+    height:           485px;  
+    background-color: @bg;
+    border:           2px;
+    border-color:     #1a1e24;
+    border-radius:    12px;
+}
+
+mainbox {
+    background-color: @transparent;
+    children:         [ "inputbar", "listview", "message" ];
+}
+
+inputbar {
+    padding:          20px;
+    background-color: @transparent;
+    children:         [ "prompt", "entry" ];
+}
+
+prompt {
+    background-color: @transparent;
+    text-color:       @accent;
+    margin:           0px 10px 0px 0px;
+}
+
+entry {
+    background-color: @transparent;
+    text-color:       @fg;
+    placeholder:      "Search wallpapers...";
+    placeholder-color: #444444;
+}
+
+listview {
+    background-color: @transparent;
+    layout:           horizontal;
+    spacing:          25px;
+    padding:          10px 25px;
+    fixed-columns:    true;
+    expand:           false;
+    horizontal-align: 0.5;
+}
+
+message {
+    background-color: @transparent;
+    border:           1px 0px 0px 0px;
+    border-color:     #1a1e24;
+    padding:          2px 0px;
+    margin:           0px 20px;
+}
+
+textbox {
+    text-color:       @fg-alt;
+    background-color: @transparent;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+    font:             "JetBrainsMono Nerd Font 12";
+}
+
+element {
+    background-color: @bg-alt;
+    orientation:      vertical;
+    padding:          15px;
+    border-radius:    10px;
+    spacing:          10px;
+    border:           2px;
+    border-color:     @transparent;
+    width:            320px; 
+}
+
+element selected {
+    background-color: @bg-selected;
+    border-color:     @accent;
+}
+
+element-icon {
+    size:             260px; 
+    horizontal-align: 0.5;
+    background-color: @transparent;
+}
+
+element-text {
+    background-color: @transparent;
+    text-color:       @fg-alt;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+}
+
+element-text selected {
+    text-color:       @accent;
+}
