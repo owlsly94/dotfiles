@@ -9,19 +9,21 @@
     border-radius: 0;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 14.7px;
+    font-size: 15px;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: @bg;
+    background: @bg;
     color: @fg;
-    border-bottom: 2px solid rgba(187, 154, 247, 0.2);
-    transition: background-color 0.5s;
+    /*border-bottom: 2px solid rgba(187, 154, 247, 0.2);*/
 }
 
-/* Common styling for all modules to create the "Pill" look */
-#workspaces,
+#waybar.empty .modules-center {
+    opacity: 0;
+}
+
+/* Common styling for modules */
 #taskbar,
 #window,
 #cpu,
@@ -31,43 +33,62 @@ window#waybar {
 #custom-updates,
 #clock,
 #tray {
-    margin: 4px 3px;
+    margin: 6px 3px;
     padding: 2px 12px;
-    border-radius: 12px; /* Increase for a smoother rounded look */
+    border-radius: 12px;
     background-color: @bg_alt;
+}
+
+#tray {
+    background-color: transparent;
 }
 
 /* --- Workspaces --- */
 #workspaces {
-    padding: 0 5px;
+    margin: 6px 3px;
+    padding: 6px;
+    border-radius: 12px;
+    background-color: @bg_alt;
 }
 
 #workspaces button {
-    padding: 0 8px;
-    color: @comment;
-    background: transparent;
-    border-radius: 8px; /* Rounds the hover/active highlight */
-    transition: all 0.3s ease;
+    padding: 0 0 0 2px;
+    margin: 0 3px;
+    color: @bg_alt;
+    background: @magenta;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 24px;
+    min-height: 24px;
 }
 
 #workspaces button:hover {
-    color: @cyan;
+    background-color: @green;
+    color: @bg_alt;
 }
 
 #workspaces button.active {
-    color: @magenta;
+    color: @bg;
+    background-color: @blue;
+    font-weight: bold;
+    border-radius: 16px;
+    border: none;
+    padding: 0 12px;
 }
 
 #workspaces button.urgent {
-    color: @red;
-    background: rgba(247, 118, 142, 0.2);
+    color: @bg;
+    background-color: @red;
+    animation: urgent-blink 1s ease infinite;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.7;
+    }
 }
 
 /* --- Taskbar --- */
-#taskbar {
-    padding: 0 5px;
-}
-
 #taskbar button {
     padding: 0 6px;
     margin: 2px 2px;
@@ -78,7 +99,7 @@ window#waybar {
 
 #taskbar button.active {
     background: rgba(122, 162, 247, 0.2);
-    box-shadow: inset 0 -2px 0 @blue; 
+    box-shadow: inset 0 -2px 0 @blue;
 }
 
 #taskbar button:hover {
@@ -88,19 +109,23 @@ window#waybar {
 /* --- Window Title (Center) --- */
 #window {
     color: @fg;
-    background: transparent; 
 }
 
 /* --- Module Specific Colors --- */
-#cpu           { color: @magenta; }
-#temperature   { color: @blue; }
-#memory        { color: @cyan; }
-#custom-updates { color: @green; }
-#pulseaudio    { color: @yellow; }
-#clock         { color: @pink; }
+#cpu            { color: @magenta; }
+#temperature    { color: @cyan; }
+#memory         { color: @green; }
+#custom-updates { color: @yellow; }
+#pulseaudio     { color: @yellow; }
+#clock          { color: @red; }
+
+#pulseaudio {
+    transition: all 0.2s ease;
+}
 
 #pulseaudio.muted {
     color: @comment;
+    opacity: 0.5;
 }
 
 #temperature.critical {
@@ -109,11 +134,6 @@ window#waybar {
 }
 
 /* --- Tray styling --- */
-#tray {
-    padding-right: 12px;
-    padding-left: 12px;
-}
-
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
@@ -122,10 +142,10 @@ window#waybar {
     -gtk-icon-effect: highlight;
 }
 
-/* Help tooltips look Tokyo-themed */
+/* Tooltips */
 tooltip {
     background: @bg;
-    border: 1px solid @magenta;
+    border: 1px solid @blue;
     border-radius: 8px;
 }
 

@@ -1,4 +1,4 @@
-@define-color bg          rgba(26, 27, 38, 0.9);
+@define-color bg          rgba(26, 27, 38, 1.0);
 @define-color bg_alt      rgba(36, 40, 59, 1.0);
 @define-color fg          #c0caf5;
 @define-color cyan        #7dcfff;
