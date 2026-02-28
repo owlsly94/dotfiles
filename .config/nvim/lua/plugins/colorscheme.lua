@@ -1,37 +1,27 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "folke/tokyonight.nvim",
   lazy = false,
   priority = 1000,
   config = function()
-    require("catppuccin").setup({
-      flavour = "mocha",
-      transparent_background = true,
+    require("tokyonight").setup({
+      style = "storm",
+      transparent = true,
       integrations = {
+        barbar = true,
+        gitsigns = true,
+        harpoon = true,
+        indent_blankline = { enabled = true },
+        lsp_trouble = true,
+        mason = true,
         nvimtree = true,
         telescope = true,
         treesitter = true,
         treesitter_context = true,
-        barbar = true,
-        gitsigns = true,
-        indent_blankline = { enabled = true },
         which_key = true,
-        lsp_trouble = true,
-        mason = true,
-        harpoon = true,
         dap = true,
         dap_ui = true,
-        native_lsp = {
-          enabled = true,
-          underlines = {
-            errors      = { "underline" },
-            hints       = { "underline" },
-            warnings    = { "underline" },
-            information = { "underline" },
-          },
-        },
       },
     })
-    vim.cmd.colorscheme("catppuccin")
+    vim.cmd.colorscheme("tokyonight")
   end,
 }
