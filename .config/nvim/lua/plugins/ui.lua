@@ -39,7 +39,7 @@ return {
           icons_enabled = true,
           theme = "tokyonight",
           component_separators = { left = "", right = "" },
-          section_separators   = { left = "", right = "" },
+          section_separators   = { left = "◗", right = "◖" },
           disabled_filetypes = { statusline = {}, winbar = {} },
           always_divide_middle = true,
           globalstatus = false,
@@ -130,11 +130,15 @@ return {
     "NvChad/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({
-        filetypes = { "*", "!vim",
-          css  = { rgb_fn = true },
-          html = { names = false },
+        filetypes = { "*", "!vim" },
+        options = {
+          parsers = {
+            css     = true,
+            css_fn  = true,
+            names   = { enable = false },
+          },
+          display = { mode = "background" },
         },
-        user_default_options = { mode = "background" },
       })
     end,
   },
