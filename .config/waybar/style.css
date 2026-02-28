@@ -113,9 +113,9 @@ window#waybar {
 
 /* --- Module Specific Colors --- */
 #cpu            { color: @magenta; }
-#temperature    { color: @cyan; }
-#memory         { color: @green; }
-#custom-updates { color: @yellow; }
+#temperature    { color: @blue; }
+#memory         { color: @cyan; }
+#custom-updates { color: @green; }
 #pulseaudio     { color: @yellow; }
 #clock          { color: @red; }
 
