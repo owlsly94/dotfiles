@@ -1,108 +1,83 @@
-# Hyprland Cheat Sheet (Keybindings)
-
-This document contains a clean overview of your Hyprland keybindings with short explanations. It is intended to be opened as a **quick reference / cheat sheet**.
-
+# Hyprland Cheat Sheet
 ---
-
-## MOD keys
+## MOD Keys
 - **ALT** → `$mainMod`
 - **SUPER (Windows key)** → `$supMod`
-
 ---
-
-## Core applications
-- **ALT + Enter** – Open default terminal
+## Applications
+- **ALT + Enter** – Open terminal (Kitty)
 - **SUPER + F** – Open Firefox
-- **SUPER + Shift + F** – Open Firefox profile selector
-- **SUPER + B** – Open secondary browser
-- **SUPER + T** – Open Thorium browser
+- **SUPER + Shift + F** – Open Firefox (profile picker)
+- **SUPER + Z** – Open Zen Browser
+- **SUPER + B** – Open Google Chrome
 - **SUPER + C** – Open VS Code
-- **ALT + D** – Open file manager (pcmanfm)
-- **ALT + Space** – Open Wofi launcher
-- **ALT + G** – Launch Steam
+- **SUPER + O** – Open OBS Studio
+- **ALT + D** – Open file manager (Thunar)
+- **ALT + Space** – Open Rofi (app launcher)
+- **SUPER + Space** – Open wlogout (logout / reboot / shutdown menu)
+- **ALT + G** – Launch Steam (script)
 - **ALT + J** – Launch Jellyfin Media Player
-- **SUPER + H** – Open help in Serbian
-
+- **SUPER + M** – Launch Prism Launcher
+- **SUPER + E** – Open Rofimoji (emoji picker)
+- **ALT + H** – Open this cheat sheet (English)
+- **SUPER + H** – Open general cheat sheet
 ---
-
-## Window management
+## Window Management
 - **ALT + Shift + C** – Close active window
 - **ALT + Shift + Q** – Exit Hyprland
 - **ALT + F** – Toggle floating mode for active window
-
 ---
-
-## Lock & session
+## Lock & Session
 - **ALT + L** – Lock screen (Hyprlock)
-- **SUPER + Space** – Open logout / power menu (wlogout)
-
+- **SUPER + Space** – Open wlogout (logout / reboot / shutdown menu)
 ---
-
-## Scratchpads
-- **SUPER + 1** – Toggle terminal scratchpad
-
+## Scratchpad
+- **SUPER + 1** – Show or hide terminal scratchpad (Pyprland)
 ---
-
-## Master layout navigation
-- **SUPER + →** – Cycle to next window in master layout
-- **SUPER + ←** – Cycle to previous window
+## Master Layout
+- **SUPER + →** – Focus next window in master layout
+- **SUPER + ←** – Focus previous window
 - **SUPER + Shift + ←** – Swap active window with master
-
 ---
-
-## Window resizing
-- **ALT + Shift + ←** – Decrease window width
-- **ALT + Shift + →** – Increase window width
-
+## Resize Windows
+- **ALT + Shift + ←** – Decrease active window width
+- **ALT + Shift + →** – Increase active window width
 ---
-
-## Scripts
-- **ALT + Shift + R** – Restart Waybar
-
+## Scripts & System
+- **SUPER + W** – Set random wallpaper (wallpaper.sh)
+- **SUPER + Shift + W** – Open wallpaper picker (wall-selector.sh)
+- **SUPER + T** – Change Waybar theme (theme.sh)
+- **SUPER + P** – Screenshot (grim + slurp → ~/Pictures/)
+- **ALT + Shift + R** – Restart Waybar (start.sh)
 ---
-
-## Audio controls
-- **Volume Up key** – Increase volume by 5%
-- **Volume Down key** – Decrease volume by 5%
-- **Mute key** – Toggle mute
-
+## Audio (Media Keys)
+- **Volume Up** – Increase volume by 5%
+- **Volume Down** – Decrease volume by 5%
+- **Mute** – Toggle mute
 ---
-
-## Focus movement (arrow keys)
+## Window Focus (Arrow Keys)
 - **ALT + ←** – Focus left
 - **ALT + →** – Focus right
 - **ALT + ↑** – Focus up
 - **ALT + ↓** – Focus down
-
 ---
-
 ## Workspaces
 - **ALT + [1–9]** – Switch to workspace 1–9
 - **ALT + 0** – Switch to workspace 10
-
-### Move window to workspace
+### Move Windows
 - **ALT + Shift + [1–9]** – Move active window to workspace 1–9
 - **ALT + Shift + 0** – Move active window to workspace 10
-
 ---
-
-## Special workspace (magic scratchpad)
-- **ALT + S** – Toggle special workspace `magic`
+## Special Workspace (Magic Scratchpad)
+- **ALT + S** – Show or hide the `magic` special workspace
 - **ALT + Shift + S** – Move active window to `magic` workspace
-
 ---
-
-## Workspace scrolling
-- **ALT + Mouse wheel down** – Next workspace
-- **ALT + Mouse wheel up** – Previous workspace
-
+## Scroll Through Workspaces
+- **ALT + Scroll Down** – Next workspace
+- **ALT + Scroll Up** – Previous workspace
 ---
-
-## Mouse controls
-- **ALT + Left mouse button + drag** – Move window
-- **ALT + Right mouse button + drag** – Resize window
-
+## Mouse Controls
+- **ALT + Left click + drag** – Move window
+- **ALT + Right click + drag** – Resize window
 ---
-
 *This file is meant to be opened as a quick reference while learning or using Hyprland.*
-
