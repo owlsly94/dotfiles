@@ -57,6 +57,22 @@ alias movie='mpv --profile=movies'
 alias yt='mpv --profile=youtube'
 
 # Github Lazy
+git_config() {
+  echo -n "Username: "
+  read -r name
+  echo -n "Email: "
+  read -r email
+
+  if [[ -z "$name" || -z "$email" ]]; then
+    echo "Username and email cannot be empty."
+    return 1
+  fi
+
+  git config --global user.name "$name"
+  git config --global user.email "$email"
+  echo "Git configured: '$name' <$email>"
+}
+
 lazyg() {
 	git add .
 	git commit -m "$1"
