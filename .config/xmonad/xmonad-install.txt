@@ -1,0 +1,1 @@
+sudo pacman -S xorg-xclipboard xmonad xmonad-contrib xmobar feh picom-pijulius-next-git xdotool lxappearance
