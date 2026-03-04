@@ -1,7 +1,11 @@
 /* TokyoNight wlogout Style */
-@define-color bg rgba(26, 27, 38, 0.9);
-@define-color magenta #bb9af7;
-@define-color fg #c0caf5;
+@define-color bg     rgba(19, 20, 31, 0.95);
+@define-color fg     #c0caf5;
+@define-color fg2    #565f89;
+@define-color violet #bb9af7;
+@define-color cyan   #7dcfff;
+@define-color blue   #7aa2f7;
+@define-color red    #f7768e;
 
 window {
     background-color: @bg;
@@ -9,58 +13,72 @@ window {
 }
 
 button {
-    color: @fg;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 25%;
-    border: none;
-    background-color: transparent;
-    margin: 10px;
-    transition: all 0.2s ease-in-out;
+    color:               @fg2;
+    font-size:           20px;
+    letter-spacing:      3px;
+    background-repeat:   no-repeat;
+    background-position: center center;
+    background-size:     30%;
+    border:              none;
+    background-color:    transparent;
+    border-radius:       0px;
+    margin:              5px;
+    transition:          background-color 0.2s ease, color 0.2s ease;
 }
 
-button:focus,
-button:active,
+button:focus {
+    outline:          none;
+    border:           none;
+    box-shadow:       none;
+}
+
 button:hover {
-    color: @magenta;
-    background-color: rgba(187, 154, 247, 0.1);
-    border-radius: 20px;
-    outline-style: none;
+    color:            @blue;
+    background-color: rgba(122, 162, 247, 0.15);
+    border-radius:    16px;
+    outline:          none;
+    border:           none;
+    box-shadow:       none;
 }
 
-/* --- Icon Mapping using relative-style paths --- */
+/* ── Icon Mapping ───────────────────────────────────── */
 
 #lock {
-    background-image: image(url("lock.png"));
+    background-image: url("/home/owlsly/.config/wlogout/lock.png");
 }
 #lock:hover {
-    background-image: image(url("lock-hover.png"));
+    background-image: url("/home/owlsly/.config/wlogout/lock-hover.png");
+    background-color: rgba(122, 162, 247, 0.08);
 }
 
 #logout {
-    background-image: image(url("logout.png"));
+    background-image: url("/home/owlsly/.config/wlogout/logout.png");
 }
 #logout:hover {
-    background-image: image(url("logout-hover.png"));
+    background-image: url("/home/owlsly/.config/wlogout/logout-hover.png");
+    background-color: rgba(125, 207, 255, 0.08);
 }
 
 #reboot {
-    background-image: image(url("restart.png"));
+    background-image: url("/home/owlsly/.config/wlogout/restart.png");
 }
 #reboot:hover {
-    background-image: image(url("restart-hover.png"));
+    background-image: url("/home/owlsly/.config/wlogout/restart-hover.png");
+    background-color: rgba(125, 207, 255, 0.08);
 }
 
 #shutdown {
-    background-image: image(url("power.png"));
+    background-image: url("/home/owlsly/.config/wlogout/power.png");
 }
 #shutdown:hover {
-    background-image: image(url("power-hover.png"));
+    background-image: url("/home/owlsly/.config/wlogout/power-hover.png");
+    background-color: rgba(187, 154, 247, 0.08);
 }
 
 #hibernate {
-    background-image: image(url("sleep.png"));
+    background-image: url("/home/owlsly/.config/wlogout/sleep.png");
 }
 #hibernate:hover {
-    background-image: image(url("sleep-hover.png"));
+    background-image: url("/home/owlsly/.config/wlogout/sleep-hover.png");
+    background-color: rgba(122, 162, 247, 0.08);
 }
