@@ -57,7 +57,7 @@
     "format": "  {}",
     "interval": 7200,
     "exec": "sh ~/.config/hypr/scripts/updates.sh",
-    "on-click": "kitty --hold sh -c 'topgrade'"
+    "on-click": "exec kitty --app-id topgrade -e topgrade"
   },
 
   "pulseaudio": {
