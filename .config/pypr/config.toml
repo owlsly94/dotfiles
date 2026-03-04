@@ -13,6 +13,6 @@ size = "75% 60%"
 animation = "fromTop"         
 command = "bitwarden-desktop" 
 class = "Bitwarden"           
-size = "40% 60%"              
+size = "75% 60%"              
 unfocus = "hide"              
 lazy = true                   
