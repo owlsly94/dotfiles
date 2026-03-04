@@ -14,6 +14,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers (doFullFloat, doCenterFloat, isFullscreen, isDialog)
+import XMonad.Hooks.InsertPosition
 
 -- Config
 import XMonad.Config.Desktop
@@ -190,7 +191,7 @@ main = do
 myConfig xmproc = def
     { startupHook        = myStartupHook
     , layoutHook         = myLayout
-    , manageHook         = manageSpawn <+> myManageHook <+> manageHook def
+    , manageHook         = insertPosition End Newer <+> manageSpawn <+> myManageHook <+> manageHook def
     , modMask            = myModMask
     , borderWidth        = myBorderWidth
     , handleEventHook    = handleEventHook def
