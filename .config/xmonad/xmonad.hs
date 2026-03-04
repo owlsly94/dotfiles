@@ -9,15 +9,10 @@ import XMonad
 -- Hooks
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.StatusBar
-import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers (doFullFloat, doCenterFloat, isFullscreen, isDialog)
 import XMonad.Hooks.InsertPosition
-
--- Config
-import XMonad.Config.Desktop
 
 -- Utils
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
@@ -25,10 +20,8 @@ import XMonad.Actions.SpawnOn
 import XMonad.Util.SpawnOnce
 import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Actions.CycleWS
-import XMonad.Actions.CopyWindow
 import XMonad.Actions.WithAll
 import XMonad.Hooks.UrgencyHook
-import qualified Codec.Binary.UTF8.String as UTF8
 import XMonad.Util.NamedScratchpad
 
 -- Layouts
@@ -44,8 +37,6 @@ import XMonad.Layout.Renamed
 import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
-import qualified Data.ByteString as B
-import Control.Monad (liftM2)
 
 -----------------------------
 ---------- COLORS -----------
@@ -100,9 +91,9 @@ mySecondTerminal = "alacritty"
 -----------------------------
 ---------- BROWSER ----------
 -----------------------------
-myBrowser, myBrave :: String
-myBrowser = "firefox"
-myBrave   = "zen-browser"
+myBrowser, myFirefox :: String
+myBrowser = "zen-browser"
+myFirefox = "firefox"
 
 -----------------------------
 ------- FILE MANAGER --------
@@ -134,8 +125,7 @@ volumeMute = "pamixer --toggle-mute"
 -----------------------------
 --------- LAUNCHERS ---------
 -----------------------------
-dMenu, rofiLauncher :: String
-dMenu        = "dmenu_run -nb '" ++ tnBgDark ++ "' -nf '" ++ tnBlue ++ "' -sb '" ++ tnBlue ++ "' -sf '" ++ tnBgDark ++ "'"
+rofiLauncher :: String
 rofiLauncher = "rofi -show drun -show-icons"
 
 -----------------------------
@@ -155,18 +145,6 @@ myRecompileRestart = "xmonad --recompile && xmonad --restart"
 -----------------------------
 wallChanger :: String
 wallChanger = "$HOME/.config/xmonad/scripts/feh-randomize.sh"
-
------------------------------
--------- SPOTIFY ------------
------------------------------
-mySpotify :: String
-mySpotify = "brave --app=https://open.spotify.com/"
-
------------------------------
--------- CHATGPT ------------
------------------------------
-myChatGPT :: String
-myChatGPT = "brave --app=https://chat.openai.com"
 
 -----------------------------
 -------- MOUSE FOCUS --------
@@ -209,17 +187,14 @@ myConfig xmproc = def
 --------- AUTOSTART ---------
 -----------------------------
 myStartupHook :: X ()
-myStartupHook = mapM_ spawnOnce
-  [ "~/.fehbg"
-  , "xsetroot -cursor_name left_ptr"
-  , "nm-applet"
-  , "xfce4-power-manager"
-  , "killall dunst"
-  , "dunst"
-  , "picom --config ~/.config/picom/picom.conf"
-  , "/usr/lib/polkit-kde-authentication-agent-1"
-  , "setWMName \"LG3D\""
-  ]
+myStartupHook = do
+    spawn     "killall dunst"
+    spawnOnce "~/.fehbg"
+    spawnOnce "xsetroot -cursor_name left_ptr"
+    spawnOnce "dunst"
+    spawnOnce "picom --config ~/.config/picom/picom.conf"
+    spawnOnce "/usr/bin/gnome-keyring-daemon --start --components=secrets"
+    setWMName "LG3D"
 
 -----------------------------
 ---------- XMOBAR -----------
@@ -281,8 +256,6 @@ myScratchpads =
   , NS "paco"     "pavucontrol"                                (className =? "Pavucontrol") customFloatingRect
   , NS "rang"     (mySecondTerminal ++ " -t ranger -e ranger") (title =? "ranger")          customFloatingRect
   , NS "bitw"     "bitwarden-desktop"                          (className =? "Bitwarden")   customFloatingRect
-  , NS "chgt"     myChatGPT                                    (title =? "ChatGPT")         customFloatingRect
-  , NS "spot"     mySpotify                                    (title =? "Spotify")         customFloatingRect
   ]
   where
     customFloatingRect = customFloating $ W.RationalRect l t w h
@@ -321,12 +294,11 @@ myAditionalKeys =
 
     -- Launchers
   [ ("M-<Return>",  spawn myTerminal)
-  , ("M4-f",        spawn myBrowser)
-  , ("M4-S-f",      spawn $ myBrowser ++ " -p")
-  , ("M4-b",        spawn myBrave)
+  , ("M4-b",        spawn myBrowser)
+  , ("M4-f",        spawn myFirefox)
+  , ("M4-S-f",      spawn $ myFirefox ++ " -p")
   , ("M-<Space>",   spawn rofiLauncher)
   , ("M4-p",        spawn powerMenu)
-  , ("M4-d",        spawn dMenu)
   , ("M-d",         spawn myFileManager)
   , ("M4-c",        spawn myWorkEditor)
   , ("M4-w",        spawn wallChanger)
@@ -339,7 +311,7 @@ myAditionalKeys =
   , ("<XF86AudioMute>",        spawn volumeMute)
 
   -- Window Management
-  , ("M-S-c",       kill1)
+  , ("M-S-c",       kill)
   , ("M-S-x",       killAll)
   , ("M-S-r",       spawn myRecompileRestart)
   , ("M-S-q",       io exitSuccess)
@@ -349,8 +321,6 @@ myAditionalKeys =
   , ("M4-2",        namedScratchpadAction myScratchpads "paco")
   , ("M4-3",        namedScratchpadAction myScratchpads "rang")
   , ("M4-4",        namedScratchpadAction myScratchpads "bitw")
-  , ("M4-g",        namedScratchpadAction myScratchpads "chgt")
-  , ("M4-m",        namedScratchpadAction myScratchpads "spot")
 
   -- Layouts and Workspaces
   , ("C-S-b",       spawn "killall xmobar")
