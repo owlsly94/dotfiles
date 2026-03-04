@@ -1,45 +1,3 @@
---             :.                           .:       
---            +:-=-                      .-=:=.     
---           :=+*+:=:.::---:::::::::::. ===**:+     
---           *+****=----==++*****+++====-+****=:    
---          =*******#***##*********##***#*****++    
---         .#***#*+-:::::-=*#***#*=-:::::-+*#***-   
---         +****-::-+****=-:-*#*-::-+***+=-:-*#*#   
---         #***::-*=  .+@@@*-:-::-#=  .+@@%+::**#.  
---        :#*#:::#%     @@@@*:::-%%     @@@@+:-#*=  
---        +**#:::@@#=-=%@@@@%:::=@@#=-+%@@@@*::#**  
---        #**#-::*@@@@@%:.*@+::::#@@@@@%:.*@=:-#*#  
---       .#***#-::+%@@@%=-+++===+-*%@@@%=-+-:-#**#: 
---       -#****#+-::-=++=-=+:---:*-:==++=-:-+#***#- 
---       ====+***#*+++=+++*#=---=#*+++=+++*#**+=--= 
---       +***+==********+==+**+**+=++*******=-+***= 
---       =******=+***=-:::::-=+=-::::--+***-******- 
---       -*******=#+=-::=::::::::::-=::=-#=******#. 
---       .#*******#::====:::+--==:::=++=:********#  
---        *******#+::::::::::==-:::::::::+#******=  
---        :#*****%=::::--::--:::=:::=::::=%*****#   
---         *#**##%::::::++++-:::-+=+-::::-%##**#:   
---          *#####=-::::::::::::::::::::-=#####-    
---           =##%+==+=---:::-:::-:::=--=+=+%##:     
---            .+%+==+***+===+++++===+***==+#-       
---               -+*+========++=======+*+=.         
---                 .*******************:            
---                 +=+#+=*=+: .*+*++#+=*            
---                    +-=+++- :++++-*               
---                     :.         .:                 
---
---  .d88888b.                888          888         
--- d88P" "Y88b               888          888         
--- 888     888               888          888         
--- 888     888 888  888  888 888 .d8888b  888 888  888
--- 888     888 888  888  888 888 88K      888 888  888
--- 888     888 888  888  888 888 "Y8888b. 888 888  888
--- Y88b. .d88P Y88b 888 d88P 888      X88 888 Y88b 888
---  "Y88888P"   "Y8888888P"  888  88888P' 888  "Y88888
---                                                 888 
---                                            Y8b d88P 
---                                             "Y88P"  
-------------------------------------------------------
 -----------------------------
 ---------- IMPORTS ----------
 -----------------------------
@@ -55,13 +13,13 @@ import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageHelpers(doFullFloat, doCenterFloat, isFullscreen, isDialog)
+import XMonad.Hooks.ManageHelpers (doFullFloat, doCenterFloat, isFullscreen, isDialog)
 
 -- Config
 import XMonad.Config.Desktop
 
 -- Utils
-import XMonad.Util.Run(spawnPipe, hPutStrLn)
+import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Actions.SpawnOn
 import XMonad.Util.SpawnOnce
 import XMonad.Util.EZConfig (additionalKeysP)
@@ -74,19 +32,13 @@ import XMonad.Util.NamedScratchpad
 
 -- Layouts
 import XMonad.Layout.Spacing
-import XMonad.Layout.Gaps
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Fullscreen (fullscreenFull)
-import XMonad.Layout.Spiral(spiral)
-import XMonad.Layout.ThreeColumns
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.IndependentScreens
-import XMonad.Layout.CenteredMaster(centerMaster)
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Renamed
-import XMonad.Layout.Grid
 
 import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet as W
@@ -94,15 +46,37 @@ import qualified Data.Map as M
 import qualified Data.ByteString as B
 import Control.Monad (liftM2)
 
--- Colors
-import Colors.CatppuccinMocha
-
 -----------------------------
 ---------- COLORS -----------
 -----------------------------
+-- TokyoNight Storm palette
+tnBg        :: String
+tnBgDark    :: String
+tnBgHL      :: String
+tnFg        :: String
+tnComment   :: String
+tnBlue      :: String
+tnCyan      :: String
+tnPurple    :: String
+tnGreen     :: String
+tnOrange    :: String
+tnRed       :: String
+
+tnBg        = "#24283b"   -- background
+tnBgDark    = "#1f2335"   -- darker background
+tnBgHL      = "#292e42"   -- highlight background
+tnFg        = "#c0caf5"   -- foreground
+tnComment   = "#565f89"   -- comments / dim
+tnBlue      = "#7aa2f7"   -- blue
+tnCyan      = "#7dcfff"   -- cyan
+tnPurple    = "#bb9af7"   -- purple
+tnGreen     = "#9ece6a"   -- green
+tnOrange    = "#ff9e64"   -- orange
+tnRed       = "#f7768e"   -- red
+
 myNormalBorderColor, myFocusedBorderColor :: String
-myNormalBorderColor   = base01
-myFocusedBorderColor  = base05
+myNormalBorderColor  = tnComment
+myFocusedBorderColor = tnBlue
 
 -----------------------------
 ---------- MODKEY -----------
@@ -127,7 +101,7 @@ mySecondTerminal = "alacritty"
 -----------------------------
 myBrowser, myBrave :: String
 myBrowser = "firefox"
-myBrave = "zen-browser"
+myBrave   = "zen-browser"
 
 -----------------------------
 ------- FILE MANAGER --------
@@ -151,17 +125,16 @@ myEditor     = myTerminal ++ " -e nvim"
 -----------------------------
 ------ VOLUME CONTROL -------
 -----------------------------
-volumeUp, volumeDown, volumeMute, volumeUnmute :: String
-volumeUp     = "pamixer -i 5"
-volumeDown   = "pamixer -d 5"
-volumeMute   = "pamixer --mute"
-volumeUnmute = "pamixer --unmute"
+volumeUp, volumeDown, volumeMute :: String
+volumeUp   = "pamixer -i 5"
+volumeDown = "pamixer -d 5"
+volumeMute = "pamixer --toggle-mute"
 
 -----------------------------
 --------- LAUNCHERS ---------
 -----------------------------
 dMenu, rofiLauncher :: String
-dMenu        = "dmenu_run -nb '#1f1d2e' -nf '#89b4fa' -sb '#89b4fa' -sf '#1f1d2e'"
+dMenu        = "dmenu_run -nb '" ++ tnBgDark ++ "' -nf '" ++ tnBlue ++ "' -sb '" ++ tnBlue ++ "' -sf '" ++ tnBgDark ++ "'"
 rofiLauncher = "rofi -show drun -show-icons"
 
 -----------------------------
@@ -189,7 +162,7 @@ mySpotify :: String
 mySpotify = "brave --app=https://open.spotify.com/"
 
 -----------------------------
--------- SPOTIFY ------------
+-------- CHATGPT ------------
 -----------------------------
 myChatGPT :: String
 myChatGPT = "brave --app=https://chat.openai.com"
@@ -215,20 +188,20 @@ main = do
     xmonad . docks . ewmhFullscreen . ewmh $ myConfig xmproc
 
 myConfig xmproc = def
-    { startupHook         = myStartupHook
-    , layoutHook          = myLayout
-    , manageHook          = manageSpawn <+> myManageHook <+> manageHook def
-    , modMask             = myModMask
-    , borderWidth         = myBorderWidth
-    , handleEventHook     = handleEventHook def
-    , focusFollowsMouse   = myFocusFollowsMouse
-    , workspaces          = myWorkspaces
-    , focusedBorderColor  = myFocusedBorderColor
-    , normalBorderColor   = myNormalBorderColor
-    , keys                = myKeys
-    , mouseBindings       = myMouseBindings
-    , logHook             = dynamicLogWithPP myXmobarPP
-        { ppOutput        = hPutStrLn xmproc }
+    { startupHook        = myStartupHook
+    , layoutHook         = myLayout
+    , manageHook         = manageSpawn <+> myManageHook <+> manageHook def
+    , modMask            = myModMask
+    , borderWidth        = myBorderWidth
+    , handleEventHook    = handleEventHook def
+    , focusFollowsMouse  = myFocusFollowsMouse
+    , workspaces         = myWorkspaces
+    , focusedBorderColor = myFocusedBorderColor
+    , normalBorderColor  = myNormalBorderColor
+    , keys               = myKeys
+    , mouseBindings      = myMouseBindings
+    , logHook            = dynamicLogWithPP myXmobarPP
+        { ppOutput       = hPutStrLn xmproc }
     } `additionalKeysP` myAditionalKeys
 
 -----------------------------
@@ -237,6 +210,7 @@ myConfig xmproc = def
 myStartupHook :: X ()
 myStartupHook = mapM_ spawnOnce
   [ "~/.fehbg"
+  , "xsetroot -cursor_name left_ptr"
   , "nm-applet"
   , "xfce4-power-manager"
   , "killall dunst"
@@ -251,18 +225,18 @@ myStartupHook = mapM_ spawnOnce
 -----------------------------
 myXmobarPP :: PP
 myXmobarPP = def
-  { ppCurrent         = xmobarColor base09 "" . wrap "" ""    -- Current workspace in xmobar
-  , ppVisible         = xmobarColor base03 ""                 -- Visible but not current workspace
-  , ppHidden          = xmobarColor base05 "" . wrap "" ""    -- Hidden workspaces in xmobar
-  , ppHiddenNoWindows = xmobarColor base01 ""                 -- Hidden workspaces (no windows)
-  , ppTitle           = xmobarColor base02 "" . shorten 80    -- Title of active window in xmobar
-  , ppSep             =  "<fc=#f5e0dc>  \60272  </fc>"        -- Separators in xmobar
-  , ppLayout          = xmobarColor base04 ""
+  { ppCurrent         = xmobarColor tnBlue   "" . wrap "" ""   -- Current workspace
+  , ppVisible         = xmobarColor tnPurple   ""              -- Visible but not current
+  , ppHidden          = xmobarColor tnFg     "" . wrap "" ""   -- Hidden workspaces
+  , ppHiddenNoWindows = xmobarColor tnComment ""               -- Hidden (no windows)
+  , ppTitle           = xmobarColor tnFg "" . shorten 80  -- Active window title
+  , ppSep             = "<fc=" ++ tnCyan ++ ">  \60272  </fc>"
+  , ppLayout          = xmobarColor tnBlue ""
   , ppWsSep           = "  "
-  , ppUrgent          = xmobarColor base03 "" . wrap "!" "!"  -- Urgent workspace
+  , ppUrgent          = xmobarColor tnRed "" . wrap "!" "!"    -- Urgent workspace
   , ppOrder           = \(ws:l:t:ex) -> [ws,l]++ex++[t]
-}
- 
+  }
+
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
   where
@@ -274,11 +248,11 @@ xmobarEscape = concatMap doubleLts
 -----------------------------
 myWorkspaces :: [String]
 myWorkspaces =
-  clickable . map xmobarEscape $ ["\62601 ", "\62057 ", "\985630 ", "\61564 ", "\987086 ", "\61878 " ]
+  clickable . map xmobarEscape $ ["\62601 ", "\62057 ", "\985630 ", "\61564 ", "\987086 ", "\61878 "]
   where
     clickable l =
       [ "<action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action>"
-      | (i,ws) <- zip [1..6] l
+      | (i, ws) <- zip [1..6] l
       , let n = i
       ]
 
@@ -287,14 +261,14 @@ myWorkspaces =
 -----------------------------
 myManageHook :: ManageHook
 myManageHook = composeAll
-    [ className =? "firefox"       --> doShift (myWorkspaces !! 1)
-    , className =? "zen-beta"      --> doShift (myWorkspaces !! 1)
-    , className =? "Code"          --> doShift (myWorkspaces !! 2)
-    , className =? "Thunar"        --> doShift (myWorkspaces !! 3)
-    , className =? "vlc"           --> doShift (myWorkspaces !! 4)
-    , className =? "steam"         --> doShift (myWorkspaces !! 5)
-    , isFullscreen                 --> doFullFloat
-    , isDialog                     --> doCenterFloat
+    [ className =? "firefox"  --> doShift (myWorkspaces !! 1)
+    , className =? "zen-beta" --> doShift (myWorkspaces !! 1)
+    , className =? "Code"     --> doShift (myWorkspaces !! 2)
+    , className =? "Thunar"   --> doShift (myWorkspaces !! 3)
+    , className =? "vlc"      --> doShift (myWorkspaces !! 4)
+    , className =? "steam"    --> doShift (myWorkspaces !! 5)
+    , isFullscreen            --> doFullFloat
+    , isDialog                --> doCenterFloat
     ] <+> manageDocks <+> namedScratchpadManageHook myScratchpads
 
 -----------------------------
@@ -302,12 +276,12 @@ myManageHook = composeAll
 -----------------------------
 myScratchpads :: [NamedScratchpad]
 myScratchpads =
-  [ NS "terminal"  (mySecondTerminal ++ " -t scratchpad")       (title =? "scratchpad")      customFloatingRect
-  , NS "paco"      "pavucontrol"                                (className =? "Pavucontrol") customFloatingRect
-  , NS "rang"      (mySecondTerminal ++ " -t ranger -e ranger") (title =? "ranger")          customFloatingRect
-  , NS "bitw"      "bitwarden-desktop"                          (className =? "Bitwarden")   customFloatingRect
-  , NS "chgt"      myChatGPT                                    (title =? "ChatGPT")         customFloatingRect
-  , NS "spot"      mySpotify                                    (title =? "Spotify")         customFloatingRect
+  [ NS "terminal" (mySecondTerminal ++ " -t scratchpad")       (title =? "scratchpad")      customFloatingRect
+  , NS "paco"     "pavucontrol"                                (className =? "Pavucontrol") customFloatingRect
+  , NS "rang"     (mySecondTerminal ++ " -t ranger -e ranger") (title =? "ranger")          customFloatingRect
+  , NS "bitw"     "bitwarden-desktop"                          (className =? "Bitwarden")   customFloatingRect
+  , NS "chgt"     myChatGPT                                    (title =? "ChatGPT")         customFloatingRect
+  , NS "spot"     mySpotify                                    (title =? "Spotify")         customFloatingRect
   ]
   where
     customFloatingRect = customFloating $ W.RationalRect l t w h
@@ -317,30 +291,26 @@ myScratchpads =
         t = 0.95 - h
         l = 0.95 - w
 
------------------------------
---------- LAYOUTS -----------
------------------------------
--- Gaps around and in between the windows
+-------------------------------------
+---------- LAYOUTS ------------------
+-------------------------------------
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
--- Layouts customization
+-- Only Tall and Monocle layouts
 tall    = renamed [Replace "\984640"]
         $ smartBorders
         $ mySpacing 8
         $ ResizableTall 1 (3/100) (1/2) []
+
 monocle = renamed [Replace "\985967"]
         $ smartBorders
         $ Full
-grid    = renamed [Replace "\984920"]
-        $ smartBorders
-        $ mySpacing 8
-        $ Grid
 
--- Layout hook
+-- Layout hook - fullscreen hides xmobar automatically
 myLayout = avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
         where
-            myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle ||| grid
+            myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle
 
 -----------------------------
 ------- KEY BINDINGS --------
@@ -349,32 +319,31 @@ myAditionalKeys :: [(String, X ())]
 myAditionalKeys =
 
     -- Launchers
-  [ ("M-<Return>",  spawn $ myTerminal)
-  , ("M4-f",        spawn $ myBrowser)
+  [ ("M-<Return>",  spawn myTerminal)
+  , ("M4-f",        spawn myBrowser)
   , ("M4-S-f",      spawn $ myBrowser ++ " -p")
-  , ("M4-b",        spawn $ myBrave)
-  , ("M-p",         spawn $ rofiLauncher)
-  , ("M4-p",        spawn $ powerMenu)
-  , ("M4-d",        spawn $ dMenu)
-  , ("M-d",         spawn $ myFileManager)
-  , ("M4-c",        spawn $ myWorkEditor)
-  , ("M4-w",        spawn $ wallChanger)
-  , ("M-v",         spawn $ myEditor)
-  , ("M4-s",        spawn $ mySteamLauncher)
+  , ("M4-b",        spawn myBrave)
+  , ("M-<Space>",   spawn rofiLauncher)
+  , ("M4-p",        spawn powerMenu)
+  , ("M4-d",        spawn dMenu)
+  , ("M-d",         spawn myFileManager)
+  , ("M4-c",        spawn myWorkEditor)
+  , ("M4-w",        spawn wallChanger)
+  , ("M-v",         spawn myEditor)
+  , ("M4-s",        spawn mySteamLauncher)
 
   -- Volume Control
-  , ("<F2>",        spawn $ volumeDown)
-  , ("<F3>",        spawn $ volumeUp)
-  , ("<F4>",        spawn $ volumeMute)
-  , ("<F1>",        spawn $ volumeUnmute)
+  , ("<XF86AudioRaiseVolume>", spawn volumeUp)
+  , ("<XF86AudioLowerVolume>", spawn volumeDown)
+  , ("<XF86AudioMute>",        spawn volumeMute)
 
-  -- Window managment
+  -- Window Management
   , ("M-S-c",       kill1)
   , ("M-S-x",       killAll)
-  , ("M-S-r",       spawn $ myRecompileRestart)
+  , ("M-S-r",       spawn myRecompileRestart)
   , ("M-S-q",       io exitSuccess)
 
-  -- Scratchpads 
+  -- Scratchpads
   , ("M4-1",        namedScratchpadAction myScratchpads "terminal")
   , ("M4-2",        namedScratchpadAction myScratchpads "paco")
   , ("M4-3",        namedScratchpadAction myScratchpads "rang")
@@ -383,10 +352,9 @@ myAditionalKeys =
   , ("M4-m",        namedScratchpadAction myScratchpads "spot")
 
   -- Layouts and Workspaces
-  , ("C-S-b",       spawn $ "killall xmobar")
-  , ("M-<Space>",   sendMessage NextLayout)
-  , ("C-b",         sendMessage $ ToggleStruts)
-  , ("M-n",         sendMessage $ Toggle NBFULL)
+  , ("C-S-b",       spawn "killall xmobar")
+  , ("M-<Tab>",     sendMessage NextLayout)
+  , ("C-b",         sendMessage ToggleStruts)
   , ("C-M-<Left>",  prevWS)
   , ("C-M-<Right>", nextWS)
   , ("M1-1",        windows $ W.view $ myWorkspaces !! 0)
@@ -416,14 +384,14 @@ myAditionalKeys =
 
 myKeys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
- [((m .|. modm, k), windows $ onCurrentScreen f i)
- | (i, k) <- zip (workspaces' conf) [xK_1 .. xK_9]
- , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
- ]
+  [ ((m .|. modm, k), windows $ onCurrentScreen f i)
+  | (i, k) <- zip (workspaces' conf) [xK_1 .. xK_9]
+  , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
+  ]
 
 myMouseBindings :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())
 myMouseBindings XConfig {XMonad.modMask = modm} = M.fromList
   [ ((modm, button1), \w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster)
-  , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
-  , ((modm, button3), (\w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster))
+  , ((modm, button2), \w -> focus w >> windows W.shiftMaster)
+  , ((modm, button3), \w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster)
   ]

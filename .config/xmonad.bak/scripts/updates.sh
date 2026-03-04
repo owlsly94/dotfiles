@@ -12,9 +12,9 @@ updates() {
     available=$(("$pacman_updates" + "$aur_updates"))
 
     if [ $available == 0 ]; then 
-        echo " 0"
+        echo "  0"
     else
-        echo " $available"
+        echo "  $available"
     fi
 }
 
