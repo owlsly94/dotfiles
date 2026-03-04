@@ -1,91 +1,165 @@
 configuration {
     modi:                       "drun";
     show-icons:                 true;
-    display-drun:               "Launch:";
+    display-drun:               "";
     drun-display-format:        "{name}";
-    font:                       "JetBrainsMono Nerd Font 12";
+    font:                       "JetBrainsMono Nerd Font 13";
 }
 
 * {
-    bg:      #1a1b26;
-    bg-alt:  #24283b;
-    fg:      #c0caf5;
+    /* Tokyo Night palette */
+    bg0:     #13141f;
+    bg1:     #1a1b2e;
+    bg2:     #1f2335;
+    bg3:     #24283b;
+    bg4:     #2a2e4a;
+
+    fg0:     #c0caf5;
+    fg1:     #a9b1d6;
+    fg2:     #565f89;
+
     cyan:    #7dcfff;
     blue:    #7aa2f7;
-    magenta: #bb9af7;
-    gray:    #565f89;
-    
+    violet:  #bb9af7;
+    green:   #9ece6a;
+
+    /* Resets */
     background-color: transparent;
-    text-color:       @fg;
+    text-color:       @fg0;
+    border-color:     transparent;
+    outline-color:    transparent;
+    spacing:          0;
+    padding:          0;
+    margin:           0;
 }
 
 window {
-    width:            500px;
-    height:           400px;
-    background-color: @bg;
-    border:           2px;
-    border-color:     @magenta;
-    border-radius:    12px;
+    width:            520px;
+    background-color: @bg1;
+    border:           1px solid;
+    border-color:     @bg4;
+    border-radius:    16px;
+    padding:          0px;
+
+    /* Subtle drop shadow via outline trick */
+    location:         center;
+    anchor:           center;
 }
 
 mainbox {
-    padding:  15px;
-    children: [ "inputbar", "listview" ];
+    padding:          16px;
+    spacing:          10px;
+    background-color: transparent;
+    children:         [ "inputbar", "message", "listview" ];
 }
 
+/* ── Search bar ─────────────────────────────────────── */
 inputbar {
-    margin:           0px 0px 10px 0px;
-    padding:          10px;
-    background-color: @bg-alt;
-    border:           1px;
-    border-color:     @blue;
-    border-radius:    8px;
+    padding:          11px 14px;
+    background-color: @bg2;
+    border:           1px solid;
+    border-color:     @bg4;
+    border-radius:    10px;
+    spacing:          8px;
     children:         [ "prompt", "entry" ];
 }
 
 prompt {
-    text-color: @blue;
-    margin:     0px 5px 0px 0px;
+    text-color:       @violet;
+    font:             "JetBrainsMono Nerd Font 15";
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+    padding:          0px 4px 0px 0px;
 }
 
 entry {
-    text-color:        @fg; 
-    placeholder:       "Search...";
-    placeholder-color: @gray;
+    text-color:        @fg0;
+    placeholder:       "Search applications…";
+    placeholder-color: @fg2;
+    vertical-align:    0.5;
     horizontal-align:  0;
+    cursor:            text;
 }
 
+/* ── App list ────────────────────────────────────────── */
 listview {
-    margin:       5px 0px 0px 0px;
     columns:      1;
     lines:        8;
-    fixed-height: true;
+    fixed-height: false;
+    dynamic:      true;
     scrollbar:    false;
-    spacing:      5px;
+    spacing:      4px;
+    background-color: transparent;
 }
 
 element {
-    padding:       8px;
-    border-radius: 8px;
+    padding:       9px 10px;
+    border-radius: 10px;
     spacing:       12px;
+    background-color: transparent;
+    cursor:        pointer;
 }
 
-element normal.normal, 
+/* Default / unselected rows */
+element normal.normal,
 element alternate.normal {
     background-color: transparent;
-    text-color:       @fg;
+    text-color:       @fg1;
 }
 
-element selected.normal {
-    background-color: @bg-alt;
+element normal.urgent,
+element alternate.urgent {
+    background-color: transparent;
     text-color:       @cyan;
 }
 
+element normal.active,
+element alternate.active {
+    background-color: transparent;
+    text-color:       @green;
+}
+
+/* Selected row — accent left-border glow via bg gradient */
+element selected.normal {
+    background-color: @bg3;
+    text-color:       @fg0;
+    border-radius:    10px;
+}
+
+element selected.urgent {
+    background-color: @bg3;
+    text-color:       @cyan;
+    border-radius:    10px;
+}
+
+element selected.active {
+    background-color: @bg3;
+    text-color:       @green;
+    border-radius:    10px;
+}
+
+/* ── Icon & text ─────────────────────────────────────── */
 element-icon {
-    size: 36px;
+    size:             28px;
+    vertical-align:   0.5;
+    background-color: transparent;
 }
 
 element-text {
-    text-color: inherit;
-    vertical-align: 0.5;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    background-color: transparent;
 }
+
+/* ── No results message ──────────────────────────────── */
+message {
+    background-color: transparent;
+    padding:          0px 2px;
+}
+
+textbox {
+    text-color:       @fg2;
+    background-color: transparent;
+    horizontal-align: 0;
+}
+
