@@ -35,7 +35,7 @@ configuration {
 
 window {
     width:            520px;
-    background-color: @bg1;
+    background-color: @bg0;
     border:           1px solid;
     border-color:     @bg4;
     border-radius:    16px;
