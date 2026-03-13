@@ -1,0 +1,154 @@
+/* * TokyoNight Waybar Theme 
+ * Unified Pill Style with Rounded Workspaces & Taskbar
+ */
+
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @bg;
+    color: @fg;
+    /*border-bottom: 2px solid rgba(187, 154, 247, 0.2);*/
+}
+
+#waybar.empty .modules-center {
+    opacity: 0;
+}
+
+/* Common styling for modules */
+#taskbar,
+#window,
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#custom-updates,
+#clock,
+#tray {
+    margin: 6px 3px;
+    padding: 2px 12px;
+    border-radius: 12px;
+    background-color: @bg_alt;
+}
+
+#tray {
+    background-color: transparent;
+}
+
+/* --- Workspaces --- */
+#workspaces {
+    margin: 6px 3px;
+    padding: 6px;
+    border-radius: 12px;
+    background-color: @bg_alt;
+}
+
+#workspaces button {
+    padding: 0 0 0 2px;
+    margin: 0 3px;
+    color: @bg_alt;
+    background: @magenta;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 24px;
+    min-height: 24px;
+}
+
+#workspaces button:hover {
+    background-color: @green;
+    color: @bg_alt;
+}
+
+#workspaces button.active {
+    color: @bg;
+    background-color: @blue;
+    font-weight: bold;
+    border-radius: 16px;
+    border: none;
+    padding: 0 12px;
+}
+
+#workspaces button.urgent {
+    color: @bg;
+    background-color: @red;
+    animation: urgent-blink 1s ease infinite;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.7;
+    }
+}
+
+/* --- Taskbar --- */
+#taskbar button {
+    padding: 0 6px;
+    margin: 2px 2px;
+    border-radius: 8px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+#taskbar button.active {
+    background: rgba(122, 162, 247, 0.2);
+    box-shadow: inset 0 -2px 0 @blue;
+}
+
+#taskbar button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Window Title (Center) --- */
+#window {
+    color: @fg;
+}
+
+/* --- Module Specific Colors --- */
+#cpu            { color: @magenta; }
+#temperature    { color: @blue; }
+#memory         { color: @cyan; }
+#custom-updates { color: @green; }
+#pulseaudio     { color: @yellow; }
+#clock          { color: @red; }
+
+#pulseaudio {
+    transition: all 0.2s ease;
+}
+
+#pulseaudio.muted {
+    color: @comment;
+    opacity: 0.5;
+}
+
+#temperature.critical {
+    color: @bg;
+    background-color: @red;
+}
+
+/* --- Tray styling --- */
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/* Tooltips */
+tooltip {
+    background: @bg;
+    border: 1px solid @blue;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @fg;
+}

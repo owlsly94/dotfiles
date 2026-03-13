@@ -1,6 +1,7 @@
-/* * TokyoNight Waybar Theme 
+/* =============================================================
+ * TokyoNight Waybar Theme
  * Unified Pill Style with Rounded Workspaces & Taskbar
- */
+ * ============================================================= */
 
 @import "colors.css";
 
@@ -16,14 +17,16 @@
 window#waybar {
     background: @bg;
     color: @fg;
-    /*border-bottom: 2px solid rgba(187, 154, 247, 0.2);*/
 }
 
 #waybar.empty .modules-center {
     opacity: 0;
 }
 
-/* Common styling for modules */
+/* =============================================================
+ * Common module styling
+ * ============================================================= */
+
 #taskbar,
 #window,
 #cpu,
@@ -37,13 +40,82 @@ window#waybar {
     padding: 2px 12px;
     border-radius: 12px;
     background-color: @bg_alt;
+    transition: all 0.25s ease;
 }
 
-#tray {
-    background-color: transparent;
+/* =============================================================
+ * Module specific colors + hover (inset only, pill-clipped)
+ * ============================================================= */
+
+#cpu { color: @magenta; }
+#cpu:hover {
+    border-radius: 999px;
+    background-color: rgba(187, 154, 247, 0.18);
+    box-shadow: inset 0 0 14px rgba(187, 154, 247, 0.25);
 }
 
-/* --- Workspaces --- */
+#temperature { color: @blue; }
+#temperature:hover {
+    border-radius: 999px;
+    background-color: rgba(122, 162, 247, 0.18);
+    box-shadow: inset 0 0 14px rgba(122, 162, 247, 0.25);
+}
+
+#memory { color: @cyan; }
+#memory:hover {
+    border-radius: 999px;
+    background-color: rgba(125, 207, 255, 0.18);
+    box-shadow: inset 0 0 14px rgba(125, 207, 255, 0.25);
+}
+
+#custom-updates { color: @green; }
+#custom-updates:hover {
+    border-radius: 999px;
+    background-color: rgba(158, 206, 106, 0.18);
+    box-shadow: inset 0 0 14px rgba(158, 206, 106, 0.25);
+}
+
+#pulseaudio {
+    color: @yellow;
+    transition: all 0.2s ease;
+}
+#pulseaudio:hover {
+    border-radius: 999px;
+    background-color: rgba(224, 175, 104, 0.18);
+    box-shadow: inset 0 0 14px rgba(224, 175, 104, 0.25);
+}
+#pulseaudio.muted {
+    color: @comment;
+    opacity: 0.5;
+}
+
+#clock { color: @red; }
+#clock:hover {
+    border-radius: 999px;
+    background-color: rgba(247, 118, 142, 0.18);
+    box-shadow: inset 0 0 14px rgba(247, 118, 142, 0.25);
+}
+
+/* =============================================================
+ * Critical / high-usage states
+ * ============================================================= */
+
+#temperature.critical {
+    color: @bg;
+    background-color: @red;
+    animation: critical-pulse 1.5s ease infinite;
+}
+
+@keyframes critical-pulse {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+/* =============================================================
+ * Workspaces
+ * ============================================================= */
+
 #workspaces {
     margin: 6px 3px;
     padding: 6px;
@@ -82,13 +154,22 @@ window#waybar {
     animation: urgent-blink 1s ease infinite;
 }
 
-@keyframes blink {
-    to {
-        opacity: 0.7;
+@keyframes urgent-blink {
+    0% {
+        background-color: @red;
+    }
+    50% {
+        background-color: @bg_alt;
+    }
+    100% {
+        background-color: @red;
     }
 }
 
-/* --- Taskbar --- */
+/* =============================================================
+ * Taskbar
+ * ============================================================= */
+
 #taskbar button {
     padding: 0 6px;
     margin: 2px 2px;
@@ -103,46 +184,43 @@ window#waybar {
 }
 
 #taskbar button:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
 }
 
-/* --- Window Title (Center) --- */
+/* =============================================================
+ * Window title (center)
+ * ============================================================= */
+
 #window {
     color: @fg;
+    font-style: italic;
+    letter-spacing: 0.03em;
 }
 
-/* --- Module Specific Colors --- */
-#cpu            { color: @magenta; }
-#temperature    { color: @blue; }
-#memory         { color: @cyan; }
-#custom-updates { color: @green; }
-#pulseaudio     { color: @yellow; }
-#clock          { color: @red; }
+/* =============================================================
+ * Tray
+ * ============================================================= */
 
-#pulseaudio {
-    transition: all 0.2s ease;
+#tray {
+    background-color: @bg_alt;
+    border-radius: 12px;
+    padding: 2px 8px;
 }
 
-#pulseaudio.muted {
-    color: @comment;
-    opacity: 0.5;
-}
-
-#temperature.critical {
-    color: @bg;
-    background-color: @red;
-}
-
-/* --- Tray styling --- */
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
+    background: rgba(247, 118, 142, 0.15);
+    border-radius: 6px;
 }
 
-/* Tooltips */
+/* =============================================================
+ * Tooltips
+ * ============================================================= */
+
 tooltip {
     background: @bg;
     border: 1px solid @blue;
@@ -151,4 +229,5 @@ tooltip {
 
 tooltip label {
     color: @fg;
+    padding: 2px 4px;
 }
