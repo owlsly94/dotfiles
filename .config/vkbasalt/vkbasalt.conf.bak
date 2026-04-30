@@ -1,0 +1,16 @@
+effects = cas:colorCorrection:vibrance
+
+# CAS - AMD's sharpening
+casSharpness = 0.5
+
+# Color correction
+colorCorrectionSaturation = 1.3
+colorCorrectionBrightness = 1.0
+colorCorrectionContrast = 1.1
+colorCorrectionGamma = 1.0
+colorCorrectionRed = 1.0
+colorCorrectionGreen = 1.0
+colorCorrectionBlue = 1.0
+
+# Vibrance
+vibranceSaturation = 0.6

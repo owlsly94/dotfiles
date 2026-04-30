@@ -1,0 +1,58 @@
+# Video Output
+vo=gpu
+gpu-api=vulkan
+gpu-context=auto
+vulkan-async-compute=yes
+opengl-pbo=yes
+
+# Hardware Decoding
+hwdec=auto-safe
+hwdec-codecs=all
+
+# Interpolation (smooth motion)
+interpolation=yes
+tscale=oversample  # Best motion interpolation
+
+# Video Quality: Upscaling, Downscaling, Dithering
+scale=ewa_lanczossharp
+cscale=ewa_lanczossharp
+dscale=mitchell
+dither-depth=auto
+temporal-dither=yes
+dither=fruit  # playful and high quality
+
+# Debanding
+deband=yes
+deband-iterations=4
+deband-threshold=48
+deband-range=16
+deband-grain=6
+
+# Audio
+audio-spdif=ac3,dts,eac3,truehd
+audio-exclusive=no
+audio-file-auto=exact
+volume=50
+volume-max=200
+
+# Subtitle Rendering
+sub-font="DejaVu Sans"
+sub-font-size=42
+sub-border-size=3
+sub-shadow-offset=2
+sub-color="#FFFFFF"
+sub-border-color="#000000"
+sub-shadow-color="#000000"
+
+# OSD and UI
+osc=yes
+osd-bar=yes
+osd-font-size=24
+keep-open=yes
+
+# Performance
+cache=yes
+cache-secs=60
+demuxer-max-bytes=500MiB
+demuxer-max-back-bytes=100MiB
+

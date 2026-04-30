@@ -1,0 +1,13 @@
+mode=drun
+width=500
+height=400
+always_parse_args=true
+show_all=true
+print_command=true
+layer=overlay
+insensitive=true
+allow_images=true
+image_size=24
+hide_scroll=true
+# Use a custom prompt icon or text
+prompt=Launch...

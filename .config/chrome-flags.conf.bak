@@ -1,0 +1,4 @@
+--ozone-platform=wayland
+--enable-wayland-ime
+--drp-temp-disable-rules
+--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoEncoder,WaylandSessionManagement,WaylandTextInputV3,WaylandUiScale,WaylandWindowDecorations,SkiaGraphite,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE

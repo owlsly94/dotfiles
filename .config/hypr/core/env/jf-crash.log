@@ -1,0 +1,90 @@
+2026-03-02 08:40:34.574 [info] unknown @ 0 - Starting Jellyfin version: 2.0.0 build date: 2026-01-31
+2026-03-02 08:40:34.574 [info] unknown @ 0 -   Running on: Arch Linux [6.18.13-zen1-1-zen] arch x86_64
+2026-03-02 08:40:34.574 [info] unknown @ 0 -   Qt Version: 6.10.2 [x86_64-little_endian-lp64]
+2026-03-02 08:40:34.574 [debug] unknown @ 0 - Logging to  /home/owlsly/.local/share/jellyfin-desktop/profiles/fd4531331fad4d3095bc2f0dea31f786/logs/jellyfin-desktop.log
+2026-03-02 08:40:34.695 [info] unknown @ 0 - Listening to socket: "/run/user/1000/jellyfin-desktop.fd4531331fad4d3095bc2f0dea31f786.singleton"
+2026-03-02 08:40:34.695 [debug] unknown @ 0 - Signal handlers installed successfully.
+2026-03-02 08:40:34.695 [warning] unknown @ 0 - Active profile "fd4531331fad4d3095bc2f0dea31f786" not found in profiles list
+2026-03-02 08:40:34.695 [info] unknown @ 0 - Loaded 0 profiles from profiles.json
+2026-03-02 08:40:34.695 [info] unknown @ 0 - Found orphan profile directory: "fd4531331fad4d3095bc2f0dea31f786"
+2026-03-02 08:40:34.695 [info] unknown @ 0 - Component: profiles inited
+2026-03-02 08:40:34.696 [info] unknown @ 0 - Component: settings inited
+2026-03-02 08:40:34.696 [info] unknown @ 0 - Loading inputmaps from: ":/inputmaps"
+2026-03-02 08:40:34.710 [info] unknown @ 0 - Loading inputmaps from: "/home/owlsly/.local/share/jellyfin-desktop/profiles/fd4531331fad4d3095bc2f0dea31f786/inputmaps"
+2026-03-02 08:40:34.710 [info] unknown @ 0 - Successfully inited input: Keyboard
+2026-03-02 08:40:34.710 [info] unknown @ 0 - Listening to socket: "/run/user/1000/jellyfin-desktop.fd4531331fad4d3095bc2f0dea31f786.input"
+2026-03-02 08:40:34.710 [info] unknown @ 0 - Successfully inited input: socket
+2026-03-02 08:40:34.799 [info] unknown @ 0 - SDL found  0  joysticks
+2026-03-02 08:40:34.799 [info] unknown @ 0 - Successfully inited input: SDL
+2026-03-02 08:40:34.799 [critical] unknown @ 0 - LIRC Socket Error :  QLocalSocket::ServerNotFoundError
+2026-03-02 08:40:34.799 [warning] unknown @ 0 - Failed to init input: LIRC
+2026-03-02 08:40:34.799 [info] unknown @ 0 - Successfully inited input: CEC
+2026-03-02 08:40:34.799 [info] unknown @ 0 - Component: input inited
+2026-03-02 08:40:34.799 [info] unknown @ 0 - Component: system inited
+2026-03-02 08:40:34.799 [info] unknown @ 0 - libCEC was successfully initialized, found version 459009
+2026-03-02 08:40:34.799 [info] unknown @ 0 - "DisplayManager found 1 Display(s)."
+2026-03-02 08:40:34.799 [info] unknown @ 0 - "Available modes for Display #0 (HDMI-A-1)"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  0:  1920 x 1200 x  0bpp @59.8846Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  1:  1600 x 1200 x  0bpp @59.8691Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  2:  1440 x 1080 x  0bpp @59.8726Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  3:  1400 x 1050 x  0bpp @59.8553Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  4:  1280 x 1024 x  0bpp @59.7575Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  5:  1280 x  960 x  0bpp @59.939Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  6:  1152 x  864 x  0bpp @59.7753Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  7:  1024 x  768 x  0bpp @59.6842Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  8:   800 x  600 x  0bpp @59.8614Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode  9:   640 x  480 x  0bpp @59.375Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 10:   320 x  240 x  0bpp @59.2885Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 11:  1680 x 1050 x  0bpp @59.8518Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 12:  1440 x  900 x  0bpp @59.8874Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 13:  1280 x  800 x  0bpp @59.8103Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 14:  1152 x  720 x  0bpp @59.7471Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 15:   960 x  600 x  0bpp @59.6349Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 16:   928 x  580 x  0bpp @59.878Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 17:   800 x  500 x  0bpp @59.4971Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 18:   768 x  480 x  0bpp @59.375Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 19:   720 x  480 x  0bpp @59.7098Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 20:   640 x  400 x  0bpp @59.2026Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 21:   320 x  200 x  0bpp @58.1395Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 22:  1920 x 1080 x  0bpp @59.8762Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 23:  1600 x  900 x  0bpp @59.8193Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 24:  1368 x  768 x  0bpp @59.882Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 25:  1280 x  720 x  0bpp @59.8551Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 26:  1024 x  576 x  0bpp @59.8992Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 27:   864 x  486 x  0bpp @59.4545Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 28:   720 x  400 x  0bpp @59.2663Hz"
+2026-03-02 08:40:34.800 [info] unknown @ 0 - "Mode 29:   640 x  350 x  0bpp @59.2818Hz"
+2026-03-02 08:40:34.800 [critical] unknown @ 0 - DisplayManager : unable to retrieve main display
+2026-03-02 08:40:34.800 [info] unknown @ 0 - Component: display inited
+2026-03-02 08:40:34.800 [info] unknown @ 0 - Component: player inited
+2026-03-02 08:40:34.800 [info] unknown @ 0 - Component: power inited
+2026-03-02 08:40:34.800 [warning] unknown @ 0 - Could not find a taskbar component matching this platform. Taskbar functions disabled.
+2026-03-02 08:40:34.800 [info] unknown @ 0 - Component: taskbar inited
+2026-03-02 08:40:34.800 [info] unknown @ 0 - Component: window inited
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Attempting to register MPRIS service: "org.mpris.MediaPlayer2.JellyfinDesktop.profile_fd4531331fad4d3095bc2f0dea31f786"
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - MPRIS service registered successfully
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - MPRIS interface registered successfully
+2026-03-02 08:40:34.800 [info] unknown @ 0 - Component: mpris inited
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: switch mapped to DisplayComponent::switchCommand
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method with an argument.
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: player mapped to PlayerComponent::userCommand
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method with an argument.
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: poweroff mapped to PowerComponent::PowerOff
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method without arguments.
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: reboot mapped to PowerComponent::Reboot
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method without arguments.
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: suspend mapped to PowerComponent::Suspend
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method without arguments.
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: cycle_setting mapped to SettingsComponent::cycleSettingCommand
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method with an argument.
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: set_setting mapped to SettingsComponent::setSettingCommand
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method with an argument.
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: crash! mapped to SystemComponent::crashApp
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method without arguments.
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Adding host command: script mapped to SystemComponent::runUserScript
+2026-03-02 08:40:34.800 [debug] unknown @ 0 - Host command maps to method with an argument.
+2026-03-02 08:40:34.800 [info] unknown @ 0 - Config directory: /home/owlsly/.local/share/jellyfin-desktop/profiles/fd4531331fad4d3095bc2f0dea31f786
+2026-03-02 08:40:34.804 [debug] unknown @ 0 - QList("log-level")
+2026-03-02 08:40:34.813 [warning] unknown @ 0 - QQmlApplicationEngine failed to load component
+2026-03-02 08:40:34.813 [warning] unknown @ -1 - qrc:/ui/webview.qml: module "kvantum" is not installed
+2026-03-02 08:40:34.818 [fatal] unknown @ 0 - Unhandled FatalException: Failed to parse application engine script.

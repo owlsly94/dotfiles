@@ -1,0 +1,233 @@
+/* =============================================================
+ * TokyoNight Waybar Theme
+ * Unified Pill Style with Rounded Workspaces & Taskbar
+ * ============================================================= */
+
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @bg;
+    color: @fg;
+}
+
+#waybar.empty .modules-center {
+    opacity: 0;
+}
+
+/* =============================================================
+ * Common module styling
+ * ============================================================= */
+
+#taskbar,
+#window,
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#custom-updates,
+#clock,
+#tray {
+    margin: 6px 3px;
+    padding: 2px 12px;
+    border-radius: 12px;
+    background-color: @bg_alt;
+    transition: all 0.25s ease;
+}
+
+/* =============================================================
+ * Module specific colors + hover (inset only, pill-clipped)
+ * ============================================================= */
+
+#cpu { color: @magenta; }
+#cpu:hover {
+    border-radius: 999px;
+    background-color: rgba(187, 154, 247, 0.18);
+    box-shadow: inset 0 0 14px rgba(187, 154, 247, 0.25);
+}
+
+#temperature { color: @blue; }
+#temperature:hover {
+    border-radius: 999px;
+    background-color: rgba(122, 162, 247, 0.18);
+    box-shadow: inset 0 0 14px rgba(122, 162, 247, 0.25);
+}
+
+#memory { color: @cyan; }
+#memory:hover {
+    border-radius: 999px;
+    background-color: rgba(125, 207, 255, 0.18);
+    box-shadow: inset 0 0 14px rgba(125, 207, 255, 0.25);
+}
+
+#custom-updates { color: @green; }
+#custom-updates:hover {
+    border-radius: 999px;
+    background-color: rgba(158, 206, 106, 0.18);
+    box-shadow: inset 0 0 14px rgba(158, 206, 106, 0.25);
+}
+
+#pulseaudio {
+    color: @yellow;
+    transition: all 0.2s ease;
+}
+#pulseaudio:hover {
+    border-radius: 999px;
+    background-color: rgba(224, 175, 104, 0.18);
+    box-shadow: inset 0 0 14px rgba(224, 175, 104, 0.25);
+}
+#pulseaudio.muted {
+    color: @comment;
+    opacity: 0.5;
+}
+
+#clock { color: @red; }
+#clock:hover {
+    border-radius: 999px;
+    background-color: rgba(247, 118, 142, 0.18);
+    box-shadow: inset 0 0 14px rgba(247, 118, 142, 0.25);
+}
+
+/* =============================================================
+ * Critical / high-usage states
+ * ============================================================= */
+
+#temperature.critical {
+    color: @bg;
+    background-color: @red;
+    animation: critical-pulse 1.5s ease infinite;
+}
+
+@keyframes critical-pulse {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+/* =============================================================
+ * Workspaces
+ * ============================================================= */
+
+#workspaces {
+    margin: 6px 3px;
+    padding: 6px;
+    border-radius: 12px;
+    background-color: @bg_alt;
+}
+
+#workspaces button {
+    padding: 0 0 0 2px;
+    margin: 0 3px;
+    color: @bg_alt;
+    background: @magenta;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 24px;
+    min-height: 24px;
+}
+
+#workspaces button:hover {
+    background-color: @green;
+    color: @bg_alt;
+}
+
+#workspaces button.active {
+    color: @bg;
+    background-color: @blue;
+    font-weight: bold;
+    border-radius: 16px;
+    border: none;
+    padding: 0 12px;
+}
+
+#workspaces button.urgent {
+    color: @bg;
+    background-color: @red;
+    animation: urgent-blink 1s ease infinite;
+}
+
+@keyframes urgent-blink {
+    0% {
+        background-color: @red;
+    }
+    50% {
+        background-color: @bg_alt;
+    }
+    100% {
+        background-color: @red;
+    }
+}
+
+/* =============================================================
+ * Taskbar
+ * ============================================================= */
+
+#taskbar button {
+    padding: 0 6px;
+    margin: 2px 2px;
+    border-radius: 8px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+#taskbar button.active {
+    background: rgba(122, 162, 247, 0.2);
+    box-shadow: inset 0 -2px 0 @blue;
+}
+
+#taskbar button:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* =============================================================
+ * Window title (center)
+ * ============================================================= */
+
+#window {
+    color: @fg;
+    font-style: italic;
+    letter-spacing: 0.03em;
+}
+
+/* =============================================================
+ * Tray
+ * ============================================================= */
+
+#tray {
+    background-color: @bg_alt;
+    border-radius: 12px;
+    padding: 2px 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background: rgba(247, 118, 142, 0.15);
+    border-radius: 6px;
+}
+
+/* =============================================================
+ * Tooltips
+ * ============================================================= */
+
+tooltip {
+    background: @bg;
+    border: 1px solid @blue;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @fg;
+    padding: 2px 4px;
+}

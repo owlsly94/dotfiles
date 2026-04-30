@@ -1,0 +1,18 @@
+[pyprland]
+plugins = [
+  "scratchpads"
+]
+
+[scratchpads.term]
+animation = "fromTop"
+command = "kitty --class kitty-dropterm"
+class = "kitty-dropterm"
+size = "75% 60%"
+
+[scratchpads.bitwarden]
+animation = "fromTop"         
+command = "bitwarden-desktop" 
+class = "Bitwarden"           
+size = "40% 60%"              
+unfocus = "hide"              
+lazy = true                   
