@@ -1,0 +1,143 @@
+@define-color background_color #1a1b26;
+@define-color text_color #c0caf5;
+@define-color text_color_disabled #787c99;
+@define-color accent_blue #7aa2f7;
+@define-color accent_gray #414868;
+@define-color critical_red #f7768e;
+
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-weight: bold;
+  font-size: 10pt;
+}
+
+.notification-row {
+  outline: none;
+  margin: 8px;
+}
+
+.notification {
+  background: @background_color;
+  border-radius: 10px;
+  padding: 12px;
+  border: 2px solid @accent_blue;
+}
+
+.notification-content {
+  padding: 0px;
+}
+
+.notification-default-action,
+.notification-action {
+  padding: 8px;
+  margin: 0px;
+  background: transparent;
+  color: @text_color;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+  background: alpha(@accent_blue, 0.2);
+}
+
+.close-button {
+  background: @critical_red;
+  color: @background_color;
+  border-radius: 100%;
+  padding: 0px;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+.close-button:hover {
+  background: shade(@critical_red, 0.9);
+}
+
+.notification-icon {
+  margin-right: 10px;
+}
+
+.summary {
+  color: @accent_blue;
+  font-size: large;
+  font-weight: bold;
+  background: transparent;
+}
+
+.time {
+  color: @text_color_disabled;
+  background: transparent;
+  font-size: small;
+}
+
+.body {
+  color: @text_color;
+  background: transparent;
+  font-weight: normal;
+}
+
+.notification.low {
+  border: 2px solid @accent_gray;
+}
+.notification.low .summary {
+  color: @text_color_disabled;
+}
+
+.notification.normal {
+  border: 2px solid @accent_blue;
+}
+
+.notification.critical {
+  border: 2px solid @critical_red;
+}
+.notification.critical .summary {
+  color: @critical_red;
+}
+
+.control-center {
+  background: @background_color;
+  border: 2px solid @accent_blue;
+  border-radius: 10px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.widget-title {
+  color: @accent_blue;
+  font-size: large;
+  padding: 12px;
+}
+
+.widget-title > button {
+  background: @accent_gray;
+  color: @text_color;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.widget-dnd {
+  padding: 12px;
+  color: @text_color;
+}
+
+.widget-dnd > switch {
+  background: @accent_gray;
+  border-radius: 12px;
+}
+
+.widget-dnd > switch:checked {
+  background: @accent_blue;
+}
+
+.progress-bar {
+  background: alpha(@accent_gray, 0.5);
+  border-radius: 4px;
+  min-height: 8px;
+}
+
+.progress-bar-value {
+  background: @accent_blue;
+  border-radius: 4px;
+}
