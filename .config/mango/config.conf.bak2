@@ -68,7 +68,7 @@ scroller_default_proportion_single = 1.0
 scroller_proportion_preset         = 0.5,0.8,1.0
 
 # ── Master-Stack Layout ────────────────────────────────────────────────────────
-new_is_master   = 1
+new_is_master   = 0
 default_mfact   = 0.5
 default_nmaster = 1
 smartgaps       = 0
@@ -160,6 +160,28 @@ tagrule=id:6,layout_name:tile
 tagrule=id:7,layout_name:tile
 tagrule=id:8,layout_name:tile
 tagrule=id:9,layout_name:tile
+
+
+# ── Workspace Assignments ───────────────────────────────────────────────────────
+# mango's windowrule uses appid (not class) and tags:N (not "workspace"), with
+# regex support built directly into the value — no separate "match:" keyword.
+## Browser Workspaces
+windowrule=tags:2,appid:^([Zz]en)$
+windowrule=tags:2,appid:^([Bb]rave-browser)$
+windowrule=tags:2,appid:^([Gg]oogle-chrome)$
+windowrule=tags:2,appid:^([Tt]horium-browser)$
+windowrule=tags:2,appid:^([Vv]ivaldi-stable)$
+## Development
+windowrule=tags:3,appid:^([Cc]ode)$
+windowrule=tags:3,appid:^([Ee]macs)$
+## File Management
+windowrule=tags:4,appid:^([Tt]hunar)$
+## Media & Production
+windowrule=tags:6,appid:.*obsproject.Studio.*
+windowrule=tags:8,appid:^([Dd]iscord)$
+## Gaming
+windowrule=tags:7,appid:^([Ss]team)$
+windowrule=tags:7,appid:.*prismlauncher.PrismLauncher.*
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Key Bindings
